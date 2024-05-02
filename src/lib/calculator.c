@@ -13,25 +13,25 @@ static void visitExpr(Calculator *self, const Expr *expr) {
 	switch (expr->tag) {
 	case EXPR_INT:
 		break;
-		
+
 	case EXPR_VAR:
 		break;
-		
+
 	case EXPR_ADD:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_SUB:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_MUL:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_DIV:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);

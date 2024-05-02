@@ -30,23 +30,23 @@ ParseResult rootFromStr(Root *root, const char *str) {
 	for (char c = *str; c != '\0'; c = *++str) {
 		switch (c) {
 		case '+':
-			TODO("Additionsknoten auf den Stapel legen");
+			vecPush(stmt_list) = c;
 			break;
 			
 		case '-':
-			TODO("Subtraktionsknoten auf den Stapel legen");
+			vecPush(stmt_list) = c;
 			break;
 			
 		case '*':
-			TODO("Multiplikationsknoten auf den Stapel legen");
+			vecPush(stmt_list) = c;
 			break;
 			
 		case '/':
-			TODO("Divisionsknoten auf den Stapel legen");
+			vecPush(stmt_list) = c;
 			break;
 			
 		case '=':
-			TODO("Zuweisungsknoten auf den Stapel legen");
+			vecPush(stmt_list) = c;
 			break;
 			
 		default:
@@ -54,16 +54,17 @@ ParseResult rootFromStr(Root *root, const char *str) {
 				continue;
 			
 			if (isdigit(c)) {
-				TODO("Ziffer in Zahl konvertieren und auf den Stapel legen");
+				int ic = c - 0;
+				vecPush(stmt_list) = ic;
 				break;
 			}
 			
 			if (islower(c)) {
-				TODO("Variablenname auf den Stapel legen");
+				vecPush(stmt_list) = c;
 				break;
 			}
 			
-			TODO("geeigneten Fehlercode zurückgeben");
+			return PARSE_ERR_LEXICAL;
 			goto err;
 		}
 	}
@@ -73,7 +74,7 @@ ParseResult rootFromStr(Root *root, const char *str) {
 	}
 	
 	if (!vecIsEmpty(expr_stack)) {
-		TODO("geeigneten Fehlercode zurückgeben");
+		return PARSE_ERR_LEXICAL;
 		goto err;
 	}
 	
@@ -90,7 +91,6 @@ err:
 	
 	return rc;
 }
-
 Root rootFromStmt(Stmt stmt) {
 	Root root;
 	vecInit(root.stmt_list);
@@ -105,11 +105,9 @@ void rootRelease(Root *root) {
 	
 	vecRelease(root->stmt_list);
 }
-
 void rootPushStmt(Root *root, Stmt stmt) {
 	vecPush(root->stmt_list) = stmt;
 }
-
 
 Stmt stmtFromExpr(Expr expr) {
 	return (Stmt) {
@@ -117,7 +115,6 @@ Stmt stmtFromExpr(Expr expr) {
 		.expr = expr
 	};
 }
-
 Stmt stmtFromSet(char var, Expr val) {
 	return (Stmt) {
 		.tag = STMT_SET,
@@ -127,7 +124,6 @@ Stmt stmtFromSet(char var, Expr val) {
 		}
 	};
 }
-
 void stmtRelease(Stmt *stmt) {
 	switch (stmt->tag) {
 	case STMT_EXPR:
@@ -140,21 +136,18 @@ void stmtRelease(Stmt *stmt) {
 	}
 }
 
-
 Expr exprFromInt(int val) {
 	return (Expr) {
 		.tag = EXPR_INT,
 		.val = val
 	};
 }
-
 Expr exprFromVar(char var) {
 	return (Expr) {
 		.tag = EXPR_VAR,
 		.var = var
 	};
 }
-
 Expr exprFromAdd(Expr lhs, Expr rhs) {
 	Expr result = {
 		.tag = EXPR_ADD,
@@ -169,7 +162,20 @@ Expr exprFromAdd(Expr lhs, Expr rhs) {
 	
 	return result;
 }
-
+Expr exprFromAdd(Expr lhs, Expr rhs) {
+	Expr result = {
+		.tag = EXPR_ADD,
+		.op = {
+			.lhs = malloc(sizeof(Expr)),
+			.rhs = malloc(sizeof(Expr))
+		}
+	};
+	
+	*result.op.lhs = lhs;
+	*result.op.rhs = rhs;
+	
+	return result;
+}
 Expr exprFromSub(Expr lhs, Expr rhs) {
 	Expr result = {
 		.tag = EXPR_SUB,
@@ -184,7 +190,6 @@ Expr exprFromSub(Expr lhs, Expr rhs) {
 	
 	return result;
 }
-
 Expr exprFromMul(Expr lhs, Expr rhs) {
 	Expr result = {
 		.tag = EXPR_MUL,
@@ -199,7 +204,6 @@ Expr exprFromMul(Expr lhs, Expr rhs) {
 	
 	return result;
 }
-
 Expr exprFromDiv(Expr lhs, Expr rhs) {
 	Expr result = {
 		.tag = EXPR_DIV,
@@ -214,7 +218,6 @@ Expr exprFromDiv(Expr lhs, Expr rhs) {
 	
 	return result;
 }
-
 void exprRelease(Expr *expr) {
 	switch (expr->tag) {
 	case EXPR_INT:
