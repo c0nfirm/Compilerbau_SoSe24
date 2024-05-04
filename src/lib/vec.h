@@ -107,8 +107,7 @@ vecPush(void *self, size_t size);
  * @brief Deletes the last element of the vector.
  * @param self  the vector
  */
-extern void
-vecPop(void *self);
+extern void vecPop(void *self);
 /**
  * Removes an element from the back of the vector and returns an lvalue
  * reference.
@@ -161,15 +160,13 @@ vecPop(void *self);
  * @return 0, if not empty\n
  *      != 0, if empty
  */
-extern int
-vecIsEmpty(const void *self);
+extern int vecIsEmpty(const void *self);
 
 /**
  * @brief Returns the number of vector elements in use.
  * @param self  the vector
  * @return number of elements in \p self
  */
-extern unsigned int
-vecLen(const void *self);
+extern unsigned int vecLen(const void *self);
 
 #endif /* VEC_H_INCLUDED */
