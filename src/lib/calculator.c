@@ -9,12 +9,16 @@
 /* ******************************************************* private interface */
 
 static void visitExpr(Calculator *self, const Expr *expr) {
-	// TODO: eventuell Ergänzungen vornehmen
+	// DONE ?
 	switch (expr->tag) {
 	case EXPR_INT:
+		visitExpr(self, expr->op.lhs);
+		visitExpr(self, expr->op.rhs);
 		break;
 
 	case EXPR_VAR:
+		visitExpr(self, expr->op.lhs);
+		visitExpr(self, expr->op.rhs);
 		break;
 
 	case EXPR_ADD:
@@ -51,7 +55,6 @@ static void visitStmt(Calculator *self, const Stmt *stmt) {
 		break;
 	}
 }
-
 static void visitRoot(Calculator *self, const Root *root) {
 	// TODO: eventuell Ergänzungen vornehmen
 	vecForEach(const Stmt *stmt, root->stmt_list) {
@@ -60,7 +63,6 @@ static void visitRoot(Calculator *self, const Root *root) {
 }
 
 /* ******************************************************** public interface */
-
 int calculatorCalc(Calculator *self, Root *root) {
 	// TODO: eventuell Ergänzungen vornehmen
 	visitRoot(self, root);
@@ -68,7 +70,6 @@ int calculatorCalc(Calculator *self, Root *root) {
 }
 
 /* *************************************************************** unit tests */
-
 #ifdef TEST
 #include <stdio.h>
 

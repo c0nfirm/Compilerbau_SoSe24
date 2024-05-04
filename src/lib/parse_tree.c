@@ -19,7 +19,7 @@
 /* ********************************************************* public interface */
 
 ParseResult rootFromStr(Root *root, const char *str) {
-	// TODO: Funktionskörper vervollständigen
+	// DONE ?
 	ParseResult rc = PARSE_OK;
 	Stmt *stmt_list;
 	Expr *expr_stack;
@@ -30,23 +30,28 @@ ParseResult rootFromStr(Root *root, const char *str) {
 	for (char c = *str; c != '\0'; c = *++str) {
 		switch (c) {
 		case '+':
-			vecPush(stmt_list) = c;
+			expr_stack->var = c;
+			vecPush(expr_stack);
 			break;
 			
 		case '-':
-			vecPush(stmt_list) = c;
+			expr_stack->var = c;
+			vecPush(expr_stack);
 			break;
 			
 		case '*':
-			vecPush(stmt_list) = c;
+			expr_stack->var = c;
+			vecPush(expr_stack);
 			break;
 			
 		case '/':
-			vecPush(stmt_list) = c;
+			expr_stack->var = c;
+			vecPush(expr_stack);
 			break;
 			
 		case '=':
-			vecPush(stmt_list) = c;
+			expr_stack->var = c;
+			vecPush(expr_stack);
 			break;
 			
 		default:
@@ -55,12 +60,14 @@ ParseResult rootFromStr(Root *root, const char *str) {
 			
 			if (isdigit(c)) {
 				int ic = c - 0;
-				vecPush(stmt_list) = ic;
+				expr_stack->var = ic;
+				vecPush(expr_stack);
 				break;
 			}
 			
 			if (islower(c)) {
-				vecPush(stmt_list) = c;
+				expr_stack->var = c;
+				vecPush(expr_stack);
 				break;
 			}
 			
@@ -147,20 +154,6 @@ Expr exprFromVar(char var) {
 		.tag = EXPR_VAR,
 		.var = var
 	};
-}
-Expr exprFromAdd(Expr lhs, Expr rhs) {
-	Expr result = {
-		.tag = EXPR_ADD,
-		.op = {
-			.lhs = malloc(sizeof(Expr)),
-			.rhs = malloc(sizeof(Expr))
-		}
-	};
-	
-	*result.op.lhs = lhs;
-	*result.op.rhs = rhs;
-	
-	return result;
 }
 Expr exprFromAdd(Expr lhs, Expr rhs) {
 	Expr result = {

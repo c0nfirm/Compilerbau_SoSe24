@@ -7,14 +7,17 @@
 #include "vec.h"
 
 /* ******************************************************* private interface */
-
 static void visitExpr(Printer *self, const Expr *expr) {
-	// TODO: eventuell Ergänzungen vornehmen
+	// DONE ?
 	switch (expr->tag) {
 	case EXPR_INT:
+		visitExpr(self, expr->op.lhs);
+		visitExpr(self, expr->op.rhs);
 		break;
 		
 	case EXPR_VAR:
+		visitExpr(self, expr->op.lhs);
+		visitExpr(self, expr->op.rhs);
 		break;
 		
 	case EXPR_ADD:
@@ -38,7 +41,6 @@ static void visitExpr(Printer *self, const Expr *expr) {
 		break;
 	}
 }
-
 static void visitStmt(Printer *self, const Stmt *stmt) {
 	// TODO: eventuell Ergänzungen vornehmen
 	switch (stmt->tag) {
@@ -51,7 +53,6 @@ static void visitStmt(Printer *self, const Stmt *stmt) {
 		break;
 	}
 }
-
 static void visitRoot(Printer *self, const Root *root) {
 	// TODO: eventuell Ergänzungen vornehmen
 	vecForEach(const Stmt *stmt, root->stmt_list) {
@@ -60,13 +61,11 @@ static void visitRoot(Printer *self, const Root *root) {
 }
 
 /* ******************************************************** public interface */
-
 void printerFormat(Printer *self, const Root *root) {
 	visitRoot(self, root);
 }
 
 /* *************************************************************** unit tests */
-
 #ifdef TEST
 #include <stdio.h>
 #include <string.h>

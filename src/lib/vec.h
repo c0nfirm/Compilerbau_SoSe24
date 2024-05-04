@@ -68,7 +68,6 @@ typedef struct {
  */
 extern void*
 vecInit(size_t capacity, size_t size);
-
 /**
  * @brief Initializes a new array.
  * @param self  the array
@@ -82,7 +81,6 @@ vecInit(size_t capacity, size_t size);
  */
 extern void
 vecRelease(void *self);
-
 /**
  * @internal
  * @brief Reserves space for a new value in the vector.
@@ -92,7 +90,6 @@ vecRelease(void *self);
  */
 extern void*
 vecPush(void *self, size_t size);
-
 /**
  * Adds one element to the back of the vector and returns an lvalue reference.
  * 
@@ -105,7 +102,6 @@ vecPush(void *self, size_t size);
  */
 #define vecPush(self) \
 	(self = vecPush(self, sizeof((self)[0])), (self)+vecLen(self)-1)[0]
-
 /**
  * @internal
  * @brief Deletes the last element of the vector.
@@ -113,7 +109,6 @@ vecPush(void *self, size_t size);
  */
 extern void
 vecPop(void *self);
-
 /**
  * Removes an element from the back of the vector and returns an lvalue
  * reference.
@@ -133,7 +128,6 @@ vecPop(void *self);
  */
 #define vecPop(self) \
 	(vecPop(self), (self)+vecLen(self))[0]
-
 /**
  * @brief Returns the last element of the vector.
  * @param self  the vector
@@ -141,7 +135,6 @@ vecPop(void *self);
  */
 #define vecTop(self) \
 	(self)[vecLen(self) - 1]
-
 /**
  * Loops over each element of the vector in order.
  * 
@@ -162,7 +155,6 @@ vecPop(void *self);
 #define vecForEach(var, vec) \
 	for (size_t it = 0, c = 0; it < vecLen(vec); c = 0, ++it) \
 		for (var = &(vec)[it]; c == 0; c = 1)
-
 /**
  * @brief Returns whether the vector is empty.
  * @param self  the vector

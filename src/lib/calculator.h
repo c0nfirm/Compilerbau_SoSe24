@@ -42,6 +42,7 @@
  */
 typedef struct Calculator {
 	// TODO: Attribute für Variablenbelegungen und Ergebnis fehlen
+
 } Calculator;
 
 /* *** public interface ***************************************************** */

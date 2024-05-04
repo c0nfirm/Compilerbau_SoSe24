@@ -11,7 +11,7 @@
 #include <calculator.h>
 
 int main(int argc, const char *argv[]) {
-	// read the expression from the command line
+	//read the expression from the command line
 	const char *expr = "12+";
 	if (argc > 1) { expr = argv[1]; }
 	
