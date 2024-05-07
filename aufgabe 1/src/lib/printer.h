@@ -40,7 +40,6 @@
 #include "parse_tree.h"
 
 /* *** structures ********************************************************** */
-
 /**
  * Printer is a struct used for formatting parse trees into human-readable
  * strings.
@@ -65,7 +64,6 @@ typedef struct Printer {
 } Printer;
 
 /* *** public interface **************************************************** */
-
 /**
  * Folds the entire parse tree starting from a Root object into a single
  * string which is printed into the file stream pointed to by the Printer.
@@ -77,7 +75,6 @@ typedef struct Printer {
 extern void printerFormat(Printer *self, const Root *root);
 
 /* *** unit tests *********************************************************** */
-
 #ifdef TEST
 #include <stdbool.h>
 

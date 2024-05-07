@@ -12,9 +12,7 @@
 
 /* (die runden Klammern um einige Funktionsnamen sind notwendig, da Makros
  * gleichen Namens existieren und der Präprozessor diese expandieren würde) */
-
-void*
-(vecInit)(size_t capacity, size_t size) {
+void* (vecInit)(size_t capacity, size_t size) {
 	VecHeader *hdr = malloc(sizeof(*hdr) + size*capacity);
 	
 	if (hdr == NULL) {
@@ -27,14 +25,10 @@ void*
 	
 	return hdr + 1;
 }
-
-void
-vecRelease(void *self) {
+void vecRelease(void *self) {
 	free(((VecHeader*) self) - 1);
 }
-
-void*
-(vecPush)(void *self, size_t size) {
+void* (vecPush)(void *self, size_t size) {
 	VecHeader *hdr = ((VecHeader*) self) - 1;
 	
 	if (hdr->len == hdr->cap) {
@@ -50,9 +44,7 @@ void*
 	++hdr->len;
 	return hdr + 1;
 }
-
-void
-(vecPop)(void *self) {
+void (vecPop)(void *self) {
 	VecHeader *hdr = ((VecHeader*) self) - 1;
 	
 	if (hdr->len <= 0) {
@@ -62,13 +54,9 @@ void
 	
 	--hdr->len;
 }
-
-int
-vecIsEmpty(const void *self) {
+int vecIsEmpty(const void *self) {
 	return ((VecHeader*) self)[-1].len == 0;
 }
-
-unsigned int
-vecLen(const void *self) {
+unsigned int vecLen(const void *self) {
 	return ((VecHeader*) self)[-1].len;
 }

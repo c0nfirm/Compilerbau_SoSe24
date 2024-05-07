@@ -1,37 +1,41 @@
 /***************************************************************************//**
- * @file printer.c
- * Implementation of the printer.
+ * @file calculator.c
+ * Implementation of the calculator.
  ******************************************************************************/
 
-#include "printer.h"
+#include "calculator.h"
 #include "vec.h"
 
 /* ******************************************************* private interface */
 
-static void visitExpr(Printer *self, const Expr *expr) {
-	// TODO: eventuell Ergänzungen vornehmen
+static void visitExpr(Calculator *self, const Expr *expr) {
+	// DONE ?
 	switch (expr->tag) {
 	case EXPR_INT:
+		visitExpr(self, expr->op.lhs);
+		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_VAR:
+		visitExpr(self, expr->op.lhs);
+		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_ADD:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_SUB:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_MUL:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);
 		break;
-		
+
 	case EXPR_DIV:
 		visitExpr(self, expr->op.lhs);
 		visitExpr(self, expr->op.rhs);
@@ -39,7 +43,7 @@ static void visitExpr(Printer *self, const Expr *expr) {
 	}
 }
 
-static void visitStmt(Printer *self, const Stmt *stmt) {
+static void visitStmt(Calculator *self, const Stmt *stmt) {
 	// TODO: eventuell Ergänzungen vornehmen
 	switch (stmt->tag) {
 	case STMT_EXPR:
@@ -51,8 +55,7 @@ static void visitStmt(Printer *self, const Stmt *stmt) {
 		break;
 	}
 }
-
-static void visitRoot(Printer *self, const Root *root) {
+static void visitRoot(Calculator *self, const Root *root) {
 	// TODO: eventuell Ergänzungen vornehmen
 	vecForEach(const Stmt *stmt, root->stmt_list) {
 		visitStmt(self, stmt);
@@ -60,93 +63,93 @@ static void visitRoot(Printer *self, const Root *root) {
 }
 
 /* ******************************************************** public interface */
-
-void printerFormat(Printer *self, const Root *root) {
+int calculatorCalc(Calculator *self, Root *root) {
+	// TODO: eventuell Ergänzungen vornehmen
 	visitRoot(self, root);
+	return 0;
 }
 
 /* *************************************************************** unit tests */
-
 #ifdef TEST
 #include <stdio.h>
-#include <string.h>
-#include <ctype.h>
 
-static bool test(const Root *root, const char *expected) {
-	bool rc = true;
-	Printer printer = { .out = tmpfile() };
-	long len = strlen(expected);
-	
-	printerFormat(&printer, root);
-	
-	long act_len = ftell(printer.out);
-	if (act_len > len) {
-		len = act_len;
+#define EXPECT(COND) \
+	if (!(COND)) { \
+		fprintf(stderr, #COND " failed "); \
+		return false; \
 	}
-	
-	char buf[len+1];
-	rewind(printer.out);
-	fread(buf, 1, len, printer.out);
-	buf[len] = '\0';
-	
-	// trim whitespace from the back of the string to be a bit more permissive
-	while (isspace(buf[--len]));
-	buf[++len] = '\0';
-	
-	if (!(rc = (strcmp(buf, expected) == 0))) {
-		fprintf(
-			stderr, "unexpected output, expected: '%s', actual: '%s'",
-			expected, buf
-		);
-	}
-	
-	fclose(printer.out);
-	return rc;
-}
 
-bool printer_add(void) {
+bool calc_add(void) {
+	Calculator calc;
 	Root root = rootFromStmt(stmtFromExpr(
 		exprFromAdd(
 			exprFromInt(4),
 			exprFromInt(2)
 		)
 	));
-	return test(&root, "(4+2)");
+	
+	EXPECT(calculatorCalc(&calc, &root) == 6);
+	return true;
 }
 
-bool printer_sub(void) {
+bool calc_sub(void) {
+	Calculator calc;
 	Root root = rootFromStmt(stmtFromExpr(
 		exprFromSub(
 			exprFromInt(4),
 			exprFromInt(2)
 		)
 	));
-	return test(&root, "(4-2)");
+	
+	EXPECT(calculatorCalc(&calc, &root) == 2);
+	return true;
 }
 
-bool printer_mul(void) {
+bool calc_mul(void) {
+	Calculator calc;
 	Root root = rootFromStmt(stmtFromExpr(
 		exprFromMul(
 			exprFromInt(4),
 			exprFromInt(2)
 		)
 	));
-	return test(&root, "(4*2)");
+	
+	EXPECT(calculatorCalc(&calc, &root) == 8);
+	return true;
 }
 
-bool printer_div(void) {
+bool calc_div(void) {
+	Calculator calc;
 	Root root = rootFromStmt(stmtFromExpr(
 		exprFromDiv(
 			exprFromInt(4),
 			exprFromInt(2)
 		)
 	));
-	return test(&root, "(4/2)");
+	
+	EXPECT(calculatorCalc(&calc, &root) == 2);
+	return true;
 }
 
-bool printer_set(void) {
+bool calc_set(void) {
+	Calculator calc;
 	Root root = rootFromStmt(stmtFromSet('a', exprFromInt(1)));
-	return test(&root, "a=1");
+	
+	EXPECT(calculatorCalc(&calc, &root) == 0);
+	return true;
+}
+
+bool calc_vars(void) {
+	Root root = rootFromStmt(stmtFromSet('i', exprFromInt(1)));
+	
+	rootPushStmt(&root, stmtFromSet('j', exprFromInt(2)));
+	rootPushStmt(&root, stmtFromExpr(
+		exprFromAdd(exprFromVar('i'), exprFromVar('j'))
+	));
+	
+	Calculator calc;
+	EXPECT(calculatorCalc(&calc, &root) == 3);
+	return true;
 }
 
 #endif
