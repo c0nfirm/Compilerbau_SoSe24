@@ -6,6 +6,7 @@ WHITESPACE [[:space:]]
 digit	[0-9]
 INT		[[:digit:]]+
 FLT		{INT}"."{INT}|"."[INT]
+ASCII	[,|;|(|)|{|}]
 
 %{
 	#include <stdlib.h>
@@ -19,7 +20,7 @@ FLT		{INT}"."{INT}|"."[INT]
  [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]       { /* ignores blok comment */ }
  [/][*]                                    { fatal_error("Unterminated comment"); }
 
- "//".*			{ /* ignore line comment */ }
+ "//".*									   { /* ignore line comment */ }
 
  "=="	return EQ;
  "!="	return NEQ;
@@ -58,9 +59,13 @@ FLT		{INT}"."{INT}|"."[INT]
 	return STRING_LITERAL;
  }
 
- /* TODO: Bezeichner */
+ [[:alpha:]][[:alnum:]_]*{
+	yylval.string = malloc(yyleng + 1);
+	strcpy(yylval.string, yytext);
+	return IDENT;
+}
 
- /* TODO: Separatoren */
+ {ASCII}	{return (int)yytext[0];}
 
 .             return YYUNDEF;
 <<EOF>>       return EOF;
