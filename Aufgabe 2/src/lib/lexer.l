@@ -51,9 +51,11 @@ FLT		{INT}"."{INT}|"."[INT]
  "true"		{yylval.intValue = 1; return BOOL_LITEAL;}
  "false"	{yylval.intValue = 0; return BOOL_LITERAL;}
 
- /* TODO: Stringliterale */
  \"[^\n\"]*\"{
-	yylval.string = malloc(yylen + 1)
+	yylval.string = malloc(yyleng -1 + 2);
+	memcpy(yylval.string, yytext + 1, yylen - 2);
+	yylval.string[yyleng - 2] = 0;
+	return STRING_LITERAL;
  }
 
  /* TODO: Bezeichner */
