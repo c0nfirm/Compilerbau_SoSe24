@@ -51,6 +51,8 @@ ASCII	[,|;|(|)|{|}]
  "bool"		return KW_BOOLEAN;
  "float"	return KW_FLOAT;
  "void"		return KW_VOID;
+
+
  
  {FLT}([eE][-+]?{INT})? |
  {INT}([eE][-+]?{INT})	{yylval.floatValue = strtod(yytext, NULL); return FLOAT_LITERAL;}
@@ -67,7 +69,7 @@ ASCII	[,|;|(|)|{|}]
 	return STRING_LITERAL;
  }
 
- [[:alpha:]][[:alnum:]_]* {
+ [[:alpha:]_][[:alnum:]_]* {
 	yylval.string = malloc(yyleng + 1);
 	strcpy(yylval.string, yytext);
 	return IDENT;
