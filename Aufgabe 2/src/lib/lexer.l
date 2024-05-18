@@ -29,6 +29,9 @@ ASCII	[,|;|(|)|{|}]
  "<="	return LEQ;
  ">="	return GEQ;
 
+ [&&]	return LOG_AND;
+ "||"	return LOG_OR;
+
  "+"	return ADD;
  "-"	return SUB;
  "*"	return MUL;
@@ -43,6 +46,11 @@ ASCII	[,|;|(|)|{|}]
  "print"	return KW_PRINT;
  "return"	return KW_RETURN;
  "while"	return KW_WHILE;
+
+ "int"		return KW_INT;
+ "bool"		return KW_BOOLEAN;
+ "float"	return KW_FLOAT;
+ "void"		return KW_VOID;
  
  {FLT}([eE][-+]?{INT})? |
  {INT}([eE][-+]?{INT})	{yylval.floatValue = strtod(yytext, NULL); return FLOAT_LITERAL;}
