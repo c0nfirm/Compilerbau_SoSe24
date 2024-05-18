@@ -5,7 +5,7 @@ WHITESPACE [[:space:]]
 
 digit	[0-9]
 INT		[[:digit:]]+
-FLT		{INT}"."{INT}|"."[INT]
+FLT		{INT}"."{INT}|"."{INT}
 ASCII	[,|;|(|)|{|}]
 
 %{
@@ -45,7 +45,7 @@ ASCII	[,|;|(|)|{|}]
  "while"	return KW_WHILE;
  
  {FLT}([eE][-+]?{INT})? |
- {INT}([eE][-+]?[INT])	{yylval.floatValue = strtod(yytext, NULL); return FLOAT_LITERAL;}
+ {INT}([eE][-+]?{INT})	{yylval.floatValue = strtod(yytext, NULL); return FLOAT_LITERAL;}
 
  {INT}	{yylval.intValue = strtol(yytext, NULL, 10); return INT_LITERAL;}
 
