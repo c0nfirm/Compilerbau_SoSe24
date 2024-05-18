@@ -47,7 +47,7 @@ ASCII	[,|;|(|)|{|}]
  {FLT}([eE][-+]?{INT})? |
  {INT}([eE][-+]?[INT])	{yylval.floatValue = strtod(yytext, NULL); return FLOAT_LITERAL;}
 
- {INT}	{yylval.floatValue = strtol(yytext, NULL, 10); return FLOAT_LITERAL;}
+ {INT}	{yylval.intValue = strtol(yytext, NULL, 10); return INT_LITERAL;}
 
  "true"		{yylval.intValue = 1; return BOOL_LITERAL;}
  "false"	{yylval.intValue = 0; return BOOL_LITERAL;}
