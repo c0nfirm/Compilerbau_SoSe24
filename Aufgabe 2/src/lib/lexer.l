@@ -18,7 +18,7 @@ ASCII	[,|;|(|)|{|}]
 {WHITESPACE}+ { /* ignore whitespaces */ }
 
  [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]       { /* ignores blok comment */ }
- [/][*]                                    { fatal_error("Unterminated comment"); }
+ [/][*]                                    { yy_fatal_error("Unterminated comment"); }
 
  "//".*									   { /* ignore line comment */ }
 
@@ -47,19 +47,19 @@ ASCII	[,|;|(|)|{|}]
  {FLT}([eE][-+]?{INT})? |
  {INT}([eE][-+]?[INT])	{yylval.floatValue = strtod(yytext, NULL); return FLOAT_LITERAL;}
 
- {INT}	{yylval.floatValue = strtol(yytext, NULL); return FLOAT_LITERAL;}
+ {INT}	{yylval.floatValue = strtol(yytext, NULL, 10); return FLOAT_LITERAL;}
 
- "true"		{yylval.intValue = 1; return BOOL_LITEAL;}
+ "true"		{yylval.intValue = 1; return BOOL_LITERAL;}
  "false"	{yylval.intValue = 0; return BOOL_LITERAL;}
 
- \"[^\n\"]*\"{
+\"(\\.|[^\\"])*\" {
 	yylval.string = malloc(yyleng -1 + 2);
-	memcpy(yylval.string, yytext + 1, yylen - 2);
+	memcpy(yylval.string, yytext + 1, yyleng - 2);
 	yylval.string[yyleng - 2] = 0;
 	return STRING_LITERAL;
  }
 
- [[:alpha:]][[:alnum:]_]*{
+ [[:alpha:]][[:alnum:]_]* {
 	yylval.string = malloc(yyleng + 1);
 	strcpy(yylval.string, yytext);
 	return IDENT;
