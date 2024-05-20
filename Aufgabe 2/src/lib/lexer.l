@@ -51,8 +51,6 @@ ASCII	[,|;|(|)|{|}]
  "bool"		return KW_BOOLEAN;
  "float"	return KW_FLOAT;
  "void"		return KW_VOID;
-
-
  
  {FLT}([eE][-+]?{INT})? |
  {INT}([eE][-+]?{INT})	{yylval.floatValue = strtod(yytext, NULL); return FLOAT_LITERAL;}
