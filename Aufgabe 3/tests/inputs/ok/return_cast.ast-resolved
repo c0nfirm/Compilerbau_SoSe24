@@ -1,0 +1,42 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = float,
+            .ident = "get",
+            .params = [],
+            .statements = [
+                [0] = Return(Literal(int, Int(1)))
+            ]
+        }),
+        [1] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = Print(Expr(BinaryOp(float, (BinOpExpr) {
+                    .op = Div,
+                    .lhs = Call(float, (FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "get",
+                            .res = 0
+                        },
+                        .args = []
+                    }),
+                    .rhs = Literal(int, Int(2))
+                })))
+            ]
+        })
+    ]
+}
+(SymDefTable[]) {
+    [0] = Func("get", (SymFunc) {
+        .return_type = float,
+        .param_count = 0,
+        .local_vars = []
+    }),
+    [1] = Func("main", (SymFunc) {
+        .return_type = void,
+        .param_count = 0,
+        .local_vars = []
+    })
+}

@@ -1,0 +1,27 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = If((IfStmt) {
+                    .cond = Literal(bool, Bool(true)),
+                    .if_true = If((IfStmt) {
+                        .cond = Literal(bool, Bool(true)),
+                        .if_true = Print(String("then then")),
+                        .if_false = Print(String("then else"))
+                    }),
+                    .if_false = Empty()
+                })
+            ]
+        })
+    ]
+}
+(SymDefTable[]) {
+    [0] = Func("main", (SymFunc) {
+        .return_type = void,
+        .param_count = 0,
+        .local_vars = []
+    })
+}
