@@ -1,0 +1,1773 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: ast.c-Dateireferenz</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('ast_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Makrodefinitionen</a> &#124;
+<a href="#func-members">Funktionen</a> &#124;
+<a href="#var-members">Variablen</a>  </div>
+  <div class="headertitle"><div class="title">ast.c-Dateireferenz</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implementation des Syntaxbaumes.  
+<a href="#details">Mehr ...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;parser.tab.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="ast_8h_source.html">ast.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="vec_8h_source.html">vec.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Makrodefinitionen</h2></td></tr>
+<tr class="memitem:a484ea6658c5a481ce0eeaa8bce7f502c" id="r_a484ea6658c5a481ce0eeaa8bce7f502c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a484ea6658c5a481ce0eeaa8bce7f502c">STRUCT</a>(TYPE, ...)</td></tr>
+<tr class="memdesc:a484ea6658c5a481ce0eeaa8bce7f502c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur vereinfachten Implementation von Debug-Print Routinen für Struktur-Typen.  <br /></td></tr>
+<tr class="separator:a484ea6658c5a481ce0eeaa8bce7f502c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc6736579246e43d72b64d7227abd955" id="r_acc6736579246e43d72b64d7227abd955"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc6736579246e43d72b64d7227abd955">CHOICE</a>(NAME, ...)</td></tr>
+<tr class="memdesc:acc6736579246e43d72b64d7227abd955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Debug-Print Ausgabe von Varianten eines Variantentyps.  <br /></td></tr>
+<tr class="separator:acc6736579246e43d72b64d7227abd955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef126bde1462eb2b5e3db454943fbd53" id="r_aef126bde1462eb2b5e3db454943fbd53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef126bde1462eb2b5e3db454943fbd53">FIELD</a>(NAME, ...)</td></tr>
+<tr class="memdesc:aef126bde1462eb2b5e3db454943fbd53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Strukturtyp.  <br /></td></tr>
+<tr class="separator:aef126bde1462eb2b5e3db454943fbd53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cac49872849599e2a2c1db8f048762b" id="r_a0cac49872849599e2a2c1db8f048762b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cac49872849599e2a2c1db8f048762b">VEC_FIELD</a>(NAME, ...)</td></tr>
+<tr class="memdesc:a0cac49872849599e2a2c1db8f048762b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Vektortyp.  <br /></td></tr>
+<tr class="separator:a0cac49872849599e2a2c1db8f048762b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8069274c4fd97c3fdd589ea1850a4988" id="r_a8069274c4fd97c3fdd589ea1850a4988"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8069274c4fd97c3fdd589ea1850a4988">STR_FIELD</a>(NAME)</td></tr>
+<tr class="memdesc:a8069274c4fd97c3fdd589ea1850a4988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Zeigertyp.  <br /></td></tr>
+<tr class="separator:a8069274c4fd97c3fdd589ea1850a4988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f7c3ae10161217e89044daf1ac15bba" id="r_a7f7c3ae10161217e89044daf1ac15bba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f7c3ae10161217e89044daf1ac15bba">INT_FIELD</a>(NAME)</td></tr>
+<tr class="memdesc:a7f7c3ae10161217e89044daf1ac15bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Integertyp.  <br /></td></tr>
+<tr class="separator:a7f7c3ae10161217e89044daf1ac15bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2494e699c78af7a0d76adb4a17eabf" id="r_aca2494e699c78af7a0d76adb4a17eabf"><td class="memItemLeft" align="right" valign="top"><a id="aca2494e699c78af7a0d76adb4a17eabf" name="aca2494e699c78af7a0d76adb4a17eabf"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>BOX</b>(instance)&#160;&#160;&#160;	BOX(&amp;instance, sizeof(instance))</td></tr>
+<tr class="memdesc:aca2494e699c78af7a0d76adb4a17eabf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bewegt eine Stackvariable auf den Heap und gibt einen Zeiger darauf zurück. <br /></td></tr>
+<tr class="separator:aca2494e699c78af7a0d76adb4a17eabf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funktionen</h2></td></tr>
+<tr class="memitem:a02dbc323c8e65a179b4022ff52c433ed" id="r_a02dbc323c8e65a179b4022ff52c433ed"><td class="memItemLeft" align="right" valign="top"><a id="a02dbc323c8e65a179b4022ff52c433ed" name="a02dbc323c8e65a179b4022ff52c433ed"></a>
+static void *&#160;</td><td class="memItemRight" valign="bottom"><b>BOX</b> (void *ptr, size_t size)</td></tr>
+<tr class="memdesc:a02dbc323c8e65a179b4022ff52c433ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hilfsfunktion zur Allocation von Heap-Speicher und Kopie einer Variablen. <br /></td></tr>
+<tr class="separator:a02dbc323c8e65a179b4022ff52c433ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c06ace586e9530060f92f0c6dd3890" id="r_a60c06ace586e9530060f92f0c6dd3890"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_program">Program</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60c06ace586e9530060f92f0c6dd3890">astProgramNew</a> (void)</td></tr>
+<tr class="memdesc:a60c06ace586e9530060f92f0c6dd3890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erzeugt ein neues, leeres <code><a class="el" href="ast_8h.html#struct_program" title="Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.">Program</a></code>-Objekt.  <br /></td></tr>
+<tr class="separator:a60c06ace586e9530060f92f0c6dd3890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace193b3e87c11ecf251a92be23d2e91c" id="r_ace193b3e87c11ecf251a92be23d2e91c"><td class="memItemLeft" align="right" valign="top"><a id="ace193b3e87c11ecf251a92be23d2e91c" name="ace193b3e87c11ecf251a92be23d2e91c"></a>
+<a class="el" href="struct_item.html">Item</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astItemFromVarDef</b> (<a class="el" href="ast_8h.html#struct_var_def">VarDef</a> var_def)</td></tr>
+<tr class="memdesc:ace193b3e87c11ecf251a92be23d2e91c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt ein <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code> aus einer Variablendefinition. <br /></td></tr>
+<tr class="separator:ace193b3e87c11ecf251a92be23d2e91c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d824abe1f1dfc7d3ecf789846f314c7" id="r_a0d824abe1f1dfc7d3ecf789846f314c7"><td class="memItemLeft" align="right" valign="top"><a id="a0d824abe1f1dfc7d3ecf789846f314c7" name="a0d824abe1f1dfc7d3ecf789846f314c7"></a>
+<a class="el" href="struct_item.html">Item</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astItemFromFuncDef</b> (<a class="el" href="ast_8h.html#struct_func_def">FuncDef</a> func_def)</td></tr>
+<tr class="memdesc:a0d824abe1f1dfc7d3ecf789846f314c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt ein <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code> aus einer Funktionsdefinition. <br /></td></tr>
+<tr class="separator:a0d824abe1f1dfc7d3ecf789846f314c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eaa5346c14833a4af70d98097cc36f1" id="r_a8eaa5346c14833a4af70d98097cc36f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_func_def">FuncDef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eaa5346c14833a4af70d98097cc36f1">astFuncDefNew</a> (<a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> return_type, char *ident, <a class="el" href="ast_8h.html#struct_func_param">FuncParam</a> *params, <a class="el" href="struct_stmt.html">Stmt</a> *statements)</td></tr>
+<tr class="memdesc:a8eaa5346c14833a4af70d98097cc36f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine neue Funktionsdefinition.  <br /></td></tr>
+<tr class="separator:a8eaa5346c14833a4af70d98097cc36f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37f0fe19b120110e407a9c57b1439f70" id="r_a37f0fe19b120110e407a9c57b1439f70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_func_call">FuncCall</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37f0fe19b120110e407a9c57b1439f70">astFuncCallNew</a> (char *ident, <a class="el" href="struct_expr.html">Expr</a> *args)</td></tr>
+<tr class="memdesc:a37f0fe19b120110e407a9c57b1439f70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen neuen Funktionsaufruf.  <br /></td></tr>
+<tr class="separator:a37f0fe19b120110e407a9c57b1439f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b559777fcf051dfb98e42d06d702e41" id="r_a2b559777fcf051dfb98e42d06d702e41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_func_param">FuncParam</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b559777fcf051dfb98e42d06d702e41">astFuncParamNew</a> (<a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type, char *ident)</td></tr>
+<tr class="memdesc:a2b559777fcf051dfb98e42d06d702e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen neuen Funktionsparameter.  <br /></td></tr>
+<tr class="separator:a2b559777fcf051dfb98e42d06d702e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd2eb7935ed0d75a00010f654100bd88" id="r_acd2eb7935ed0d75a00010f654100bd88"><td class="memItemLeft" align="right" valign="top"><a id="acd2eb7935ed0d75a00010f654100bd88" name="acd2eb7935ed0d75a00010f654100bd88"></a>
+<a class="el" href="struct_expr.html">Expr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astExprFromAssign</b> (<a class="el" href="ast_8h.html#struct_assign">Assign</a> assign)</td></tr>
+<tr class="memdesc:acd2eb7935ed0d75a00010f654100bd88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen Ausdruck aus einer Zuweisung. <br /></td></tr>
+<tr class="separator:acd2eb7935ed0d75a00010f654100bd88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6441101db66749e04c88697cd97b712d" id="r_a6441101db66749e04c88697cd97b712d"><td class="memItemLeft" align="right" valign="top"><a id="a6441101db66749e04c88697cd97b712d" name="a6441101db66749e04c88697cd97b712d"></a>
+<a class="el" href="struct_expr.html">Expr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astExprFromFuncCall</b> (<a class="el" href="ast_8h.html#struct_func_call">FuncCall</a> func_call)</td></tr>
+<tr class="memdesc:a6441101db66749e04c88697cd97b712d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen Ausdruck aus einem Funktionsaufruf. <br /></td></tr>
+<tr class="separator:a6441101db66749e04c88697cd97b712d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e545350218e08b8601fdac4df9c01d3" id="r_a5e545350218e08b8601fdac4df9c01d3"><td class="memItemLeft" align="right" valign="top"><a id="a5e545350218e08b8601fdac4df9c01d3" name="a5e545350218e08b8601fdac4df9c01d3"></a>
+<a class="el" href="struct_expr.html">Expr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astExprFromIdent</b> (char *ident)</td></tr>
+<tr class="memdesc:a5e545350218e08b8601fdac4df9c01d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen Ausdruck aus einem Bezeichner. <br /></td></tr>
+<tr class="separator:a5e545350218e08b8601fdac4df9c01d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8600dbc7f71e4c9ae4ecbc50d7b59e5c" id="r_a8600dbc7f71e4c9ae4ecbc50d7b59e5c"><td class="memItemLeft" align="right" valign="top"><a id="a8600dbc7f71e4c9ae4ecbc50d7b59e5c" name="a8600dbc7f71e4c9ae4ecbc50d7b59e5c"></a>
+<a class="el" href="struct_expr.html">Expr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astExprFromLiteral</b> (<a class="el" href="struct_literal.html">Literal</a> literal)</td></tr>
+<tr class="memdesc:a8600dbc7f71e4c9ae4ecbc50d7b59e5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen Ausdruck aus einem <a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a>. <br /></td></tr>
+<tr class="separator:a8600dbc7f71e4c9ae4ecbc50d7b59e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a281ae4d64add41f1e536fc7cda36bdc5" id="r_a281ae4d64add41f1e536fc7cda36bdc5"><td class="memItemLeft" align="right" valign="top"><a id="a281ae4d64add41f1e536fc7cda36bdc5" name="a281ae4d64add41f1e536fc7cda36bdc5"></a>
+<a class="el" href="struct_expr.html">Expr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astExprFromUnaryMinus</b> (<a class="el" href="struct_expr.html">Expr</a> expr)</td></tr>
+<tr class="memdesc:a281ae4d64add41f1e536fc7cda36bdc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen Ausdruck aus einem unären Minus-Ausdruck. <br /></td></tr>
+<tr class="separator:a281ae4d64add41f1e536fc7cda36bdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcd51e00579255cef6b18db47eedca31" id="r_afcd51e00579255cef6b18db47eedca31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_expr.html">Expr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afcd51e00579255cef6b18db47eedca31">astExprFromBinOpExpr</a> (<a class="el" href="struct_expr.html">Expr</a> lhs, <a class="el" href="struct_expr.html">Expr</a> rhs, <a class="el" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a> op)</td></tr>
+<tr class="memdesc:afcd51e00579255cef6b18db47eedca31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen Ausdruck aus einem binären Operationausdruck.  <br /></td></tr>
+<tr class="separator:afcd51e00579255cef6b18db47eedca31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0769b9b884f6203ebdd5971ce920d144" id="r_a0769b9b884f6203ebdd5971ce920d144"><td class="memItemLeft" align="right" valign="top"><a id="a0769b9b884f6203ebdd5971ce920d144" name="a0769b9b884f6203ebdd5971ce920d144"></a>
+<a class="el" href="struct_literal.html">Literal</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astLiteralFromInt</b> (int value)</td></tr>
+<tr class="memdesc:a0769b9b884f6203ebdd5971ce920d144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt ein <a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a> aus einem Integer-Wert. <br /></td></tr>
+<tr class="separator:a0769b9b884f6203ebdd5971ce920d144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c91d66739fdda59088be9866781eea" id="r_a11c91d66739fdda59088be9866781eea"><td class="memItemLeft" align="right" valign="top"><a id="a11c91d66739fdda59088be9866781eea" name="a11c91d66739fdda59088be9866781eea"></a>
+<a class="el" href="struct_literal.html">Literal</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astLiteralFromFloat</b> (double value)</td></tr>
+<tr class="memdesc:a11c91d66739fdda59088be9866781eea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt ein <a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a> aus einem Fließkomma-Wert. <br /></td></tr>
+<tr class="separator:a11c91d66739fdda59088be9866781eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8387198c1ed8bb3f0ae019ef52fa9646" id="r_a8387198c1ed8bb3f0ae019ef52fa9646"><td class="memItemLeft" align="right" valign="top"><a id="a8387198c1ed8bb3f0ae019ef52fa9646" name="a8387198c1ed8bb3f0ae019ef52fa9646"></a>
+<a class="el" href="struct_literal.html">Literal</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astLiteralFromBool</b> (int value)</td></tr>
+<tr class="memdesc:a8387198c1ed8bb3f0ae019ef52fa9646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt ein <a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a> aus einem Booleschen Wert. <br /></td></tr>
+<tr class="separator:a8387198c1ed8bb3f0ae019ef52fa9646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bbc94854f30791bf2144c4cc00e9369" id="r_a3bbc94854f30791bf2144c4cc00e9369"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_assign">Assign</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bbc94854f30791bf2144c4cc00e9369">astAssignNew</a> (char *lhs, <a class="el" href="struct_expr.html">Expr</a> rhs)</td></tr>
+<tr class="memdesc:a3bbc94854f30791bf2144c4cc00e9369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine neue Zuweisung.  <br /></td></tr>
+<tr class="separator:a3bbc94854f30791bf2144c4cc00e9369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9229f8ab94882fa7a2c7c203b59e63a0" id="r_a9229f8ab94882fa7a2c7c203b59e63a0"><td class="memItemLeft" align="right" valign="top"><a id="a9229f8ab94882fa7a2c7c203b59e63a0" name="a9229f8ab94882fa7a2c7c203b59e63a0"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtNew</b> (void)</td></tr>
+<tr class="memdesc:a9229f8ab94882fa7a2c7c203b59e63a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine neue (leere) Anweisung. <br /></td></tr>
+<tr class="separator:a9229f8ab94882fa7a2c7c203b59e63a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2434b26882f58156486dead94cbd8f2" id="r_af2434b26882f58156486dead94cbd8f2"><td class="memItemLeft" align="right" valign="top"><a id="af2434b26882f58156486dead94cbd8f2" name="af2434b26882f58156486dead94cbd8f2"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromIfStmt</b> (<a class="el" href="ast_8h.html#struct_if_stmt">IfStmt</a> if_stmt)</td></tr>
+<tr class="memdesc:af2434b26882f58156486dead94cbd8f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer If-Anweisung. <br /></td></tr>
+<tr class="separator:af2434b26882f58156486dead94cbd8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afce521abc59c820ff9beee47d26d4e8c" id="r_afce521abc59c820ff9beee47d26d4e8c"><td class="memItemLeft" align="right" valign="top"><a id="afce521abc59c820ff9beee47d26d4e8c" name="afce521abc59c820ff9beee47d26d4e8c"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromForStmt</b> (<a class="el" href="ast_8h.html#struct_for_stmt">ForStmt</a> for_stmt)</td></tr>
+<tr class="memdesc:afce521abc59c820ff9beee47d26d4e8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer For-Anweisung. <br /></td></tr>
+<tr class="separator:afce521abc59c820ff9beee47d26d4e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accca34296abe93490d2ea672539a00e9" id="r_accca34296abe93490d2ea672539a00e9"><td class="memItemLeft" align="right" valign="top"><a id="accca34296abe93490d2ea672539a00e9" name="accca34296abe93490d2ea672539a00e9"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromWhileStmt</b> (<a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> stmt)</td></tr>
+<tr class="memdesc:accca34296abe93490d2ea672539a00e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer While-Anweisung. <br /></td></tr>
+<tr class="separator:accca34296abe93490d2ea672539a00e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f642202ae407cb6828fd34dcf7d3928" id="r_a5f642202ae407cb6828fd34dcf7d3928"><td class="memItemLeft" align="right" valign="top"><a id="a5f642202ae407cb6828fd34dcf7d3928" name="a5f642202ae407cb6828fd34dcf7d3928"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromDoWhileStmt</b> (<a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> stmt)</td></tr>
+<tr class="memdesc:a5f642202ae407cb6828fd34dcf7d3928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer Do-While-Anweisung. <br /></td></tr>
+<tr class="separator:a5f642202ae407cb6828fd34dcf7d3928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a980a0e59cafbb8953a15ccb9ec0da0f2" id="r_a980a0e59cafbb8953a15ccb9ec0da0f2"><td class="memItemLeft" align="right" valign="top"><a id="a980a0e59cafbb8953a15ccb9ec0da0f2" name="a980a0e59cafbb8953a15ccb9ec0da0f2"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromReturn</b> (<a class="el" href="struct_expr.html">Expr</a> *return_val)</td></tr>
+<tr class="memdesc:a980a0e59cafbb8953a15ccb9ec0da0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer Return-Anweisung. <br /></td></tr>
+<tr class="separator:a980a0e59cafbb8953a15ccb9ec0da0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7597e589ee4d2a792ef814878b70480" id="r_af7597e589ee4d2a792ef814878b70480"><td class="memItemLeft" align="right" valign="top"><a id="af7597e589ee4d2a792ef814878b70480" name="af7597e589ee4d2a792ef814878b70480"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromPrintStmt</b> (<a class="el" href="struct_print_stmt.html">PrintStmt</a> print_stmt)</td></tr>
+<tr class="memdesc:af7597e589ee4d2a792ef814878b70480"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer Print-Anweisung. <br /></td></tr>
+<tr class="separator:af7597e589ee4d2a792ef814878b70480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac71457084c209d672c48f38052f932bd" id="r_ac71457084c209d672c48f38052f932bd"><td class="memItemLeft" align="right" valign="top"><a id="ac71457084c209d672c48f38052f932bd" name="ac71457084c209d672c48f38052f932bd"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromVarDef</b> (<a class="el" href="ast_8h.html#struct_var_def">VarDef</a> var_def)</td></tr>
+<tr class="memdesc:ac71457084c209d672c48f38052f932bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer Variablendefinition. <br /></td></tr>
+<tr class="separator:ac71457084c209d672c48f38052f932bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a876ae79a461a9af2c3dfcf6645b33a3e" id="r_a876ae79a461a9af2c3dfcf6645b33a3e"><td class="memItemLeft" align="right" valign="top"><a id="a876ae79a461a9af2c3dfcf6645b33a3e" name="a876ae79a461a9af2c3dfcf6645b33a3e"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromAssign</b> (<a class="el" href="ast_8h.html#struct_assign">Assign</a> assign)</td></tr>
+<tr class="memdesc:a876ae79a461a9af2c3dfcf6645b33a3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einer Zuweisung. <br /></td></tr>
+<tr class="separator:a876ae79a461a9af2c3dfcf6645b33a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac613267a4e8eb63dbe2f488c16e4f1e5" id="r_ac613267a4e8eb63dbe2f488c16e4f1e5"><td class="memItemLeft" align="right" valign="top"><a id="ac613267a4e8eb63dbe2f488c16e4f1e5" name="ac613267a4e8eb63dbe2f488c16e4f1e5"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromFuncCall</b> (<a class="el" href="ast_8h.html#struct_func_call">FuncCall</a> call)</td></tr>
+<tr class="memdesc:ac613267a4e8eb63dbe2f488c16e4f1e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einem Funktionsaufruf. <br /></td></tr>
+<tr class="separator:ac613267a4e8eb63dbe2f488c16e4f1e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8baa27aa019981c152433be5d9482e9a" id="r_a8baa27aa019981c152433be5d9482e9a"><td class="memItemLeft" align="right" valign="top"><a id="a8baa27aa019981c152433be5d9482e9a" name="a8baa27aa019981c152433be5d9482e9a"></a>
+<a class="el" href="struct_stmt.html">Stmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtFromBlock</b> (<a class="el" href="ast_8h.html#struct_block">Block</a> block)</td></tr>
+<tr class="memdesc:a8baa27aa019981c152433be5d9482e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Anweisung aus einem <a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a>. <br /></td></tr>
+<tr class="separator:a8baa27aa019981c152433be5d9482e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad61fe5b0c8f0c36244aec54fbc2c185c" id="r_ad61fe5b0c8f0c36244aec54fbc2c185c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_if_stmt">IfStmt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad61fe5b0c8f0c36244aec54fbc2c185c">astIfStmtNew</a> (<a class="el" href="struct_expr.html">Expr</a> cond, <a class="el" href="struct_stmt.html">Stmt</a> if_true, <a class="el" href="struct_stmt.html">Stmt</a> if_false)</td></tr>
+<tr class="memdesc:ad61fe5b0c8f0c36244aec54fbc2c185c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine neue If-Anweisung.  <br /></td></tr>
+<tr class="separator:ad61fe5b0c8f0c36244aec54fbc2c185c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bbf545b61098a3d1b5eb4b17ee83d3a" id="r_a2bbf545b61098a3d1b5eb4b17ee83d3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2bbf545b61098a3d1b5eb4b17ee83d3a">astWhileStmtNew</a> (<a class="el" href="struct_expr.html">Expr</a> cond, <a class="el" href="struct_stmt.html">Stmt</a> body)</td></tr>
+<tr class="memdesc:a2bbf545b61098a3d1b5eb4b17ee83d3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine neue While-Anweisung.  <br /></td></tr>
+<tr class="separator:a2bbf545b61098a3d1b5eb4b17ee83d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf0f129ff6c60b69f2ceeeae1be33c40" id="r_adf0f129ff6c60b69f2ceeeae1be33c40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_for_stmt">ForStmt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf0f129ff6c60b69f2ceeeae1be33c40">astForStmtNew</a> (<a class="el" href="struct_for_init.html">ForInit</a> init, <a class="el" href="struct_expr.html">Expr</a> cond, <a class="el" href="ast_8h.html#struct_assign">Assign</a> update, <a class="el" href="struct_stmt.html">Stmt</a> body)</td></tr>
+<tr class="memdesc:adf0f129ff6c60b69f2ceeeae1be33c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine neue For-Anweisung.  <br /></td></tr>
+<tr class="separator:adf0f129ff6c60b69f2ceeeae1be33c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b58fcc7895bea3124d8b0f4beeba6e9" id="r_a0b58fcc7895bea3124d8b0f4beeba6e9"><td class="memItemLeft" align="right" valign="top"><a id="a0b58fcc7895bea3124d8b0f4beeba6e9" name="a0b58fcc7895bea3124d8b0f4beeba6e9"></a>
+<a class="el" href="struct_for_init.html">ForInit</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astForInitFromVarDef</b> (<a class="el" href="ast_8h.html#struct_var_def">VarDef</a> var_def)</td></tr>
+<tr class="memdesc:a0b58fcc7895bea3124d8b0f4beeba6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine For-Initialisierungsanweisung aus einer Variablendefinition. <br /></td></tr>
+<tr class="separator:a0b58fcc7895bea3124d8b0f4beeba6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92c59ed61d44eda7c430afdab3b8b4d" id="r_ae92c59ed61d44eda7c430afdab3b8b4d"><td class="memItemLeft" align="right" valign="top"><a id="ae92c59ed61d44eda7c430afdab3b8b4d" name="ae92c59ed61d44eda7c430afdab3b8b4d"></a>
+<a class="el" href="struct_for_init.html">ForInit</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astForInitFromAssign</b> (<a class="el" href="ast_8h.html#struct_assign">Assign</a> assign)</td></tr>
+<tr class="memdesc:ae92c59ed61d44eda7c430afdab3b8b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine For-Initialisierungsanweisung aus einer Zuweisung. <br /></td></tr>
+<tr class="separator:ae92c59ed61d44eda7c430afdab3b8b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a30c10cc746e2a975e0423c7aa3a94" id="r_a09a30c10cc746e2a975e0423c7aa3a94"><td class="memItemLeft" align="right" valign="top"><a id="a09a30c10cc746e2a975e0423c7aa3a94" name="a09a30c10cc746e2a975e0423c7aa3a94"></a>
+<a class="el" href="struct_print_stmt.html">PrintStmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astPrintStmtFromString</b> (char *string)</td></tr>
+<tr class="memdesc:a09a30c10cc746e2a975e0423c7aa3a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Print-Anweisung aus einem String. <br /></td></tr>
+<tr class="separator:a09a30c10cc746e2a975e0423c7aa3a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae656c37ae51fd80a5f0f42598b2523b3" id="r_ae656c37ae51fd80a5f0f42598b2523b3"><td class="memItemLeft" align="right" valign="top"><a id="ae656c37ae51fd80a5f0f42598b2523b3" name="ae656c37ae51fd80a5f0f42598b2523b3"></a>
+<a class="el" href="struct_print_stmt.html">PrintStmt</a>&#160;</td><td class="memItemRight" valign="bottom"><b>astPrintStmtFromExpr</b> (<a class="el" href="struct_expr.html">Expr</a> expr)</td></tr>
+<tr class="memdesc:ae656c37ae51fd80a5f0f42598b2523b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine Print-Anweisung aus einem Ausdruck. <br /></td></tr>
+<tr class="separator:ae656c37ae51fd80a5f0f42598b2523b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26f30615400f43e261923cea28cb5f19" id="r_a26f30615400f43e261923cea28cb5f19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_var_def">VarDef</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26f30615400f43e261923cea28cb5f19">astVarDefNew</a> (<a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type, char *ident, <a class="el" href="struct_expr.html">Expr</a> *init)</td></tr>
+<tr class="memdesc:a26f30615400f43e261923cea28cb5f19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt eine neue Variablendefinition.  <br /></td></tr>
+<tr class="separator:a26f30615400f43e261923cea28cb5f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c878d80f2c06439e3409d4faaab9357" id="r_a6c878d80f2c06439e3409d4faaab9357"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_block">Block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c878d80f2c06439e3409d4faaab9357">astBlockNew</a> (<a class="el" href="struct_stmt.html">Stmt</a> *statements)</td></tr>
+<tr class="memdesc:a6c878d80f2c06439e3409d4faaab9357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erstellt einen neuen <a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a> von Anweisungen.  <br /></td></tr>
+<tr class="separator:a6c878d80f2c06439e3409d4faaab9357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8015275e3120c235a768cafd0325ba5b" id="r_a8015275e3120c235a768cafd0325ba5b"><td class="memItemLeft" align="right" valign="top"><a id="a8015275e3120c235a768cafd0325ba5b" name="a8015275e3120c235a768cafd0325ba5b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astProgramRelease</b> (<a class="el" href="ast_8h.html#struct_program">Program</a> *self)</td></tr>
+<tr class="memdesc:a8015275e3120c235a768cafd0325ba5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_program" title="Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.">Program</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a8015275e3120c235a768cafd0325ba5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95f94de80e6712faf1ae783fd15e1940" id="r_a95f94de80e6712faf1ae783fd15e1940"><td class="memItemLeft" align="right" valign="top"><a id="a95f94de80e6712faf1ae783fd15e1940" name="a95f94de80e6712faf1ae783fd15e1940"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astItemRelease</b> (<a class="el" href="struct_item.html">Item</a> *self)</td></tr>
+<tr class="memdesc:a95f94de80e6712faf1ae783fd15e1940"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a95f94de80e6712faf1ae783fd15e1940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77cb025343f31f84c2e0e6a80b8c50e3" id="r_a77cb025343f31f84c2e0e6a80b8c50e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77cb025343f31f84c2e0e6a80b8c50e3">astFuncDefRelease</a> (<a class="el" href="ast_8h.html#struct_func_def">FuncDef</a> *self)</td></tr>
+<tr class="memdesc:a77cb025343f31f84c2e0e6a80b8c50e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_func_def" title="Eine Funktionsdefinition.">FuncDef</a></code>-Objekts frei.  <br /></td></tr>
+<tr class="separator:a77cb025343f31f84c2e0e6a80b8c50e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae31353c906d7ff03c90d9e7b350f86db" id="r_ae31353c906d7ff03c90d9e7b350f86db"><td class="memItemLeft" align="right" valign="top"><a id="ae31353c906d7ff03c90d9e7b350f86db" name="ae31353c906d7ff03c90d9e7b350f86db"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astFuncCallRelease</b> (<a class="el" href="ast_8h.html#struct_func_call">FuncCall</a> *self)</td></tr>
+<tr class="memdesc:ae31353c906d7ff03c90d9e7b350f86db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_func_call" title="Ein Funktionsaufruf.">FuncCall</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:ae31353c906d7ff03c90d9e7b350f86db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed57a0803facb581061cad5fae209b57" id="r_aed57a0803facb581061cad5fae209b57"><td class="memItemLeft" align="right" valign="top"><a id="aed57a0803facb581061cad5fae209b57" name="aed57a0803facb581061cad5fae209b57"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astFuncParamRelease</b> (<a class="el" href="ast_8h.html#struct_func_param">FuncParam</a> *self)</td></tr>
+<tr class="memdesc:aed57a0803facb581061cad5fae209b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_func_param" title="Ein Funktionsparameter mit einem Typ und einem (nicht auflösbaren) Namen.">FuncParam</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:aed57a0803facb581061cad5fae209b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49639708d3630bbd777dc4a6cbe64818" id="r_a49639708d3630bbd777dc4a6cbe64818"><td class="memItemLeft" align="right" valign="top"><a id="a49639708d3630bbd777dc4a6cbe64818" name="a49639708d3630bbd777dc4a6cbe64818"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astExprRelease</b> (<a class="el" href="struct_expr.html">Expr</a> *self)</td></tr>
+<tr class="memdesc:a49639708d3630bbd777dc4a6cbe64818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="struct_expr.html" title="Ein Ausdruck.">Expr</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a49639708d3630bbd777dc4a6cbe64818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0ca8e664a8534fe16cd1b724686f0b" id="r_a4d0ca8e664a8534fe16cd1b724686f0b"><td class="memItemLeft" align="right" valign="top"><a id="a4d0ca8e664a8534fe16cd1b724686f0b" name="a4d0ca8e664a8534fe16cd1b724686f0b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astLiteralRelease</b> (<a class="el" href="struct_literal.html">Literal</a> *self)</td></tr>
+<tr class="memdesc:a4d0ca8e664a8534fe16cd1b724686f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a4d0ca8e664a8534fe16cd1b724686f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd08400b5c4b90ad7d2e3111ba4c51d" id="r_aadd08400b5c4b90ad7d2e3111ba4c51d"><td class="memItemLeft" align="right" valign="top"><a id="aadd08400b5c4b90ad7d2e3111ba4c51d" name="aadd08400b5c4b90ad7d2e3111ba4c51d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astAssignRelease</b> (<a class="el" href="ast_8h.html#struct_assign">Assign</a> *self)</td></tr>
+<tr class="memdesc:aadd08400b5c4b90ad7d2e3111ba4c51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_assign" title="Eine Zuweisung: lhs = rhs.">Assign</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:aadd08400b5c4b90ad7d2e3111ba4c51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab57337923d634fb83630eafef7214776" id="r_ab57337923d634fb83630eafef7214776"><td class="memItemLeft" align="right" valign="top"><a id="ab57337923d634fb83630eafef7214776" name="ab57337923d634fb83630eafef7214776"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astStmtRelease</b> (<a class="el" href="struct_stmt.html">Stmt</a> *self)</td></tr>
+<tr class="memdesc:ab57337923d634fb83630eafef7214776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="struct_stmt.html" title="Eine Anweisung.">Stmt</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:ab57337923d634fb83630eafef7214776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781d62c2967d0f0519c307de3341a918" id="r_a781d62c2967d0f0519c307de3341a918"><td class="memItemLeft" align="right" valign="top"><a id="a781d62c2967d0f0519c307de3341a918" name="a781d62c2967d0f0519c307de3341a918"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astIfStmtRelease</b> (<a class="el" href="ast_8h.html#struct_if_stmt">IfStmt</a> *self)</td></tr>
+<tr class="memdesc:a781d62c2967d0f0519c307de3341a918"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_if_stmt" title="Eine If-Anweisung: if (cond) if_true else if_false">IfStmt</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a781d62c2967d0f0519c307de3341a918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbde32229085e34de7de094ddcf26958" id="r_afbde32229085e34de7de094ddcf26958"><td class="memItemLeft" align="right" valign="top"><a id="afbde32229085e34de7de094ddcf26958" name="afbde32229085e34de7de094ddcf26958"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astWhileStmtRelease</b> (<a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> *self)</td></tr>
+<tr class="memdesc:afbde32229085e34de7de094ddcf26958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_while_stmt" title="Eine While- oder Do-While-Anweisung: while (cond) body / do body while (cond)">WhileStmt</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:afbde32229085e34de7de094ddcf26958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8da91d3320420f906d43b0fcc0d5fb2d" id="r_a8da91d3320420f906d43b0fcc0d5fb2d"><td class="memItemLeft" align="right" valign="top"><a id="a8da91d3320420f906d43b0fcc0d5fb2d" name="a8da91d3320420f906d43b0fcc0d5fb2d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astForStmtRelease</b> (<a class="el" href="ast_8h.html#struct_for_stmt">ForStmt</a> *self)</td></tr>
+<tr class="memdesc:a8da91d3320420f906d43b0fcc0d5fb2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_for_stmt" title="Eine For-Anweisung: for (init; cond; update) body">ForStmt</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a8da91d3320420f906d43b0fcc0d5fb2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88332326d98a6c82d2417c677fcfc8fc" id="r_a88332326d98a6c82d2417c677fcfc8fc"><td class="memItemLeft" align="right" valign="top"><a id="a88332326d98a6c82d2417c677fcfc8fc" name="a88332326d98a6c82d2417c677fcfc8fc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astForInitRelease</b> (<a class="el" href="struct_for_init.html">ForInit</a> *self)</td></tr>
+<tr class="memdesc:a88332326d98a6c82d2417c677fcfc8fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="struct_for_init.html" title="Der Initialisierungsparameter einer For-Anweisung.">ForInit</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a88332326d98a6c82d2417c677fcfc8fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51392863a932e2da868b72531af57b6b" id="r_a51392863a932e2da868b72531af57b6b"><td class="memItemLeft" align="right" valign="top"><a id="a51392863a932e2da868b72531af57b6b" name="a51392863a932e2da868b72531af57b6b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astPrintStmtRelease</b> (<a class="el" href="struct_print_stmt.html">PrintStmt</a> *self)</td></tr>
+<tr class="memdesc:a51392863a932e2da868b72531af57b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="struct_print_stmt.html" title="Eine print-Anweisung, die zur Ausgabe von Strings oder Ausdrücken genutzt wird.">PrintStmt</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:a51392863a932e2da868b72531af57b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac9a6cb08a04786e18418c2e9ead5c0" id="r_acac9a6cb08a04786e18418c2e9ead5c0"><td class="memItemLeft" align="right" valign="top"><a id="acac9a6cb08a04786e18418c2e9ead5c0" name="acac9a6cb08a04786e18418c2e9ead5c0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astVarDefRelease</b> (<a class="el" href="ast_8h.html#struct_var_def">VarDef</a> *self)</td></tr>
+<tr class="memdesc:acac9a6cb08a04786e18418c2e9ead5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_var_def" title="Eine Variablendefinition.">VarDef</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:acac9a6cb08a04786e18418c2e9ead5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6f2e981fc8f41eb6a076b87beb370e8" id="r_ac6f2e981fc8f41eb6a076b87beb370e8"><td class="memItemLeft" align="right" valign="top"><a id="ac6f2e981fc8f41eb6a076b87beb370e8" name="ac6f2e981fc8f41eb6a076b87beb370e8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>astBlockRelease</b> (<a class="el" href="ast_8h.html#struct_block">Block</a> *self)</td></tr>
+<tr class="memdesc:ac6f2e981fc8f41eb6a076b87beb370e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a></code>-Objekts frei. <br /></td></tr>
+<tr class="separator:ac6f2e981fc8f41eb6a076b87beb370e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ca4911f9355b03b5dfde11322e422a" id="r_ab2ca4911f9355b03b5dfde11322e422a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2ca4911f9355b03b5dfde11322e422a">astProgramPrint</a> (const <a class="el" href="ast_8h.html#struct_program">Program</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:ab2ca4911f9355b03b5dfde11322e422a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_program" title="Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.">Program</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:ab2ca4911f9355b03b5dfde11322e422a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77786ef517a5aad66a5779e19f9a873" id="r_aa77786ef517a5aad66a5779e19f9a873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa77786ef517a5aad66a5779e19f9a873">astItemPrint</a> (const <a class="el" href="struct_item.html">Item</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:aa77786ef517a5aad66a5779e19f9a873"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:aa77786ef517a5aad66a5779e19f9a873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc7cb4a766e3012062db53d5bf594dd9" id="r_acc7cb4a766e3012062db53d5bf594dd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc7cb4a766e3012062db53d5bf594dd9">astFuncDefPrint</a> (const <a class="el" href="ast_8h.html#struct_func_def">FuncDef</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:acc7cb4a766e3012062db53d5bf594dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_func_def" title="Eine Funktionsdefinition.">FuncDef</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:acc7cb4a766e3012062db53d5bf594dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf1eb9cda29352e207575185b0cf012a" id="r_acf1eb9cda29352e207575185b0cf012a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf1eb9cda29352e207575185b0cf012a">astFuncParamPrint</a> (const <a class="el" href="ast_8h.html#struct_func_param">FuncParam</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:acf1eb9cda29352e207575185b0cf012a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_func_param" title="Ein Funktionsparameter mit einem Typ und einem (nicht auflösbaren) Namen.">FuncParam</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:acf1eb9cda29352e207575185b0cf012a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f627b0e516a515f6dd87f41e90d553" id="r_ae4f627b0e516a515f6dd87f41e90d553"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4f627b0e516a515f6dd87f41e90d553">astStmtPrint</a> (const <a class="el" href="struct_stmt.html">Stmt</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:ae4f627b0e516a515f6dd87f41e90d553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_stmt.html" title="Eine Anweisung.">Stmt</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:ae4f627b0e516a515f6dd87f41e90d553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b1594fe0493a7e2975740949d50290d" id="r_a2b1594fe0493a7e2975740949d50290d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b1594fe0493a7e2975740949d50290d">astBlockPrint</a> (const <a class="el" href="ast_8h.html#struct_block">Block</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a2b1594fe0493a7e2975740949d50290d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a2b1594fe0493a7e2975740949d50290d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8839eb8f8d01fadb03bd8c8d4d196ee" id="r_aa8839eb8f8d01fadb03bd8c8d4d196ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8839eb8f8d01fadb03bd8c8d4d196ee">astPrintStmtPrint</a> (const <a class="el" href="struct_print_stmt.html">PrintStmt</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:aa8839eb8f8d01fadb03bd8c8d4d196ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_print_stmt.html" title="Eine print-Anweisung, die zur Ausgabe von Strings oder Ausdrücken genutzt wird.">PrintStmt</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:aa8839eb8f8d01fadb03bd8c8d4d196ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22de11d3e33e9993a6a14336816d11a3" id="r_a22de11d3e33e9993a6a14336816d11a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22de11d3e33e9993a6a14336816d11a3">astIfStmtPrint</a> (const <a class="el" href="ast_8h.html#struct_if_stmt">IfStmt</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a22de11d3e33e9993a6a14336816d11a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_if_stmt" title="Eine If-Anweisung: if (cond) if_true else if_false">IfStmt</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a22de11d3e33e9993a6a14336816d11a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a338c4ad103056ee5eb4fad6a602a9fa1" id="r_a338c4ad103056ee5eb4fad6a602a9fa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a338c4ad103056ee5eb4fad6a602a9fa1">astWhileStmtPrint</a> (const <a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a338c4ad103056ee5eb4fad6a602a9fa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_while_stmt" title="Eine While- oder Do-While-Anweisung: while (cond) body / do body while (cond)">WhileStmt</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a338c4ad103056ee5eb4fad6a602a9fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ef14dd225722f160c5c8431787c96b" id="r_a33ef14dd225722f160c5c8431787c96b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33ef14dd225722f160c5c8431787c96b">astForStmtPrint</a> (const <a class="el" href="ast_8h.html#struct_for_stmt">ForStmt</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a33ef14dd225722f160c5c8431787c96b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_for_stmt" title="Eine For-Anweisung: for (init; cond; update) body">ForStmt</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a33ef14dd225722f160c5c8431787c96b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3b0bf43ce7c5beb31b5174a35fa07cf" id="r_ae3b0bf43ce7c5beb31b5174a35fa07cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3b0bf43ce7c5beb31b5174a35fa07cf">astForInitPrint</a> (const <a class="el" href="struct_for_init.html">ForInit</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:ae3b0bf43ce7c5beb31b5174a35fa07cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_for_init.html" title="Der Initialisierungsparameter einer For-Anweisung.">ForInit</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:ae3b0bf43ce7c5beb31b5174a35fa07cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a394f72910cc6c8b3a827f89439dda951" id="r_a394f72910cc6c8b3a827f89439dda951"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a394f72910cc6c8b3a827f89439dda951">astVarDefPrint</a> (const <a class="el" href="ast_8h.html#struct_var_def">VarDef</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a394f72910cc6c8b3a827f89439dda951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_var_def" title="Eine Variablendefinition.">VarDef</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a394f72910cc6c8b3a827f89439dda951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aafe15bbbff702cf328d53e5f926ddf" id="r_a4aafe15bbbff702cf328d53e5f926ddf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4aafe15bbbff702cf328d53e5f926ddf">astExprPrint</a> (const <a class="el" href="struct_expr.html">Expr</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a4aafe15bbbff702cf328d53e5f926ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_expr.html" title="Ein Ausdruck.">Expr</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a4aafe15bbbff702cf328d53e5f926ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeccb33073002854736fcc1bc38fe3f16" id="r_aeccb33073002854736fcc1bc38fe3f16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeccb33073002854736fcc1bc38fe3f16">astFuncCallPrint</a> (const <a class="el" href="ast_8h.html#struct_func_call">FuncCall</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:aeccb33073002854736fcc1bc38fe3f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_func_call" title="Ein Funktionsaufruf.">FuncCall</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:aeccb33073002854736fcc1bc38fe3f16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52382f33c9f7acb2b55c9f8c0f94d3c9" id="r_a52382f33c9f7acb2b55c9f8c0f94d3c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52382f33c9f7acb2b55c9f8c0f94d3c9">astAssignPrint</a> (const <a class="el" href="ast_8h.html#struct_assign">Assign</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a52382f33c9f7acb2b55c9f8c0f94d3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_assign" title="Eine Zuweisung: lhs = rhs.">Assign</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a52382f33c9f7acb2b55c9f8c0f94d3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ff9e3b2e0098cea13eeee6fdc6214b7" id="r_a9ff9e3b2e0098cea13eeee6fdc6214b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ff9e3b2e0098cea13eeee6fdc6214b7">astBinOpExprPrint</a> (const <a class="el" href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a9ff9e3b2e0098cea13eeee6fdc6214b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_bin_op_expr" title="Eine binäre Operation.">BinOpExpr</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a9ff9e3b2e0098cea13eeee6fdc6214b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b13fb99df4b4c0501e765a070b33b3d" id="r_a1b13fb99df4b4c0501e765a070b33b3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b13fb99df4b4c0501e765a070b33b3d">astBinOpPrint</a> (const <a class="el" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a1b13fb99df4b4c0501e765a070b33b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code>BinOp</code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a1b13fb99df4b4c0501e765a070b33b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49ac5da40a28455303c6040dd35244d8" id="r_a49ac5da40a28455303c6040dd35244d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49ac5da40a28455303c6040dd35244d8">astLiteralPrint</a> (const <a class="el" href="struct_literal.html">Literal</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a49ac5da40a28455303c6040dd35244d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a49ac5da40a28455303c6040dd35244d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a077fe4ac67d4a3b2b5c41e5cea3789f6" id="r_a077fe4ac67d4a3b2b5c41e5cea3789f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a077fe4ac67d4a3b2b5c41e5cea3789f6">astDataTypePrint</a> (const <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a077fe4ac67d4a3b2b5c41e5cea3789f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code>DataType</code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a077fe4ac67d4a3b2b5c41e5cea3789f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a859d2e5aea176966c6a015c35ab29c65" id="r_a859d2e5aea176966c6a015c35ab29c65"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a859d2e5aea176966c6a015c35ab29c65">astResIdentPrint</a> (const <a class="el" href="ast_8h.html#struct_res_ident">ResIdent</a> *self, int indent, FILE *out)</td></tr>
+<tr class="memdesc:a859d2e5aea176966c6a015c35ab29c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_res_ident" title="Ein auflösbarer Bezeichner, der auf eine (Funktions- oder Variablen-) Definition verweist.">ResIdent</a></code>-Objekts aus.  <br /></td></tr>
+<tr class="separator:a859d2e5aea176966c6a015c35ab29c65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variablen</h2></td></tr>
+<tr class="memitem:aae412153c44e1c9a2b640334a2b737a1" id="r_aae412153c44e1c9a2b640334a2b737a1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae412153c44e1c9a2b640334a2b737a1">TYPE_NAMES</a> []</td></tr>
+<tr class="memdesc:aae412153c44e1c9a2b640334a2b737a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array aller Typnamen zur verbesserten Debug-Ausgabe.  <br /></td></tr>
+<tr class="separator:aae412153c44e1c9a2b640334a2b737a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d42cdd808554f458311f086b60a60fa" id="r_a9d42cdd808554f458311f086b60a60fa"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d42cdd808554f458311f086b60a60fa">BIN_OP_NAMES</a> []</td></tr>
+<tr class="memdesc:a9d42cdd808554f458311f086b60a60fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array aller binären Operatoren zur verbesserten Debug-Ausgabe.  <br /></td></tr>
+<tr class="separator:a9d42cdd808554f458311f086b60a60fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03ca6e38cff86ebd3b87dfd63b832fe5" id="r_a03ca6e38cff86ebd3b87dfd63b832fe5"><td class="memItemLeft" align="right" valign="top"><a id="a03ca6e38cff86ebd3b87dfd63b832fe5" name="a03ca6e38cff86ebd3b87dfd63b832fe5"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>SEMANTIC_CHECK</b></td></tr>
+<tr class="separator:a03ca6e38cff86ebd3b87dfd63b832fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2f69f1e524bbec88c0352d7064f36c" id="r_aed2f69f1e524bbec88c0352d7064f36c"><td class="memItemLeft" align="right" valign="top"><a id="aed2f69f1e524bbec88c0352d7064f36c" name="aed2f69f1e524bbec88c0352d7064f36c"></a>
+const <a class="el" href="ast_8h.html#struct_def_id">DefId</a>&#160;</td><td class="memItemRight" valign="bottom"><b>INVALID_DEF_ID</b> = { -1u }</td></tr>
+<tr class="memdesc:aed2f69f1e524bbec88c0352d7064f36c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code><a class="el" href="ast_8h.html#struct_def_id" title="Eine eindeutige Kennung für die (Funktions- oder Variablen-)Definition, auf die ein auflösbarer Bezei...">DefId</a></code> einer ungültigen Referenz. <br /></td></tr>
+<tr class="separator:aed2f69f1e524bbec88c0352d7064f36c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1626aeaca8f621615705cf0081491020" id="r_a1626aeaca8f621615705cf0081491020"><td class="memItemLeft" align="right" valign="top"><a id="a1626aeaca8f621615705cf0081491020" name="a1626aeaca8f621615705cf0081491020"></a>
+const <a class="el" href="ast_8h.html#struct_item_id">ItemId</a>&#160;</td><td class="memItemRight" valign="bottom"><b>INVALID_ITEM_ID</b> = { -1u }</td></tr>
+<tr class="memdesc:a1626aeaca8f621615705cf0081491020"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code><a class="el" href="ast_8h.html#struct_item_id" title="Eine eindeutige Kennung für die Top-Level Elemente (Item) des abstrakten Syntaxbaumes (Program).">ItemId</a></code> einer ungültigen Referenz. <br /></td></tr>
+<tr class="separator:a1626aeaca8f621615705cf0081491020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Ausführliche Beschreibung</h2>
+<div class="textblock"><p>Implementation des Syntaxbaumes. </p>
+</div><h2 class="groupheader">Makro-Dokumentation</h2>
+<a id="acc6736579246e43d72b64d7227abd955" name="acc6736579246e43d72b64d7227abd955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc6736579246e43d72b64d7227abd955">&#9670;&#160;</a></span>CHOICE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHOICE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> { \</div>
+<div class="line">    fputs(#NAME <span class="stringliteral">&quot;(&quot;</span>, out);     \</div>
+<div class="line">    __VA_ARGS__;               \</div>
+<div class="line">    fputs(<span class="stringliteral">&quot;)&quot;</span>, out);           \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Debug-Print Ausgabe von Varianten eines Variantentyps. </p>
+
+</div>
+</div>
+<a id="aef126bde1462eb2b5e3db454943fbd53" name="aef126bde1462eb2b5e3db454943fbd53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef126bde1462eb2b5e3db454943fbd53">&#9670;&#160;</a></span>FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                                \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = &quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>); \</div>
+<div class="line">    __VA_ARGS__;                                             \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                               \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Strukturtyp. </p>
+
+</div>
+</div>
+<a id="a7f7c3ae10161217e89044daf1ac15bba" name="a7f7c3ae10161217e89044daf1ac15bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f7c3ae10161217e89044daf1ac15bba">&#9670;&#160;</a></span>INT_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INT_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> { \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = %i&quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>, self-&gt;NAME); \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                                             \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Integertyp. </p>
+
+</div>
+</div>
+<a id="a8069274c4fd97c3fdd589ea1850a4988" name="a8069274c4fd97c3fdd589ea1850a4988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8069274c4fd97c3fdd589ea1850a4988">&#9670;&#160;</a></span>STR_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STR_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> { \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = \&quot;%s\&quot;&quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>, self-&gt;NAME); \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                                                 \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Zeigertyp. </p>
+
+</div>
+</div>
+<a id="a484ea6658c5a481ce0eeaa8bce7f502c" name="a484ea6658c5a481ce0eeaa8bce7f502c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a484ea6658c5a481ce0eeaa8bce7f502c">&#9670;&#160;</a></span>STRUCT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STRUCT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">TYPE, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {            \</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> *sep = <span class="stringliteral">&quot;&quot;</span>;                 \</div>
+<div class="line">    fputs(<span class="stringliteral">&quot;(&quot;</span> #TYPE <span class="stringliteral">&quot;) {&quot;</span>, out);          \</div>
+<div class="line">    indent++;                             \</div>
+<div class="line">    __VA_ARGS__;                          \</div>
+<div class="line">    indent--;                             \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;\n%*s}&quot;</span>, indent*4, <span class="stringliteral">&quot;&quot;</span>); \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur vereinfachten Implementation von Debug-Print Routinen für Struktur-Typen. </p>
+
+</div>
+</div>
+<a id="a0cac49872849599e2a2c1db8f048762b" name="a0cac49872849599e2a2c1db8f048762b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cac49872849599e2a2c1db8f048762b">&#9670;&#160;</a></span>VEC_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VEC_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                             \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = [&quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>); \</div>
+<div class="line">    if (<a class="code hl_function" href="vec_8c.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a>(self-&gt;NAME) == 0) {                            \</div>
+<div class="line">        fputs(<span class="stringliteral">&quot;]&quot;</span>, out); <span class="keywordflow">break</span>;                               \</div>
+<div class="line">    }                                                         \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;&quot;</span>;                                                 \</div>
+<div class="line">    indent++;                                                 \</div>
+<div class="line">    for (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_function" href="vec_8c.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a>(self-&gt;NAME); ++i) {   \</div>
+<div class="line">        fprintf(out, <span class="stringliteral">&quot;%s\n%*s[%u] = &quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>, i); \</div>
+<div class="line">        sep = <span class="stringliteral">&quot;,&quot;</span>;                                            \</div>
+<div class="line">        __VA_ARGS__;                                          \</div>
+<div class="line">    }                                                         \</div>
+<div class="line">    indent--;                                                 \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                                \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;\n%*s]&quot;</span>, indent*4, <span class="stringliteral">&quot;&quot;</span>);                     \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="avec_8c_html_aa47aca2627a33323437b5e8b92fefb56"><div class="ttname"><a href="vec_8c.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a></div><div class="ttdeci">unsigned int vecLen(const void *self)</div><div class="ttdoc">Gibt die Anzahl der im Vektor verwendeten Elemente zurück.</div><div class="ttdef"><b>Definition</b> vec.c:81</div></div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Vektortyp. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentation der Funktionen</h2>
+<a id="a3bbc94854f30791bf2144c4cc00e9369" name="a3bbc94854f30791bf2144c4cc00e9369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bbc94854f30791bf2144c4cc00e9369">&#9670;&#160;</a></span>astAssignNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_assign">Assign</a> astAssignNew </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>lhs</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a></td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt eine neue Zuweisung. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>linke Seite der Zuweisung </td></tr>
+    <tr><td class="paramname">rhs</td><td>Ausdruck, der zugewiesen wird </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_assign" title="Eine Zuweisung: lhs = rhs.">Assign</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="a52382f33c9f7acb2b55c9f8c0f94d3c9" name="a52382f33c9f7acb2b55c9f8c0f94d3c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52382f33c9f7acb2b55c9f8c0f94d3c9">&#9670;&#160;</a></span>astAssignPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astAssignPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_assign">Assign</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_assign" title="Eine Zuweisung: lhs = rhs.">Assign</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_assign" title="Eine Zuweisung: lhs = rhs.">Assign</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9ff9e3b2e0098cea13eeee6fdc6214b7" name="a9ff9e3b2e0098cea13eeee6fdc6214b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ff9e3b2e0098cea13eeee6fdc6214b7">&#9670;&#160;</a></span>astBinOpExprPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astBinOpExprPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_bin_op_expr" title="Eine binäre Operation.">BinOpExpr</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_bin_op_expr" title="Eine binäre Operation.">BinOpExpr</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b13fb99df4b4c0501e765a070b33b3d" name="a1b13fb99df4b4c0501e765a070b33b3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b13fb99df4b4c0501e765a070b33b3d">&#9670;&#160;</a></span>astBinOpPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astBinOpPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code>BinOp</code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>der binäre Operator </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6c878d80f2c06439e3409d4faaab9357" name="a6c878d80f2c06439e3409d4faaab9357"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c878d80f2c06439e3409d4faaab9357">&#9670;&#160;</a></span>astBlockNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_block">Block</a> astBlockNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_stmt.html">Stmt</a> *</td>          <td class="paramname"><span class="paramname"><em>statements</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt einen neuen <a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a> von Anweisungen. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">statements</td><td>Vektor mit Anweisungen </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="a2b1594fe0493a7e2975740949d50290d" name="a2b1594fe0493a7e2975740949d50290d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b1594fe0493a7e2975740949d50290d">&#9670;&#160;</a></span>astBlockPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astBlockPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_block">Block</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_block" title="Ein Block von Anweisungen, der selbst eine Anweisung ist.">Block</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a077fe4ac67d4a3b2b5c41e5cea3789f6" name="a077fe4ac67d4a3b2b5c41e5cea3789f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a077fe4ac67d4a3b2b5c41e5cea3789f6">&#9670;&#160;</a></span>astDataTypePrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astDataTypePrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code>DataType</code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>der Datentyp </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afcd51e00579255cef6b18db47eedca31" name="afcd51e00579255cef6b18db47eedca31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd51e00579255cef6b18db47eedca31">&#9670;&#160;</a></span>astExprFromBinOpExpr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_expr.html">Expr</a> astExprFromBinOpExpr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a></td>          <td class="paramname"><span class="paramname"><em>lval</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a></td>          <td class="paramname"><span class="paramname"><em>rval</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a></td>          <td class="paramname"><span class="paramname"><em>op</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt einen Ausdruck aus einem binären Operationausdruck. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lval</td><td>der linke Ausdruck </td></tr>
+    <tr><td class="paramname">rval</td><td>der rechte Ausdruck </td></tr>
+    <tr><td class="paramname">op</td><td>der binäre Operator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="struct_expr.html" title="Ein Ausdruck.">Expr</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="a4aafe15bbbff702cf328d53e5f926ddf" name="a4aafe15bbbff702cf328d53e5f926ddf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aafe15bbbff702cf328d53e5f926ddf">&#9670;&#160;</a></span>astExprPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astExprPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_expr.html">Expr</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_expr.html" title="Ein Ausdruck.">Expr</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="struct_expr.html" title="Ein Ausdruck.">Expr</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae3b0bf43ce7c5beb31b5174a35fa07cf" name="ae3b0bf43ce7c5beb31b5174a35fa07cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3b0bf43ce7c5beb31b5174a35fa07cf">&#9670;&#160;</a></span>astForInitPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astForInitPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_for_init.html">ForInit</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_for_init.html" title="Der Initialisierungsparameter einer For-Anweisung.">ForInit</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="struct_for_init.html" title="Der Initialisierungsparameter einer For-Anweisung.">ForInit</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf0f129ff6c60b69f2ceeeae1be33c40" name="adf0f129ff6c60b69f2ceeeae1be33c40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf0f129ff6c60b69f2ceeeae1be33c40">&#9670;&#160;</a></span>astForStmtNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_for_stmt">ForStmt</a> astForStmtNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_for_init.html">ForInit</a></td>          <td class="paramname"><span class="paramname"><em>init</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a></td>          <td class="paramname"><span class="paramname"><em>cond</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#struct_assign">Assign</a></td>          <td class="paramname"><span class="paramname"><em>update</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_stmt.html">Stmt</a></td>          <td class="paramname"><span class="paramname"><em>body</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt eine neue For-Anweisung. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">init</td><td>Initialisierungsanweisung </td></tr>
+    <tr><td class="paramname">cond</td><td>Bedingungsausdruck </td></tr>
+    <tr><td class="paramname">update</td><td>Update-Anweisung </td></tr>
+    <tr><td class="paramname">body</td><td>Anweisungsteil, der wiederholt wird </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_for_stmt" title="Eine For-Anweisung: for (init; cond; update) body">ForStmt</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="a33ef14dd225722f160c5c8431787c96b" name="a33ef14dd225722f160c5c8431787c96b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ef14dd225722f160c5c8431787c96b">&#9670;&#160;</a></span>astForStmtPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astForStmtPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_for_stmt">ForStmt</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_for_stmt" title="Eine For-Anweisung: for (init; cond; update) body">ForStmt</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_for_stmt" title="Eine For-Anweisung: for (init; cond; update) body">ForStmt</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a37f0fe19b120110e407a9c57b1439f70" name="a37f0fe19b120110e407a9c57b1439f70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37f0fe19b120110e407a9c57b1439f70">&#9670;&#160;</a></span>astFuncCallNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_func_call">FuncCall</a> astFuncCallNew </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>ident</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a> *</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt einen neuen Funktionsaufruf. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ident</td><td>Name der Funktion </td></tr>
+    <tr><td class="paramname">args</td><td>Vektor der Argumente des Funktionsaufrufs </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_func_call" title="Ein Funktionsaufruf.">FuncCall</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="aeccb33073002854736fcc1bc38fe3f16" name="aeccb33073002854736fcc1bc38fe3f16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeccb33073002854736fcc1bc38fe3f16">&#9670;&#160;</a></span>astFuncCallPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astFuncCallPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_func_call">FuncCall</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_func_call" title="Ein Funktionsaufruf.">FuncCall</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_func_call" title="Ein Funktionsaufruf.">FuncCall</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8eaa5346c14833a4af70d98097cc36f1" name="a8eaa5346c14833a4af70d98097cc36f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eaa5346c14833a4af70d98097cc36f1">&#9670;&#160;</a></span>astFuncDefNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_func_def">FuncDef</a> astFuncDefNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>return_type</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>ident</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#struct_func_param">FuncParam</a> *</td>          <td class="paramname"><span class="paramname"><em>params</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_stmt.html">Stmt</a> *</td>          <td class="paramname"><span class="paramname"><em>statements</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt eine neue Funktionsdefinition. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">return_type</td><td>Rückgabedatentyp der Funktion </td></tr>
+    <tr><td class="paramname">ident</td><td>Name der Funktion </td></tr>
+    <tr><td class="paramname">params</td><td>Vektor von Parametern der Funktion </td></tr>
+    <tr><td class="paramname">statements</td><td>Vektor von Anweisungen im Funktionskörper </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_func_def" title="Eine Funktionsdefinition.">FuncDef</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="acc7cb4a766e3012062db53d5bf594dd9" name="acc7cb4a766e3012062db53d5bf594dd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc7cb4a766e3012062db53d5bf594dd9">&#9670;&#160;</a></span>astFuncDefPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astFuncDefPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_func_def">FuncDef</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_func_def" title="Eine Funktionsdefinition.">FuncDef</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_func_def" title="Eine Funktionsdefinition.">FuncDef</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a77cb025343f31f84c2e0e6a80b8c50e3" name="a77cb025343f31f84c2e0e6a80b8c50e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77cb025343f31f84c2e0e6a80b8c50e3">&#9670;&#160;</a></span>astFuncDefRelease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astFuncDefRelease </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#struct_func_def">FuncDef</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt den Speicher eines <code><a class="el" href="ast_8h.html#struct_func_def" title="Eine Funktionsdefinition.">FuncDef</a></code>-Objekts frei. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Das <code><a class="el" href="ast_8h.html#struct_func_def" title="Eine Funktionsdefinition.">FuncDef</a></code>-Objekt. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2b559777fcf051dfb98e42d06d702e41" name="a2b559777fcf051dfb98e42d06d702e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b559777fcf051dfb98e42d06d702e41">&#9670;&#160;</a></span>astFuncParamNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_func_param">FuncParam</a> astFuncParamNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>data_type</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>ident</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt einen neuen Funktionsparameter. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data_type</td><td>Datentyp des Parameters </td></tr>
+    <tr><td class="paramname">ident</td><td>Name des Parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_func_param" title="Ein Funktionsparameter mit einem Typ und einem (nicht auflösbaren) Namen.">FuncParam</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="acf1eb9cda29352e207575185b0cf012a" name="acf1eb9cda29352e207575185b0cf012a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf1eb9cda29352e207575185b0cf012a">&#9670;&#160;</a></span>astFuncParamPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astFuncParamPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_func_param">FuncParam</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_func_param" title="Ein Funktionsparameter mit einem Typ und einem (nicht auflösbaren) Namen.">FuncParam</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_func_param" title="Ein Funktionsparameter mit einem Typ und einem (nicht auflösbaren) Namen.">FuncParam</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad61fe5b0c8f0c36244aec54fbc2c185c" name="ad61fe5b0c8f0c36244aec54fbc2c185c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad61fe5b0c8f0c36244aec54fbc2c185c">&#9670;&#160;</a></span>astIfStmtNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_if_stmt">IfStmt</a> astIfStmtNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a></td>          <td class="paramname"><span class="paramname"><em>cond</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_stmt.html">Stmt</a></td>          <td class="paramname"><span class="paramname"><em>if_true</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_stmt.html">Stmt</a></td>          <td class="paramname"><span class="paramname"><em>if_false</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt eine neue If-Anweisung. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cond</td><td>Bedingungsausdruck </td></tr>
+    <tr><td class="paramname">if_true</td><td>Anweisungsteil, der bei erfüllter Bedingung ausgeführt wird </td></tr>
+    <tr><td class="paramname">if_false</td><td>Anweisungsteil, der bei nicht erfüllter Bedingung ausgeführt wird </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_if_stmt" title="Eine If-Anweisung: if (cond) if_true else if_false">IfStmt</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="a22de11d3e33e9993a6a14336816d11a3" name="a22de11d3e33e9993a6a14336816d11a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22de11d3e33e9993a6a14336816d11a3">&#9670;&#160;</a></span>astIfStmtPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astIfStmtPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_if_stmt">IfStmt</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_if_stmt" title="Eine If-Anweisung: if (cond) if_true else if_false">IfStmt</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_if_stmt" title="Eine If-Anweisung: if (cond) if_true else if_false">IfStmt</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa77786ef517a5aad66a5779e19f9a873" name="aa77786ef517a5aad66a5779e19f9a873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa77786ef517a5aad66a5779e19f9a873">&#9670;&#160;</a></span>astItemPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astItemPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_item.html">Item</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a49ac5da40a28455303c6040dd35244d8" name="a49ac5da40a28455303c6040dd35244d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49ac5da40a28455303c6040dd35244d8">&#9670;&#160;</a></span>astLiteralPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astLiteralPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_literal.html">Literal</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa8839eb8f8d01fadb03bd8c8d4d196ee" name="aa8839eb8f8d01fadb03bd8c8d4d196ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8839eb8f8d01fadb03bd8c8d4d196ee">&#9670;&#160;</a></span>astPrintStmtPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astPrintStmtPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_print_stmt.html">PrintStmt</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_print_stmt.html" title="Eine print-Anweisung, die zur Ausgabe von Strings oder Ausdrücken genutzt wird.">PrintStmt</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="struct_print_stmt.html" title="Eine print-Anweisung, die zur Ausgabe von Strings oder Ausdrücken genutzt wird.">PrintStmt</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a60c06ace586e9530060f92f0c6dd3890" name="a60c06ace586e9530060f92f0c6dd3890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c06ace586e9530060f92f0c6dd3890">&#9670;&#160;</a></span>astProgramNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_program">Program</a> astProgramNew </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erzeugt ein neues, leeres <code><a class="el" href="ast_8h.html#struct_program" title="Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.">Program</a></code>-Objekt. </p>
+<p>In diesem Objekt können mithilfe der Vektor-Schnittstelle weitere <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code>s hinzugefügt werden. </p>
+
+</div>
+</div>
+<a id="ab2ca4911f9355b03b5dfde11322e422a" name="ab2ca4911f9355b03b5dfde11322e422a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ca4911f9355b03b5dfde11322e422a">&#9670;&#160;</a></span>astProgramPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astProgramPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_program">Program</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_program" title="Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.">Program</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_program" title="Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.">Program</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a859d2e5aea176966c6a015c35ab29c65" name="a859d2e5aea176966c6a015c35ab29c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a859d2e5aea176966c6a015c35ab29c65">&#9670;&#160;</a></span>astResIdentPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astResIdentPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_res_ident">ResIdent</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_res_ident" title="Ein auflösbarer Bezeichner, der auf eine (Funktions- oder Variablen-) Definition verweist.">ResIdent</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>der auflösbare Bezeichner </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae4f627b0e516a515f6dd87f41e90d553" name="ae4f627b0e516a515f6dd87f41e90d553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f627b0e516a515f6dd87f41e90d553">&#9670;&#160;</a></span>astStmtPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astStmtPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_stmt.html">Stmt</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="struct_stmt.html" title="Eine Anweisung.">Stmt</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="struct_stmt.html" title="Eine Anweisung.">Stmt</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a26f30615400f43e261923cea28cb5f19" name="a26f30615400f43e261923cea28cb5f19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f30615400f43e261923cea28cb5f19">&#9670;&#160;</a></span>astVarDefNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_var_def">VarDef</a> astVarDefNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>data_type</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>ident</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a> *</td>          <td class="paramname"><span class="paramname"><em>init</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt eine neue Variablendefinition. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data_type</td><td>Datentyp der Variablen </td></tr>
+    <tr><td class="paramname">ident</td><td>Name der Variablen </td></tr>
+    <tr><td class="paramname">init</td><td>Initialisierungsausdruck der Variablen </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_var_def" title="Eine Variablendefinition.">VarDef</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="a394f72910cc6c8b3a827f89439dda951" name="a394f72910cc6c8b3a827f89439dda951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a394f72910cc6c8b3a827f89439dda951">&#9670;&#160;</a></span>astVarDefPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astVarDefPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_var_def">VarDef</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_var_def" title="Eine Variablendefinition.">VarDef</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_var_def" title="Eine Variablendefinition.">VarDef</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2bbf545b61098a3d1b5eb4b17ee83d3a" name="a2bbf545b61098a3d1b5eb4b17ee83d3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bbf545b61098a3d1b5eb4b17ee83d3a">&#9670;&#160;</a></span>astWhileStmtNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> astWhileStmtNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_expr.html">Expr</a></td>          <td class="paramname"><span class="paramname"><em>cond</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_stmt.html">Stmt</a></td>          <td class="paramname"><span class="paramname"><em>body</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erstellt eine neue While-Anweisung. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cond</td><td>Bedingungsausdruck </td></tr>
+    <tr><td class="paramname">body</td><td>Anweisungsteil, der wiederholt wird </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein neues <code><a class="el" href="ast_8h.html#struct_while_stmt" title="Eine While- oder Do-While-Anweisung: while (cond) body / do body while (cond)">WhileStmt</a></code>-Objekt. </dd></dl>
+
+</div>
+</div>
+<a id="a338c4ad103056ee5eb4fad6a602a9fa1" name="a338c4ad103056ee5eb4fad6a602a9fa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a338c4ad103056ee5eb4fad6a602a9fa1">&#9670;&#160;</a></span>astWhileStmtPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void astWhileStmtPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt eine textuelle Darstellung eines <code><a class="el" href="ast_8h.html#struct_while_stmt" title="Eine While- oder Do-While-Anweisung: while (cond) body / do body while (cond)">WhileStmt</a></code>-Objekts aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>das <code><a class="el" href="ast_8h.html#struct_while_stmt" title="Eine While- oder Do-While-Anweisung: while (cond) body / do body while (cond)">WhileStmt</a></code>-Objekt </td></tr>
+    <tr><td class="paramname">indent</td><td>die Einrückungsebene </td></tr>
+    <tr><td class="paramname">out</td><td>der Ausgabestream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variablen-Dokumentation</h2>
+<a id="a9d42cdd808554f458311f086b60a60fa" name="a9d42cdd808554f458311f086b60a60fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d42cdd808554f458311f086b60a60fa">&#9670;&#160;</a></span>BIN_OP_NAMES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* BIN_OP_NAMES[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initialisierung:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    [BIN_OP_ADD] = <span class="stringliteral">&quot;Add&quot;</span>,</div>
+<div class="line">    [BIN_OP_SUB] = <span class="stringliteral">&quot;Sub&quot;</span>,</div>
+<div class="line">    [BIN_OP_MUL] = <span class="stringliteral">&quot;Mul&quot;</span>,</div>
+<div class="line">    [BIN_OP_DIV] = <span class="stringliteral">&quot;Div&quot;</span>,</div>
+<div class="line">    [BIN_OP_LOG_OR] = <span class="stringliteral">&quot;LogOr&quot;</span>,</div>
+<div class="line">    [BIN_OP_LOG_AND] = <span class="stringliteral">&quot;LogAnd&quot;</span>,</div>
+<div class="line">    [BIN_OP_EQ] = <span class="stringliteral">&quot;Eq&quot;</span>,</div>
+<div class="line">    [BIN_OP_NEQ] = <span class="stringliteral">&quot;Neq&quot;</span>,</div>
+<div class="line">    [BIN_OP_LT] = <span class="stringliteral">&quot;Lt&quot;</span>,</div>
+<div class="line">    [BIN_OP_GT] = <span class="stringliteral">&quot;Gt&quot;</span>,</div>
+<div class="line">    [BIN_OP_LEQ] = <span class="stringliteral">&quot;Leq&quot;</span>,</div>
+<div class="line">    [BIN_OP_GEQ] = <span class="stringliteral">&quot;Geq&quot;</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Array aller binären Operatoren zur verbesserten Debug-Ausgabe. </p>
+
+</div>
+</div>
+<a id="aae412153c44e1c9a2b640334a2b737a1" name="aae412153c44e1c9a2b640334a2b737a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae412153c44e1c9a2b640334a2b737a1">&#9670;&#160;</a></span>TYPE_NAMES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* TYPE_NAMES[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initialisierung:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    [TYPE_VOID]  = <span class="stringliteral">&quot;void&quot;</span>,</div>
+<div class="line">    [TYPE_BOOL]  = <span class="stringliteral">&quot;bool&quot;</span>,</div>
+<div class="line">    [TYPE_INT]   = <span class="stringliteral">&quot;int&quot;</span>,</div>
+<div class="line">    [TYPE_FLOAT] = <span class="stringliteral">&quot;float&quot;</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p>Array aller Typnamen zur verbesserten Debug-Ausgabe. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="ast_8c.html">ast.c</a></li>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = int,
+            .ident = "f1",
+            .params = [
+                [0] = (FuncParam) {
+                    .data_type = int,
+                    .ident = "i"
+                }
+            ],
+            .statements = [
+                [0] = Print(Expr(Var((ResIdent) {
+                    .ident = "i"
+                }))),
+                [1] = Return(Var((ResIdent) {
+                    .ident = "i"
+                }))
+            ]
+        }),
+        [1] = GlobalVar((VarDef) {
+            .data_type = int,
+            .res_ident = (ResIdent) {
+                .ident = "a"
+            },
+            .init = Call((FuncCall) {
+                .res_ident = (ResIdent) {
+                    .ident = "f1"
+                },
+                .args = [
+                    [0] = Literal(Int(0))
+                ]
+            })
+        }),
+        [2] = GlobalVar((VarDef) {
+            .data_type = int,
+            .res_ident = (ResIdent) {
+                .ident = "b"
+            },
+            .init = Call((FuncCall) {
+                .res_ident = (ResIdent) {
+                    .ident = "f1"
+                },
+                .args = [
+                    [0] = Literal(Int(1))
+                ]
+            })
+        }),
+        [3] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = []
+        })
+    ]
+}

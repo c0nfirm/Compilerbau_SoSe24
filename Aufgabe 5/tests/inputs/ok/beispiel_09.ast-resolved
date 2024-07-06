@@ -1,0 +1,77 @@
+(Program) {
+    .items = [
+        [0] = GlobalVar((VarDef) {
+            .data_type = int,
+            .res_ident = (ResIdent) {
+                .ident = "a",
+                .res = (DefId) 0
+            },
+            .init = Literal(int, Int(1))
+        }),
+        [1] = GlobalVar((VarDef) {
+            .data_type = float,
+            .res_ident = (ResIdent) {
+                .ident = "b",
+                .res = (DefId) 1
+            },
+            .init = Literal(float, Float(2.2))
+        }),
+        [2] = GlobalVar((VarDef) {
+            .data_type = int,
+            .res_ident = (ResIdent) {
+                .ident = "c",
+                .res = (DefId) 2
+            },
+            .init = Literal(int, Int(5))
+        }),
+        [3] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = Print(Expr(BinaryOp(float, (BinOpExpr) {
+                    .op = Add,
+                    .lhs = Var(int, (ResIdent) {
+                        .ident = "a",
+                        .res = (DefId) 0
+                    }),
+                    .rhs = BinaryOp(float, (BinOpExpr) {
+                        .op = Div,
+                        .lhs = Var(float, (ResIdent) {
+                            .ident = "b",
+                            .res = (DefId) 1
+                        }),
+                        .rhs = Var(int, (ResIdent) {
+                            .ident = "c",
+                            .res = (DefId) 2
+                        })
+                    })
+                })))
+            ]
+        })
+    ]
+}
+(SymDefTable) {
+    .main_func = (DefId) 3,
+    .global_count = 3,
+    .definitions = [
+        [0] = GlobalVar("a", (VarInfo) {
+            .data_type = int,
+            .offset = 0
+        }),
+        [1] = GlobalVar("b", (VarInfo) {
+            .data_type = float,
+            .offset = 1
+        }),
+        [2] = GlobalVar("c", (VarInfo) {
+            .data_type = int,
+            .offset = 2
+        }),
+        [3] = Func("main", (FuncInfo) {
+            .item_id = (ItemId) 3,
+            .return_type = void,
+            .param_count = 0,
+            .local_vars = []
+        })
+    ]
+}

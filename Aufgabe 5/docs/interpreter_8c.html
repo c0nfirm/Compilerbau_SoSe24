@@ -1,0 +1,797 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: interpreter.c-Dateireferenz</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('interpreter_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Datenstrukturen</a> &#124;
+<a href="#define-members">Makrodefinitionen</a> &#124;
+<a href="#func-members">Funktionen</a>  </div>
+  <div class="headertitle"><div class="title">interpreter.c-Dateireferenz</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Enthält den <a class="el" href="#struct_interpreter" title="Laufzeitzustand des Interpreters.">Interpreter</a> für den abstrakten Syntaxbaum eines C1-Programms unter Nutzung der aus der semantischen Analyse berechneten Informationen.  
+<a href="#details">Mehr ...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdnoreturn.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="interpreter_8h_source.html">interpreter.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Datenstrukturen</h2></td></tr>
+<tr class="memitem:union_value" id="r_union_value"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#union_value">Value</a></td></tr>
+<tr class="memdesc:union_value"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vereinigung über alle möglichen Werte eines C1-Ausdrucks.  <a href="#union_value">Mehr ...</a><br /></td></tr>
+<tr class="separator:union_value"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_variable" id="r_struct_variable"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#struct_variable">Variable</a></td></tr>
+<tr class="memdesc:struct_variable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mit dem Initialisierungsstatus markierter Variablenwert.  <a href="#struct_variable">Mehr ...</a><br /></td></tr>
+<tr class="separator:struct_variable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_interpreter" id="r_struct_interpreter"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#struct_interpreter">Interpreter</a></td></tr>
+<tr class="memdesc:struct_interpreter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Laufzeitzustand des Interpreters.  <a href="#struct_interpreter">Mehr ...</a><br /></td></tr>
+<tr class="separator:struct_interpreter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:struct_interpreter_8result" id="r_struct_interpreter_8result"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#struct_interpreter_8result">Interpreter.result</a></td></tr>
+<tr class="memdesc:struct_interpreter_8result"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rückgabewert und Rückkehrflag.  <a href="#struct_interpreter_8result">Mehr ...</a><br /></td></tr>
+<tr class="separator:struct_interpreter_8result"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Makrodefinitionen</h2></td></tr>
+<tr class="memitem:a5f81be6623a184957217db66bae02bce" id="r_a5f81be6623a184957217db66bae02bce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f81be6623a184957217db66bae02bce">TODO</a>(...)</td></tr>
+<tr class="separator:a5f81be6623a184957217db66bae02bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86d08c1b23d67eca942da0ac012d89f3" id="r_a86d08c1b23d67eca942da0ac012d89f3"><td class="memItemLeft" align="right" valign="top"><a id="a86d08c1b23d67eca942da0ac012d89f3" name="a86d08c1b23d67eca942da0ac012d89f3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>unreachable</b>()&#160;&#160;&#160;	<a class="el" href="#aef5bbc0f360a95f360055fb1d32d7c78">bail</a>(&quot;unreachable code in function '%s()', line %u&quot;, __func__, __LINE__)</td></tr>
+<tr class="memdesc:a86d08c1b23d67eca942da0ac012d89f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bricht die Ausführung ab, wenn ein mutmaßlich unerreichbarer Controllpfad ausgeführt werden soll. <br /></td></tr>
+<tr class="separator:a86d08c1b23d67eca942da0ac012d89f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funktionen</h2></td></tr>
+<tr class="memitem:a51a82b011458d89aa9398a6c15b06478" id="r_a51a82b011458d89aa9398a6c15b06478"><td class="memItemLeft" align="right" valign="top"><a id="a51a82b011458d89aa9398a6c15b06478" name="a51a82b011458d89aa9398a6c15b06478"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitStmt</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="struct_stmt.html">Stmt</a> *)</td></tr>
+<tr class="memdesc:a51a82b011458d89aa9398a6c15b06478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine Anweisung. <br /></td></tr>
+<tr class="separator:a51a82b011458d89aa9398a6c15b06478"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48c478aa0cf46427762b7a93797801ca" id="r_a48c478aa0cf46427762b7a93797801ca"><td class="memItemLeft" align="right" valign="top"><a id="a48c478aa0cf46427762b7a93797801ca" name="a48c478aa0cf46427762b7a93797801ca"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitIfStmt</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_if_stmt">IfStmt</a> *)</td></tr>
+<tr class="memdesc:a48c478aa0cf46427762b7a93797801ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine <code>if</code>-Anweisung. <br /></td></tr>
+<tr class="separator:a48c478aa0cf46427762b7a93797801ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32241bb79973b93e1c24cc6d58e752c4" id="r_a32241bb79973b93e1c24cc6d58e752c4"><td class="memItemLeft" align="right" valign="top"><a id="a32241bb79973b93e1c24cc6d58e752c4" name="a32241bb79973b93e1c24cc6d58e752c4"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitForStmt</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_for_stmt">ForStmt</a> *)</td></tr>
+<tr class="memdesc:a32241bb79973b93e1c24cc6d58e752c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine <code>for</code>-Schleife. <br /></td></tr>
+<tr class="separator:a32241bb79973b93e1c24cc6d58e752c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3795ae0a8141a5b03cc0e4150cff4f95" id="r_a3795ae0a8141a5b03cc0e4150cff4f95"><td class="memItemLeft" align="right" valign="top"><a id="a3795ae0a8141a5b03cc0e4150cff4f95" name="a3795ae0a8141a5b03cc0e4150cff4f95"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitForInit</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="struct_for_init.html">ForInit</a> *)</td></tr>
+<tr class="memdesc:a3795ae0a8141a5b03cc0e4150cff4f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht den Initialisierungteil einer <code>for</code>-Schleife. <br /></td></tr>
+<tr class="separator:a3795ae0a8141a5b03cc0e4150cff4f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77e3d5f639b74cdb701c6975a64a28db" id="r_a77e3d5f639b74cdb701c6975a64a28db"><td class="memItemLeft" align="right" valign="top"><a id="a77e3d5f639b74cdb701c6975a64a28db" name="a77e3d5f639b74cdb701c6975a64a28db"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitWhileStmt</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> *)</td></tr>
+<tr class="memdesc:a77e3d5f639b74cdb701c6975a64a28db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine <code>while</code>-Schleife. <br /></td></tr>
+<tr class="separator:a77e3d5f639b74cdb701c6975a64a28db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11a6bdd479fe4529cb283ce2f510f5ec" id="r_a11a6bdd479fe4529cb283ce2f510f5ec"><td class="memItemLeft" align="right" valign="top"><a id="a11a6bdd479fe4529cb283ce2f510f5ec" name="a11a6bdd479fe4529cb283ce2f510f5ec"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitDoWhileStmt</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_while_stmt">WhileStmt</a> *)</td></tr>
+<tr class="memdesc:a11a6bdd479fe4529cb283ce2f510f5ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine <code>do while</code>-Schleife. <br /></td></tr>
+<tr class="separator:a11a6bdd479fe4529cb283ce2f510f5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bda3e5c9e9900fcc9b8c2d9ff93b0c0" id="r_a9bda3e5c9e9900fcc9b8c2d9ff93b0c0"><td class="memItemLeft" align="right" valign="top"><a id="a9bda3e5c9e9900fcc9b8c2d9ff93b0c0" name="a9bda3e5c9e9900fcc9b8c2d9ff93b0c0"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitReturnStmt</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="struct_expr.html">Expr</a> *)</td></tr>
+<tr class="memdesc:a9bda3e5c9e9900fcc9b8c2d9ff93b0c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine <code>return</code>-Anweisung und setzt den Rückgabewert. <br /></td></tr>
+<tr class="separator:a9bda3e5c9e9900fcc9b8c2d9ff93b0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01396d7d67f32ffa233e2016965ba258" id="r_a01396d7d67f32ffa233e2016965ba258"><td class="memItemLeft" align="right" valign="top"><a id="a01396d7d67f32ffa233e2016965ba258" name="a01396d7d67f32ffa233e2016965ba258"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitPrintStmt</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="struct_print_stmt.html">PrintStmt</a> *)</td></tr>
+<tr class="memdesc:a01396d7d67f32ffa233e2016965ba258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine <code>print</code>-Anweisung und schreibt in die Standardausgabe. <br /></td></tr>
+<tr class="separator:a01396d7d67f32ffa233e2016965ba258"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab0ea752aeed3df6dbc80f9eec86c378" id="r_aab0ea752aeed3df6dbc80f9eec86c378"><td class="memItemLeft" align="right" valign="top"><a id="aab0ea752aeed3df6dbc80f9eec86c378" name="aab0ea752aeed3df6dbc80f9eec86c378"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitVarDef</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_var_def">VarDef</a> *)</td></tr>
+<tr class="memdesc:aab0ea752aeed3df6dbc80f9eec86c378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine Variablendefinition. <br /></td></tr>
+<tr class="separator:aab0ea752aeed3df6dbc80f9eec86c378"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57df2481246fc5564c771ccf36a4a85c" id="r_a57df2481246fc5564c771ccf36a4a85c"><td class="memItemLeft" align="right" valign="top"><a id="a57df2481246fc5564c771ccf36a4a85c" name="a57df2481246fc5564c771ccf36a4a85c"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>visitBlock</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_block">Block</a> *)</td></tr>
+<tr class="memdesc:a57df2481246fc5564c771ccf36a4a85c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht einen Anweisungsblock und führt jede der Anweisungen aus. <br /></td></tr>
+<tr class="separator:a57df2481246fc5564c771ccf36a4a85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af41a348642ff06a8c03386751d86eb28" id="r_af41a348642ff06a8c03386751d86eb28"><td class="memItemLeft" align="right" valign="top"><a id="af41a348642ff06a8c03386751d86eb28" name="af41a348642ff06a8c03386751d86eb28"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>visitExpr</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="struct_expr.html">Expr</a> *, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>)</td></tr>
+<tr class="memdesc:af41a348642ff06a8c03386751d86eb28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht einen Ausdruck, evaluiert ihn und konvertiert das Ergebnis in einen Zieltyp. <br /></td></tr>
+<tr class="separator:af41a348642ff06a8c03386751d86eb28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477f3a6c0a57ad4bf9fc02e3fe9df955" id="r_a477f3a6c0a57ad4bf9fc02e3fe9df955"><td class="memItemLeft" align="right" valign="top"><a id="a477f3a6c0a57ad4bf9fc02e3fe9df955" name="a477f3a6c0a57ad4bf9fc02e3fe9df955"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>visitFuncCall</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_func_call">FuncCall</a> *, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>)</td></tr>
+<tr class="memdesc:a477f3a6c0a57ad4bf9fc02e3fe9df955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht einen Funktionsruf und konvertiert das Ergebnis in einen Zieltyp. <br /></td></tr>
+<tr class="separator:a477f3a6c0a57ad4bf9fc02e3fe9df955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91966179a435ae738e0103d92260c8fd" id="r_a91966179a435ae738e0103d92260c8fd"><td class="memItemLeft" align="right" valign="top"><a id="a91966179a435ae738e0103d92260c8fd" name="a91966179a435ae738e0103d92260c8fd"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>visitBinOpExpr</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a> *, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>)</td></tr>
+<tr class="memdesc:a91966179a435ae738e0103d92260c8fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine binäre Operation und konvertiert das Ergebnis in einen Zieltyp. <br /></td></tr>
+<tr class="separator:a91966179a435ae738e0103d92260c8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74816114e73154c1a7ba6db2f8bb0eb" id="r_aa74816114e73154c1a7ba6db2f8bb0eb"><td class="memItemLeft" align="right" valign="top"><a id="aa74816114e73154c1a7ba6db2f8bb0eb" name="aa74816114e73154c1a7ba6db2f8bb0eb"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>visitUnaryMinus</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="struct_expr.html">Expr</a> *, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>)</td></tr>
+<tr class="memdesc:aa74816114e73154c1a7ba6db2f8bb0eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine unäre Minusoperation und konvertiert das Ergebnis in einen Zieltyp. <br /></td></tr>
+<tr class="separator:aa74816114e73154c1a7ba6db2f8bb0eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4979d6a781e560219dd138bc54534c6b" id="r_a4979d6a781e560219dd138bc54534c6b"><td class="memItemLeft" align="right" valign="top"><a id="a4979d6a781e560219dd138bc54534c6b" name="a4979d6a781e560219dd138bc54534c6b"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>visitAssign</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_assign">Assign</a> *, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>)</td></tr>
+<tr class="memdesc:a4979d6a781e560219dd138bc54534c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht einen Zuweisungausdruck und konvertiert das Ergebnis in einen Zieltyp. <br /></td></tr>
+<tr class="separator:a4979d6a781e560219dd138bc54534c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab24f5688112fe791c1a1b6e100535823" id="r_ab24f5688112fe791c1a1b6e100535823"><td class="memItemLeft" align="right" valign="top"><a id="ab24f5688112fe791c1a1b6e100535823" name="ab24f5688112fe791c1a1b6e100535823"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>visitLoadVar</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="ast_8h.html#struct_res_ident">ResIdent</a> *, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>)</td></tr>
+<tr class="memdesc:ab24f5688112fe791c1a1b6e100535823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht eine <a class="el" href="#struct_variable" title="Mit dem Initialisierungsstatus markierter Variablenwert.">Variable</a>, liest dessen Wert und konvertiert ihn in einen Zieltyp. <br /></td></tr>
+<tr class="separator:ab24f5688112fe791c1a1b6e100535823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24ad565a90ebe37da2e6a71e23d4770" id="r_ac24ad565a90ebe37da2e6a71e23d4770"><td class="memItemLeft" align="right" valign="top"><a id="ac24ad565a90ebe37da2e6a71e23d4770" name="ac24ad565a90ebe37da2e6a71e23d4770"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>visitLiteral</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *, const <a class="el" href="struct_literal.html">Literal</a> *, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>)</td></tr>
+<tr class="memdesc:ac24ad565a90ebe37da2e6a71e23d4770"><td class="mdescLeft">&#160;</td><td class="mdescRight">Besucht ein <a class="el" href="struct_literal.html" title="Ein Literal-Ausdruck, z.B.">Literal</a> und konvertiert dessen Wert in einen Zieltyp. <br /></td></tr>
+<tr class="separator:ac24ad565a90ebe37da2e6a71e23d4770"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a236c17741b4848d3f7b7afcd5728b0b1" id="r_a236c17741b4848d3f7b7afcd5728b0b1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a236c17741b4848d3f7b7afcd5728b0b1">checkedAdd</a> (int l, int r, int *out)</td></tr>
+<tr class="memdesc:a236c17741b4848d3f7b7afcd5728b0b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addiert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück.  <br /></td></tr>
+<tr class="separator:a236c17741b4848d3f7b7afcd5728b0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e7289b8c2eb037f2c1718bea0669333" id="r_a2e7289b8c2eb037f2c1718bea0669333"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e7289b8c2eb037f2c1718bea0669333">checkedSub</a> (int l, int r, int *out)</td></tr>
+<tr class="memdesc:a2e7289b8c2eb037f2c1718bea0669333"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtrahiert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück.  <br /></td></tr>
+<tr class="separator:a2e7289b8c2eb037f2c1718bea0669333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a321509d16b98684a0b0c36c1397ae060" id="r_a321509d16b98684a0b0c36c1397ae060"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a321509d16b98684a0b0c36c1397ae060">checkedMul</a> (int l, int r, int *out)</td></tr>
+<tr class="memdesc:a321509d16b98684a0b0c36c1397ae060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multipliziert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück.  <br /></td></tr>
+<tr class="separator:a321509d16b98684a0b0c36c1397ae060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86b599af7b2df35752726a550765fd9d" id="r_a86b599af7b2df35752726a550765fd9d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86b599af7b2df35752726a550765fd9d">checkedDiv</a> (int l, int r, int *out)</td></tr>
+<tr class="memdesc:a86b599af7b2df35752726a550765fd9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dividiert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück.  <br /></td></tr>
+<tr class="separator:a86b599af7b2df35752726a550765fd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e99e313b72f491fa831251a213ea269" id="r_a0e99e313b72f491fa831251a213ea269"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e99e313b72f491fa831251a213ea269">checkedNeg</a> (int l, int *out)</td></tr>
+<tr class="memdesc:a0e99e313b72f491fa831251a213ea269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Negiert einen Integerwert, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück.  <br /></td></tr>
+<tr class="separator:a0e99e313b72f491fa831251a213ea269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef5bbc0f360a95f360055fb1d32d7c78" id="r_aef5bbc0f360a95f360055fb1d32d7c78"><td class="memItemLeft" align="right" valign="top">static noreturn void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef5bbc0f360a95f360055fb1d32d7c78">bail</a> (const char *msg,...)</td></tr>
+<tr class="memdesc:aef5bbc0f360a95f360055fb1d32d7c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bricht die Ausführung mit einer Fehlermeldung ab.  <br /></td></tr>
+<tr class="separator:aef5bbc0f360a95f360055fb1d32d7c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adea97cccc0f67e441b6c466a98d6479e" id="r_adea97cccc0f67e441b6c466a98d6479e"><td class="memItemLeft" align="right" valign="top"><a id="adea97cccc0f67e441b6c466a98d6479e" name="adea97cccc0f67e441b6c466a98d6479e"></a>
+static <a class="el" href="#union_value">Value</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cast</b> (<a class="el" href="#union_value">Value</a> base, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> from, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> into)</td></tr>
+<tr class="memdesc:adea97cccc0f67e441b6c466a98d6479e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konvertiert einen Wert von einem Quell- in einen Zieldatentyp. <br /></td></tr>
+<tr class="separator:adea97cccc0f67e441b6c466a98d6479e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16a95939bf60c700b0af807d09ab1e59" id="r_a16a95939bf60c700b0af807d09ab1e59"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16a95939bf60c700b0af807d09ab1e59">leastUpperBound</a> (<a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> lhs, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> rhs)</td></tr>
+<tr class="memdesc:a16a95939bf60c700b0af807d09ab1e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Berechnet den spezifischsten Datentyp, der beide Operanden darstellen kann.  <br /></td></tr>
+<tr class="separator:a16a95939bf60c700b0af807d09ab1e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9155a328482c56588cfda5de57803c1d" id="r_a9155a328482c56588cfda5de57803c1d"><td class="memItemLeft" align="right" valign="top"><a id="a9155a328482c56588cfda5de57803c1d" name="a9155a328482c56588cfda5de57803c1d"></a>
+static const <a class="el" href="struct_def_info.html">DefInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>indexDef</b> (const <a class="el" href="#struct_interpreter">Interpreter</a> *self, <a class="el" href="ast_8h.html#struct_def_id">DefId</a> def_id)</td></tr>
+<tr class="memdesc:a9155a328482c56588cfda5de57803c1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Löst eine <code><a class="el" href="ast_8h.html#struct_def_id" title="Eine eindeutige Kennung für die (Funktions- oder Variablen-)Definition, auf die ein auflösbarer Bezei...">DefId</a></code> in der Definitionstabelle auf und gibt die Definition zurück. <br /></td></tr>
+<tr class="separator:a9155a328482c56588cfda5de57803c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a838878903cc9948e08907754408ecc1c" id="r_a838878903cc9948e08907754408ecc1c"><td class="memItemLeft" align="right" valign="top"><a id="a838878903cc9948e08907754408ecc1c" name="a838878903cc9948e08907754408ecc1c"></a>
+static const <a class="el" href="struct_item.html">Item</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>indexItem</b> (const <a class="el" href="#struct_interpreter">Interpreter</a> *self, <a class="el" href="ast_8h.html#struct_item_id">ItemId</a> item_id)</td></tr>
+<tr class="memdesc:a838878903cc9948e08907754408ecc1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Löst eine <code><a class="el" href="ast_8h.html#struct_item_id" title="Eine eindeutige Kennung für die Top-Level Elemente (Item) des abstrakten Syntaxbaumes (Program).">ItemId</a></code> im abstrakten Syntaxbaum auf und gibt die <code><a class="el" href="struct_item.html" title="Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.">Item</a></code>-Instanz zurück. <br /></td></tr>
+<tr class="separator:a838878903cc9948e08907754408ecc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea9424b7cf216cfe4ff2f2759b6fec2f" id="r_aea9424b7cf216cfe4ff2f2759b6fec2f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="#struct_variable">Variable</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea9424b7cf216cfe4ff2f2759b6fec2f">loadVar</a> (const <a class="el" href="#struct_interpreter">Interpreter</a> *self, const <a class="el" href="struct_def_info.html">DefInfo</a> *info)</td></tr>
+<tr class="memdesc:aea9424b7cf216cfe4ff2f2759b6fec2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liest den Wert einer Variablen.  <br /></td></tr>
+<tr class="separator:aea9424b7cf216cfe4ff2f2759b6fec2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c78cca5dd3b23013e10626df2e8d6f" id="r_af7c78cca5dd3b23013e10626df2e8d6f"><td class="memItemLeft" align="right" valign="top"><a id="af7c78cca5dd3b23013e10626df2e8d6f" name="af7c78cca5dd3b23013e10626df2e8d6f"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>storeVar</b> (<a class="el" href="#struct_interpreter">Interpreter</a> *self, const <a class="el" href="struct_def_info.html">DefInfo</a> *info, <a class="el" href="#union_value">Value</a> value)</td></tr>
+<tr class="memdesc:af7c78cca5dd3b23013e10626df2e8d6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Speichert einen Wert in einer Variablen und setzt den Initialisierungsstatus. <br /></td></tr>
+<tr class="separator:af7c78cca5dd3b23013e10626df2e8d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae317852cda550558eacfb9722bc8bdb7" id="r_ae317852cda550558eacfb9722bc8bdb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae317852cda550558eacfb9722bc8bdb7">interpret</a> (const <a class="el" href="ast_8h.html#struct_program">Program</a> *ast, const <a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *tab)</td></tr>
+<tr class="memdesc:ae317852cda550558eacfb9722bc8bdb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpretiert den übergebenen, annotierten abstrakten Syntaxbaum unter Nutzung der Symboltabelle.  <br /></td></tr>
+<tr class="separator:ae317852cda550558eacfb9722bc8bdb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Ausführliche Beschreibung</h2>
+<div class="textblock"><p>Enthält den <a class="el" href="#struct_interpreter" title="Laufzeitzustand des Interpreters.">Interpreter</a> für den abstrakten Syntaxbaum eines C1-Programms unter Nutzung der aus der semantischen Analyse berechneten Informationen. </p>
+<p>Der Einstiegspunkt für die Interpretation ist die Funktion <code>interpret</code>, die den <a class="el" href="#struct_interpreter" title="Laufzeitzustand des Interpreters.">Interpreter</a> und die globalen Variablen initialisiert und die <code>main</code>-Funktion des Programms betritt. Das Modul definiert auch die Struktur <code><a class="el" href="#struct_interpreter" title="Laufzeitzustand des Interpreters.">Interpreter</a></code>, die Funktionen bereitstellt, um Anweisungen und Ausdrücke im AST zu besuchen und auszuwerten, Funktionsaufrufe zu handhaben und Kontrollflusskonstrukte wie Schleifen und Bedingungsanweisungen auszuführen.</p>
+<p>Zusätzlich enthält die Datei Hilfsfunktionen zum Ausführen von Arithmetik, die im Falle von Überläufen einen Fehler liefern, statt undefiniertes Verhalten zu verursachen. </p>
+</div><hr/><h2 class="groupheader">Datenstruktur-Dokumentation</h2>
+<a name="union_value" id="union_value"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#union_value">&#9670;&#160;</a></span>Value</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union Value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Vereinigung über alle möglichen Werte eines C1-Ausdrucks. </p>
+<p>Kann entweder ein boolescher, Integer oder Fließkomma-Wert sein. </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Datenstruktur-Elemente</th></tr>
+<tr><td class="fieldtype">
+<a id="a857e4e5a2613b7cf584dbf12dae00525" name="a857e4e5a2613b7cf584dbf12dae00525"></a>bool</td>
+<td class="fieldname">
+boolean</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a347120387fb1d297ddcdf38a1fe7578f" name="a347120387fb1d297ddcdf38a1fe7578f"></a>double</td>
+<td class="fieldname">
+floating</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="a7999571fbf08e533e526f90556651209" name="a7999571fbf08e533e526f90556651209"></a>int</td>
+<td class="fieldname">
+integral</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="struct_variable" id="struct_variable"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_variable">&#9670;&#160;</a></span>Variable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct Variable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Mit dem Initialisierungsstatus markierter Variablenwert. </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Datenstruktur-Elemente</th></tr>
+<tr><td class="fieldtype">
+<a id="a50300ba6e38ec30121edcc07ebac42c6" name="a50300ba6e38ec30121edcc07ebac42c6"></a>bool</td>
+<td class="fieldname">
+init</td>
+<td class="fielddoc">
+</td></tr>
+<tr><td class="fieldtype">
+<a id="af6eaeb67b29e116add208311c3a8b5b3" name="af6eaeb67b29e116add208311c3a8b5b3"></a><a class="el" href="#union_value">Value</a></td>
+<td class="fieldname">
+val</td>
+<td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="struct_interpreter" id="struct_interpreter"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_interpreter">&#9670;&#160;</a></span>Interpreter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct Interpreter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Laufzeitzustand des Interpreters. </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Datenstruktur-Elemente</th></tr>
+<tr><td class="fieldtype">
+<a id="a7928ced449e076a52f254c55a6f6e3c0" name="a7928ced449e076a52f254c55a6f6e3c0"></a>const <a class="el" href="ast_8h.html#struct_program">Program</a> *</td>
+<td class="fieldname">
+ast</td>
+<td class="fielddoc">
+Zeiger auf den abstrakten Syntaxbaum. </td></tr>
+<tr><td class="fieldtype">
+<a id="af06d1f5b705c19b0722bf2ba1b0d2f80" name="af06d1f5b705c19b0722bf2ba1b0d2f80"></a><a class="el" href="#struct_variable">Variable</a> *</td>
+<td class="fieldname">
+globals</td>
+<td class="fielddoc">
+Zeiger auf das globale Variablenarray. </td></tr>
+<tr><td class="fieldtype">
+<a id="a5e1f108780aedd4cf10c921ab51fe837" name="a5e1f108780aedd4cf10c921ab51fe837"></a><a class="el" href="#struct_variable">Variable</a> *</td>
+<td class="fieldname">
+locals</td>
+<td class="fielddoc">
+Zeiger auf das lokale Variablenarray. </td></tr>
+<tr><td class="fieldtype">
+<a id="af38c4086d95637d26a471c70f5257b04" name="af38c4086d95637d26a471c70f5257b04"></a>struct <a class="el" href="#struct_interpreter_8result">Interpreter.result</a></td>
+<td class="fieldname">
+result</td>
+<td class="fielddoc">
+Rückgabewert und Rückkehrflag. </td></tr>
+<tr><td class="fieldtype">
+<a id="a952b33c0b4191e6c744beb49a124c591" name="a952b33c0b4191e6c744beb49a124c591"></a>const <a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *</td>
+<td class="fieldname">
+tab</td>
+<td class="fielddoc">
+Zeiger auf die Definitionstabelle. </td></tr>
+</table>
+
+</div>
+</div>
+<a name="struct_interpreter_8result" id="struct_interpreter_8result"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#struct_interpreter_8result">&#9670;&#160;</a></span>Interpreter.result</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct Interpreter.result</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="textblock"><p>Rückgabewert und Rückkehrflag. </p>
+</div><table class="fieldtable">
+<tr><th colspan="3">Datenstruktur-Elemente</th></tr>
+<tr><td class="fieldtype">
+<a id="a167a77939d6d79814e846ff5885b63b9" name="a167a77939d6d79814e846ff5885b63b9"></a>bool</td>
+<td class="fieldname">
+returning</td>
+<td class="fielddoc">
+Rückkehrflag. </td></tr>
+<tr><td class="fieldtype">
+<a id="a599dcce2998a6b40b1e38e8c6006cb0a" name="a599dcce2998a6b40b1e38e8c6006cb0a"></a><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>
+<td class="fieldname">
+type</td>
+<td class="fielddoc">
+Rückgabetyp. </td></tr>
+<tr><td class="fieldtype">
+<a id="a3a6d0284e743dc4a9b86f97d6dd1a3bf" name="a3a6d0284e743dc4a9b86f97d6dd1a3bf"></a><a class="el" href="#union_value">Value</a></td>
+<td class="fieldname">
+val</td>
+<td class="fielddoc">
+Rückgabewert. </td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Makro-Dokumentation</h2>
+<a id="a5f81be6623a184957217db66bae02bce" name="a5f81be6623a184957217db66bae02bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f81be6623a184957217db66bae02bce">&#9670;&#160;</a></span>TODO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TODO</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> { \</div>
+<div class="line">    fprintf(stderr, <span class="stringliteral">&quot;noch nicht implementiert: &quot;</span> __VA_ARGS__); \</div>
+<div class="line">    putc(<span class="charliteral">&#39;\n&#39;</span>, stderr); \</div>
+<div class="line">    exit(-1); \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Dokumentation der Funktionen</h2>
+<a id="aef5bbc0f360a95f360055fb1d32d7c78" name="aef5bbc0f360a95f360055fb1d32d7c78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef5bbc0f360a95f360055fb1d32d7c78">&#9670;&#160;</a></span>bail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static noreturn void bail </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>msg</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bricht die Ausführung mit einer Fehlermeldung ab. </p>
+<p>Diese Funktion soll gerufen werden, bevor während der Interpretation undefiniertes Programmverhalten auftreten würde. </p>
+
+</div>
+</div>
+<a id="a236c17741b4848d3f7b7afcd5728b0b1" name="a236c17741b4848d3f7b7afcd5728b0b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a236c17741b4848d3f7b7afcd5728b0b1">&#9670;&#160;</a></span>checkedAdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool checkedAdd </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>l</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>r</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Addiert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>Linke Seite der Addition. </td></tr>
+    <tr><td class="paramname">r</td><td>Rechte Seite der Addition. </td></tr>
+    <tr><td class="paramname">out</td><td>Zeiger auf die Ergebnisvariable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd><code>true</code>, falls die Addition erfolgreich war, <code>false</code>, falls es dabei zu einem Überlauf gekommen wäre </dd></dl>
+
+</div>
+</div>
+<a id="a86b599af7b2df35752726a550765fd9d" name="a86b599af7b2df35752726a550765fd9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86b599af7b2df35752726a550765fd9d">&#9670;&#160;</a></span>checkedDiv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool checkedDiv </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>l</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>r</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dividiert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>Linke Seite der Division. </td></tr>
+    <tr><td class="paramname">r</td><td>Rechte Seite der Division. </td></tr>
+    <tr><td class="paramname">out</td><td>Zeiger auf die Ergebnisvariable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd><code>true</code>, falls die Division erfolgreich war, <code>false</code>, falls es dabei zu einem Überlauf gekommen wäre </dd></dl>
+
+</div>
+</div>
+<a id="a321509d16b98684a0b0c36c1397ae060" name="a321509d16b98684a0b0c36c1397ae060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a321509d16b98684a0b0c36c1397ae060">&#9670;&#160;</a></span>checkedMul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool checkedMul </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>l</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>r</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Multipliziert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>Linke Seite der Multiplikation. </td></tr>
+    <tr><td class="paramname">r</td><td>Rechte Seite der Multiplikation. </td></tr>
+    <tr><td class="paramname">out</td><td>Zeiger auf die Ergebnisvariable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd><code>true</code>, falls die Multiplikation erfolgreich war, <code>false</code>, falls es dabei zu einem Überlauf gekommen wäre </dd></dl>
+
+</div>
+</div>
+<a id="a0e99e313b72f491fa831251a213ea269" name="a0e99e313b72f491fa831251a213ea269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e99e313b72f491fa831251a213ea269">&#9670;&#160;</a></span>checkedNeg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool checkedNeg </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>l</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Negiert einen Integerwert, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>Zu negierender Wert. </td></tr>
+    <tr><td class="paramname">out</td><td>Zeiger auf die Ergebnisvariable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd><code>true</code>, falls die Negation erfolgreich war, <code>false</code>, falls es dabei zu einem Überlauf gekommen wäre </dd></dl>
+
+</div>
+</div>
+<a id="a2e7289b8c2eb037f2c1718bea0669333" name="a2e7289b8c2eb037f2c1718bea0669333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e7289b8c2eb037f2c1718bea0669333">&#9670;&#160;</a></span>checkedSub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool checkedSub </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>l</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>r</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Subtrahiert zwei Integerwerte, falls es dabei nicht zu einem Überlauf kommen würde und gibt andernfalls einen Fehlercode zurück. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>Linke Seite der Subtraktion. </td></tr>
+    <tr><td class="paramname">r</td><td>Rechte Seite der Subtraktion. </td></tr>
+    <tr><td class="paramname">out</td><td>Zeiger auf die Ergebnisvariable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd><code>true</code>, falls die Subtraktion erfolgreich war, <code>false</code>, falls es dabei zu einem Überlauf gekommen wäre </dd></dl>
+
+</div>
+</div>
+<a id="ae317852cda550558eacfb9722bc8bdb7" name="ae317852cda550558eacfb9722bc8bdb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae317852cda550558eacfb9722bc8bdb7">&#9670;&#160;</a></span>interpret()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void interpret </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_program">Program</a> *</td>          <td class="paramname"><span class="paramname"><em>ast</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *</td>          <td class="paramname"><span class="paramname"><em>defs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interpretiert den übergebenen, annotierten abstrakten Syntaxbaum unter Nutzung der Symboltabelle. </p>
+<p>Die Interpretation wird mit einem Fehler abgebrochen, falls es bei der Ausführung zu undefiniertem Verhalten gekommen wäre.</p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ast</td><td>Der annotierte abstrakte Syntaxbaum. </td></tr>
+    <tr><td class="paramname">defs</td><td>Die Symboltabelle aus der semantischen Analyse. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a16a95939bf60c700b0af807d09ab1e59" name="a16a95939bf60c700b0af807d09ab1e59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16a95939bf60c700b0af807d09ab1e59">&#9670;&#160;</a></span>leastUpperBound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> leastUpperBound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>lhs</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>rhs</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Berechnet den spezifischsten Datentyp, der beide Operanden darstellen kann. </p>
+<p>Diese Funktion ist symmetrisch, es wird also davon ausgegangen, dass beide Seiten der Operation sich konvertieren lassen. Hier wird die implizite Umwandlung von <code>int</code> nach <code>float</code> abgebildet.</p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>linker Operand </td></tr>
+    <tr><td class="paramname">rhs</td><td>rechter Operand </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>spezifischster Datentyp, der beide Operanden umfasst oder <code>TYPE_VOID</code>, falls es keinen gibt </dd></dl>
+
+</div>
+</div>
+<a id="aea9424b7cf216cfe4ff2f2759b6fec2f" name="aea9424b7cf216cfe4ff2f2759b6fec2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea9424b7cf216cfe4ff2f2759b6fec2f">&#9670;&#160;</a></span>loadVar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="#struct_variable">Variable</a> * loadVar </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#struct_interpreter">Interpreter</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_def_info.html">DefInfo</a> *</td>          <td class="paramname"><span class="paramname"><em>info</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liest den Wert einer Variablen. </p>
+<dl class="section return"><dt>Rückgabe</dt><dd>Zeiger auf die lokale oder globale <a class="el" href="#struct_variable" title="Mit dem Initialisierungsstatus markierter Variablenwert.">Variable</a>. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="interpreter_8c.html">interpreter.c</a></li>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

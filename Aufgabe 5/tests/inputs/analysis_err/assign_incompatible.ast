@@ -1,0 +1,36 @@
+(Program) {
+    .items = [
+        [0] = GlobalVar((VarDef) {
+            .data_type = int,
+            .res_ident = (ResIdent) {
+                .ident = "i"
+            },
+            .init = None()
+        }),
+        [1] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = VarDef((VarDef) {
+                    .data_type = float,
+                    .res_ident = (ResIdent) {
+                        .ident = "j"
+                    },
+                    .init = None()
+                }),
+                [1] = Assign((Assign) {
+                    .lhs = (ResIdent) {
+                        .ident = "i"
+                    },
+                    .rhs = Assign((Assign) {
+                        .lhs = (ResIdent) {
+                            .ident = "j"
+                        },
+                        .rhs = Literal(Int(3))
+                    })
+                })
+            ]
+        })
+    ]
+}

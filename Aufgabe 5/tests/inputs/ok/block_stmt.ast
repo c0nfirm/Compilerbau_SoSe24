@@ -1,0 +1,29 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = Block((Block) {
+                    .statements = [
+                        [0] = Print(Expr(Literal(Int(0)))),
+                        [1] = Block((Block) {
+                            .statements = [
+                                [0] = Print(Expr(Literal(Int(1)))),
+                                [1] = Block((Block) {
+                                    .statements = [
+                                        [0] = Print(Expr(Literal(Int(2)))),
+                                        [1] = Print(Expr(Literal(Int(3))))
+                                    ]
+                                }),
+                                [2] = Print(Expr(Literal(Int(4))))
+                            ]
+                        })
+                    ]
+                }),
+                [1] = Print(Expr(Literal(Int(5))))
+            ]
+        })
+    ]
+}

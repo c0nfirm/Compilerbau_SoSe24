@@ -1,0 +1,229 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = int,
+            .ident = "f1",
+            .params = [
+                [0] = (FuncParam) {
+                    .data_type = int,
+                    .ident = "i"
+                }
+            ],
+            .statements = [
+                [0] = Print(Expr(Var((ResIdent) {
+                    .ident = "i"
+                }))),
+                [1] = Return(Var((ResIdent) {
+                    .ident = "i"
+                }))
+            ]
+        }),
+        [1] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = Print(String("Addition")),
+                [1] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Add,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [2] = Print(String("Subtraction")),
+                [3] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Sub,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [4] = Print(String("Multiplication")),
+                [5] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Mul,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [6] = Print(String("Division")),
+                [7] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Div,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [8] = Print(String("Lesser-than")),
+                [9] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Lt,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [10] = Print(String("Greater-than")),
+                [11] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Gt,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [12] = Print(String("Lesser-or-equal")),
+                [13] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Leq,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [14] = Print(String("Greater-or-equal")),
+                [15] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Geq,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [16] = Print(String("Equal-to")),
+                [17] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Eq,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                }))),
+                [18] = Print(String("Not-equal-to")),
+                [19] = Print(Expr(BinaryOp((BinOpExpr) {
+                    .op = Neq,
+                    .lhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(0))
+                        ]
+                    }),
+                    .rhs = Call((FuncCall) {
+                        .res_ident = (ResIdent) {
+                            .ident = "f1"
+                        },
+                        .args = [
+                            [0] = Literal(Int(1))
+                        ]
+                    })
+                })))
+            ]
+        })
+    ]
+}

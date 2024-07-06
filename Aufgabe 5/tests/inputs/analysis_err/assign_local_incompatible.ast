@@ -1,0 +1,24 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = VarDef((VarDef) {
+                    .data_type = int,
+                    .res_ident = (ResIdent) {
+                        .ident = "i"
+                    },
+                    .init = None()
+                }),
+                [1] = Assign((Assign) {
+                    .lhs = (ResIdent) {
+                        .ident = "i"
+                    },
+                    .rhs = Literal(Float(3.5))
+                })
+            ]
+        })
+    ]
+}

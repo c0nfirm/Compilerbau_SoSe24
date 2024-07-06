@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: dict.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('dict_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">dict.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dict_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#ifndef DICT_H_INCLUDED</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#define DICT_H_INCLUDED</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/* *** structures *********************************************************** */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="dict_8h.html">   48</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="dict_8h.html#a5892a9181e6a332f84d27aecd41dcd12">   49</a></span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="dict_8h.html#a5892a9181e6a332f84d27aecd41dcd12">key</a>;        </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="dict_8h.html#a9163138d612480a614fa98c44e4318c4">   50</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="dict_8h.html#a9163138d612480a614fa98c44e4318c4">val</a>; </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>} <a class="code hl_struct" href="dict_8h.html#struct_dict_entry">DictEntry</a>;</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="};">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="dict_8h.html">   56</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="dict_8h.html#aed0360ed0a39d4a42b1f773dc3a48570">   60</a></span>    <a class="code hl_struct" href="dict_8h.html#struct_dict_entry">DictEntry</a> *<a class="code hl_variable" href="dict_8h.html#aed0360ed0a39d4a42b1f773dc3a48570">data</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="dict_8h.html#a05374b750b0fc472c34ee61e6f028bba">   66</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="dict_8h.html#a05374b750b0fc472c34ee61e6f028bba">left</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="dict_8h.html#aa6da25dae1e7263af226d4b026811d7f">   77</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="dict_8h.html#aa6da25dae1e7263af226d4b026811d7f">bits</a>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>} <a class="code hl_struct" href="dict_8h.html#struct_dict">Dict</a>;</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">/* *** interface ************************************************************ */</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="dict_8h.html#a50a814d9cdcff291b51c947c8f3ae842">dictInit</a>(<a class="code hl_struct" href="dict_8h.html#struct_dict">Dict</a> *self);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="dict_8h.html#afd95c71853192c6f073ae30bd3b27fd2">dictRelease</a>(<a class="code hl_struct" href="dict_8h.html#struct_dict">Dict</a> *self);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="dict_8h.html#a9099789d59c3dc39cf6ca410c923f158">dictInsert</a>(<a class="code hl_struct" href="dict_8h.html#struct_dict">Dict</a> *self, <span class="keyword">const</span> <span class="keywordtype">char</span> *key, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> val);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="dict_8h.html#a510ce343fea6be878626faef86886a60">dictGet</a>(<span class="keyword">const</span> <a class="code hl_struct" href="dict_8h.html#struct_dict">Dict</a> *self, <span class="keyword">const</span> <span class="keywordtype">char</span> *key);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="dict_8h.html#aea303f9a8378321187a1dfcbf86176a2">dictRemove</a>(<a class="code hl_struct" href="dict_8h.html#struct_dict">Dict</a> *self, <span class="keyword">const</span> <span class="keywordtype">char</span> *key);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#endif </span><span class="comment">/* DICT_H_INCLUDED */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adict_8h_html_a05374b750b0fc472c34ee61e6f028bba"><div class="ttname"><a href="dict_8h.html#a05374b750b0fc472c34ee61e6f028bba">Dict::left</a></div><div class="ttdeci">unsigned int left</div><div class="ttdoc">Anzahl der Elemente, die eingefügt werden können, bevor neuer Platz benötigt wird.</div><div class="ttdef"><b>Definition</b> dict.h:66</div></div>
+<div class="ttc" id="adict_8h_html_a50a814d9cdcff291b51c947c8f3ae842"><div class="ttname"><a href="dict_8h.html#a50a814d9cdcff291b51c947c8f3ae842">dictInit</a></div><div class="ttdeci">void dictInit(Dict *self)</div><div class="ttdoc">Initialisiert das Wörterbuch.</div><div class="ttdef"><b>Definition</b> dict.c:215</div></div>
+<div class="ttc" id="adict_8h_html_a510ce343fea6be878626faef86886a60"><div class="ttname"><a href="dict_8h.html#a510ce343fea6be878626faef86886a60">dictGet</a></div><div class="ttdeci">unsigned int dictGet(const Dict *self, const char *key)</div><div class="ttdoc">Gibt den Wert zu einem Schlüssel zurück.</div><div class="ttdef"><b>Definition</b> dict.c:270</div></div>
+<div class="ttc" id="adict_8h_html_a5892a9181e6a332f84d27aecd41dcd12"><div class="ttname"><a href="dict_8h.html#a5892a9181e6a332f84d27aecd41dcd12">DictEntry::key</a></div><div class="ttdeci">char * key</div><div class="ttdoc">Der Schlüssel.</div><div class="ttdef"><b>Definition</b> dict.h:49</div></div>
+<div class="ttc" id="adict_8h_html_a9099789d59c3dc39cf6ca410c923f158"><div class="ttname"><a href="dict_8h.html#a9099789d59c3dc39cf6ca410c923f158">dictInsert</a></div><div class="ttdeci">unsigned int dictInsert(Dict *self, const char *key, unsigned int val)</div><div class="ttdoc">Assoziiert einen Schlüssel mit einem Wert.</div><div class="ttdef"><b>Definition</b> dict.c:244</div></div>
+<div class="ttc" id="adict_8h_html_a9163138d612480a614fa98c44e4318c4"><div class="ttname"><a href="dict_8h.html#a9163138d612480a614fa98c44e4318c4">DictEntry::val</a></div><div class="ttdeci">unsigned int val</div><div class="ttdoc">Der Wert.</div><div class="ttdef"><b>Definition</b> dict.h:50</div></div>
+<div class="ttc" id="adict_8h_html_aa6da25dae1e7263af226d4b026811d7f"><div class="ttname"><a href="dict_8h.html#aa6da25dae1e7263af226d4b026811d7f">Dict::bits</a></div><div class="ttdeci">unsigned int bits</div><div class="ttdoc">Anzahl der Bits für die Kapazität des Datenfelds.</div><div class="ttdef"><b>Definition</b> dict.h:77</div></div>
+<div class="ttc" id="adict_8h_html_aea303f9a8378321187a1dfcbf86176a2"><div class="ttname"><a href="dict_8h.html#aea303f9a8378321187a1dfcbf86176a2">dictRemove</a></div><div class="ttdeci">unsigned int dictRemove(Dict *self, const char *key)</div><div class="ttdoc">Entfernt eine Schlüssel-/Wert-Assoziation.</div><div class="ttdef"><b>Definition</b> dict.c:279</div></div>
+<div class="ttc" id="adict_8h_html_aed0360ed0a39d4a42b1f773dc3a48570"><div class="ttname"><a href="dict_8h.html#aed0360ed0a39d4a42b1f773dc3a48570">Dict::data</a></div><div class="ttdeci">DictEntry * data</div><div class="ttdoc">Datenfeld für Schlüssel-/Wertpaare.</div><div class="ttdef"><b>Definition</b> dict.h:60</div></div>
+<div class="ttc" id="adict_8h_html_afd95c71853192c6f073ae30bd3b27fd2"><div class="ttname"><a href="dict_8h.html#afd95c71853192c6f073ae30bd3b27fd2">dictRelease</a></div><div class="ttdeci">void dictRelease(Dict *self)</div><div class="ttdoc">Gibt ein Wörterbuch und alle darin gespeicherten Schlüssel frei.</div><div class="ttdef"><b>Definition</b> dict.c:232</div></div>
+<div class="ttc" id="adict_8h_html_struct_dict"><div class="ttname"><a href="dict_8h.html#struct_dict">Dict</a></div><div class="ttdoc">Wörterbuch.</div><div class="ttdef"><b>Definition</b> dict.h:56</div></div>
+<div class="ttc" id="adict_8h_html_struct_dict_entry"><div class="ttname"><a href="dict_8h.html#struct_dict_entry">DictEntry</a></div><div class="ttdoc">Wörterbucheintrag.</div><div class="ttdef"><b>Definition</b> dict.h:48</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="dict_8h.html">dict.h</a></li>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

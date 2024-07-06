@@ -1,0 +1,29 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = Print(String("String")),
+                [1] = Print(Expr(Literal(int, Int(1234567)))),
+                [2] = Print(Expr(Literal(float, Float(1.5)))),
+                [3] = Print(Expr(Literal(float, Float(1.23e-10)))),
+                [4] = Print(Expr(Literal(bool, Bool(true)))),
+                [5] = Print(Expr(Literal(bool, Bool(false))))
+            ]
+        })
+    ]
+}
+(SymDefTable) {
+    .main_func = (DefId) 0,
+    .global_count = 0,
+    .definitions = [
+        [0] = Func("main", (FuncInfo) {
+            .item_id = (ItemId) 0,
+            .return_type = void,
+            .param_count = 0,
+            .local_vars = []
+        })
+    ]
+}

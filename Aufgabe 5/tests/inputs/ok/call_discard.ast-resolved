@@ -1,0 +1,44 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = int,
+            .ident = "answer",
+            .params = [],
+            .statements = [
+                [0] = Return(Literal(int, Int(42)))
+            ]
+        }),
+        [1] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = Call((FuncCall) {
+                    .res_ident = (ResIdent) {
+                        .ident = "answer",
+                        .res = (DefId) 0
+                    },
+                    .args = []
+                })
+            ]
+        })
+    ]
+}
+(SymDefTable) {
+    .main_func = (DefId) 1,
+    .global_count = 0,
+    .definitions = [
+        [0] = Func("answer", (FuncInfo) {
+            .item_id = (ItemId) 0,
+            .return_type = int,
+            .param_count = 0,
+            .local_vars = []
+        }),
+        [1] = Func("main", (FuncInfo) {
+            .item_id = (ItemId) 1,
+            .return_type = void,
+            .param_count = 0,
+            .local_vars = []
+        })
+    ]
+}

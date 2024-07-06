@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: symtab.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('symtab_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">symtab.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="symtab_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#ifndef SYMTAB_H_INCLUDED</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#define SYMTAB_H_INCLUDED</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/* *** Includes ************************************************************* */</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;<a class="code" href="ast_8h.html">ast.h</a>&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &quot;<a class="code" href="dict_8h.html">dict.h</a>&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &quot;<a class="code" href="vec_8h.html">vec.h</a>&quot;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/* *** Strukturen *********************************************************** */</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="symtab_8h.html">   48</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="symtab_8h.html#struct_func_info">FuncInfo</a> {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="symtab_8h.html#a9af4973e12a4b2f6a2e237c40c7e4374">   49</a></span>    <a class="code hl_struct" href="ast_8h.html#struct_item_id">ItemId</a> <a class="code hl_variable" href="symtab_8h.html#a9af4973e12a4b2f6a2e237c40c7e4374">item_id</a>;           </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="symtab_8h.html#ae3e758a227489e221ac8a1ca3096f479">   50</a></span>    <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> <a class="code hl_variable" href="symtab_8h.html#ae3e758a227489e221ac8a1ca3096f479">return_type</a>;     </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="symtab_8h.html#a48a021a511bffb3f90b99822787afa66">   51</a></span>    <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> *<a class="code hl_variable" href="symtab_8h.html#a48a021a511bffb3f90b99822787afa66">local_vars</a>;        </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="symtab_8h.html#a8dc4305833134dc6e86d98593429668a">   52</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="symtab_8h.html#a8dc4305833134dc6e86d98593429668a">param_count</a>; </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} <a class="code hl_struct" href="symtab_8h.html#struct_func_info">FuncInfo</a>;</div>
+</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="foldopen" id="foldopen00058" data-start="{" data-end="};">
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="symtab_8h.html">   58</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="symtab_8h.html#struct_var_info">VarInfo</a> {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="symtab_8h.html#a6118865e7371b107bd5fb4dd4a9e99a3">   59</a></span>    <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> <a class="code hl_variable" href="symtab_8h.html#a6118865e7371b107bd5fb4dd4a9e99a3">data_type</a>;   </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="symtab_8h.html#a29b5297d3393519050e3126c4cb07c1c">   60</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="symtab_8h.html#a29b5297d3393519050e3126c4cb07c1c">offset</a>;  </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>} <a class="code hl_struct" href="symtab_8h.html#struct_var_info">VarInfo</a>;</div>
+</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="};">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="struct_def_info.html">   66</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_def_info.html">DefInfo</a> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a7c8a45a023c7cc71b5ea42331882612e">   72</a></span>        <a class="code hl_enumvalue" href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a7c8a45a023c7cc71b5ea42331882612e">SYM_DEF_FUNC</a>,      </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a6c94a33a591e010d6106b1a5498a8c0e">   73</a></span>        <a class="code hl_enumvalue" href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a6c94a33a591e010d6106b1a5498a8c0e">SYM_DEF_LOCAL_VAR</a>, </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_enumvalue" href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a3af01bba066e89b6cb10f412a4cf0b20">SYM_DEF_GLOBAL_VAR</a> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a3af01bba066e89b6cb10f412a4cf0b20">   75</a></span>    } <a class="code hl_variable" href="struct_def_info.html#a3c5e0df01e0a84b10425840dddc2c236">tag</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="struct_def_info.html#a25164f805d9af841d8063fe86f5e1da4">   77</a></span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="struct_def_info.html#a25164f805d9af841d8063fe86f5e1da4">ident</a>; </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <a class="code hl_struct" href="symtab_8h.html#struct_func_info">FuncInfo</a> func; </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <a class="code hl_struct" href="symtab_8h.html#struct_var_info">VarInfo</a> var;   </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    };</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>} <a class="code hl_struct" href="struct_def_info.html">DefInfo</a>;</div>
+</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="foldopen" id="foldopen00093" data-start="{" data-end="};">
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="symtab_8h.html">   93</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> main_func;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> global_count;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <a class="code hl_struct" href="struct_def_info.html">DefInfo</a> *definitions;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>} <a class="code hl_struct" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a>;</div>
+</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="foldopen" id="foldopen00102" data-start="{" data-end="};">
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="symtab_8h.html">  102</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="symtab_8h.html#struct_symtab_symbol">SymtabSymbol</a> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="symtab_8h.html#aa2eea6dcd360773d0de55798b70eebb4">  103</a></span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="symtab_8h.html#aa2eea6dcd360773d0de55798b70eebb4">ident</a>;        </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="symtab_8h.html#afd35cff0bb0b956cefc3af09a607a76f">  104</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="symtab_8h.html#afd35cff0bb0b956cefc3af09a607a76f">prev_record</a>; </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="symtab_8h.html#a82a25632c0dff22970470be3e2cbc75b">  105</a></span>    <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> <a class="code hl_variable" href="symtab_8h.html#a82a25632c0dff22970470be3e2cbc75b">def</a>;                </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>} <a class="code hl_struct" href="symtab_8h.html#struct_symtab_symbol">SymtabSymbol</a>;</div>
+</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="foldopen" id="foldopen00111" data-start="{" data-end="};">
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="symtab_8h.html">  111</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="symtab_8h.html#affe50fd7c38f5666885216973ddae9f5">  113</a></span>    <a class="code hl_struct" href="dict_8h.html#struct_dict">Dict</a> <a class="code hl_variable" href="symtab_8h.html#affe50fd7c38f5666885216973ddae9f5">map</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="symtab_8h.html#a12c79de8470e2688d2192c1a6f519b80">  116</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="symtab_8h.html#a12c79de8470e2688d2192c1a6f519b80">global_count</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="symtab_8h.html#aed553272b5e1e37034828327bc53ef89">  119</a></span>    <a class="code hl_struct" href="symtab_8h.html#struct_symtab_symbol">SymtabSymbol</a> *<a class="code hl_variable" href="symtab_8h.html#aed553272b5e1e37034828327bc53ef89">decl</a>;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="symtab_8h.html#a5d3c455397a9a2bd14f2f173151d0729">  122</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *<a class="code hl_variable" href="symtab_8h.html#a5d3c455397a9a2bd14f2f173151d0729">vars_in_scope</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="symtab_8h.html#acc5c7a75dc814c08adaec30a86113ebd">  125</a></span>    <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> <a class="code hl_variable" href="symtab_8h.html#acc5c7a75dc814c08adaec30a86113ebd">current_func</a>;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="symtab_8h.html#a94f1021357fa7b344f771b186b72e7e5">  128</a></span>    <a class="code hl_struct" href="struct_def_info.html">DefInfo</a> *<a class="code hl_variable" href="symtab_8h.html#a94f1021357fa7b344f771b186b72e7e5">definitions</a>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>} <a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a>;</div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">/* *** Öffentliche Schnittstelle ******************************************** */</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">/* ****** Symbol Table ****************************************************** */</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keyword">extern</span> <a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> <a class="code hl_function" href="symtab_8h.html#a34fd52fb99604e059da37b31e11f3627">symtabNew</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="symtab_8h.html#abe415cb2666c110a88573a38cb336b04">symtabRelease</a>(<a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="keyword">extern</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="symtab_8h.html#a9cd7bd0e26fb2d9f5a5b6788ea4fb489">symtabDefineFunc</a>(<a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <span class="keyword">const</span> <span class="keywordtype">char</span> *ident, <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> return_type);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">extern</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="symtab_8h.html#a7085eeafd0815666f9316a58c1f073be">symtabDefineParam</a>(<a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <span class="keyword">const</span> <span class="keywordtype">char</span> *ident, <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> <a class="code hl_function" href="symtab_8h.html#aa3abeb832738b0fe8bb8f258c83691ac">symtabDefineVar</a>(<a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <span class="keyword">const</span> <span class="keywordtype">char</span> *ident, <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="symtab_8h.html#a9637291deecc2e6c4901df4d3f98c238">symtabScopeEnter</a>(<a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self);</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="symtab_8h.html#a92121e9534b4cf5b67612710b1ac3a73">symtabScopeLeave</a>(<a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> <a class="code hl_function" href="symtab_8h.html#a4272ddc3a25297064137a81f3734c243">symtabResolve</a>(<span class="keyword">const</span> <a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <span class="keyword">const</span> <span class="keywordtype">char</span> *ident);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_def_info.html">DefInfo</a>* <a class="code hl_function" href="symtab_8h.html#a145590983ae6257084a0e129025994e4">symtabIndex</a>(<span class="keyword">const</span> <a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> def_id);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keyword">extern</span> <a class="code hl_struct" href="symtab_8h.html#struct_func_info">FuncInfo</a>* <a class="code hl_function" href="symtab_8h.html#aa970e31250ae49c819447b0f7b3cb396">symtabCurrentFunc</a>(<span class="keyword">const</span> <a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="symtab_8h.html#a5c79138ac32c95639b69008b04500879">symtabPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">/* ****** Symbol Definition Table ******************************************* */</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keyword">extern</span> <a class="code hl_struct" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> <a class="code hl_function" href="symtab_8h.html#a60ddb333c70635f1b95deeef2c23db93">symDefTableNew</a>(<a class="code hl_struct" href="symtab_8h.html#struct_symtab">Symtab</a> *tab, <span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_program">Program</a> *ast);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="symtab_8h.html#ab98f55f9403231991a153c925c017f26">symDefTableRelease</a>(<a class="code hl_struct" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *self);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="symtab_8h.html#ae3d5950612947f0fb79e66bf33eea62f">symDefTablePrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *self, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aast_8h_html"><div class="ttname"><a href="ast_8h.html">ast.h</a></div><div class="ttdoc">Der abstrakte Syntaxbaum (AST) von C1.</div></div>
+<div class="ttc" id="aast_8h_html_ad8ed01ff3ff33333d8e19db4d2818bb6"><div class="ttname"><a href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></div><div class="ttdeci">DataType</div><div class="ttdoc">Der Datentyp einer Variablen oder der Rückgabewert einer Funktion: Einer von void,...</div><div class="ttdef"><b>Definition</b> ast.h:83</div></div>
+<div class="ttc" id="aast_8h_html_struct_def_id"><div class="ttname"><a href="ast_8h.html#struct_def_id">DefId</a></div><div class="ttdoc">Eine eindeutige Kennung für die (Funktions- oder Variablen-)Definition, auf die ein auflösbarer Bezei...</div><div class="ttdef"><b>Definition</b> ast.h:116</div></div>
+<div class="ttc" id="aast_8h_html_struct_item_id"><div class="ttname"><a href="ast_8h.html#struct_item_id">ItemId</a></div><div class="ttdoc">Eine eindeutige Kennung für die Top-Level Elemente (Item) des abstrakten Syntaxbaumes (Program).</div><div class="ttdef"><b>Definition</b> ast.h:126</div></div>
+<div class="ttc" id="aast_8h_html_struct_program"><div class="ttname"><a href="ast_8h.html#struct_program">Program</a></div><div class="ttdoc">Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.</div><div class="ttdef"><b>Definition</b> ast.h:439</div></div>
+<div class="ttc" id="adict_8h_html"><div class="ttname"><a href="dict_8h.html">dict.h</a></div><div class="ttdoc">Enthält die Schnittstelle für ein assoziatives Array (Wörterbuch).</div></div>
+<div class="ttc" id="adict_8h_html_struct_dict"><div class="ttname"><a href="dict_8h.html#struct_dict">Dict</a></div><div class="ttdoc">Wörterbuch.</div><div class="ttdef"><b>Definition</b> dict.h:56</div></div>
+<div class="ttc" id="astruct_def_info_html"><div class="ttname"><a href="struct_def_info.html">DefInfo</a></div><div class="ttdoc">Variantentyp für semantische Informationen.</div><div class="ttdef"><b>Definition</b> symtab.h:66</div></div>
+<div class="ttc" id="astruct_def_info_html_a25164f805d9af841d8063fe86f5e1da4"><div class="ttname"><a href="struct_def_info.html#a25164f805d9af841d8063fe86f5e1da4">DefInfo::ident</a></div><div class="ttdeci">char * ident</div><div class="ttdoc">Bezeichner des Elementes.</div><div class="ttdef"><b>Definition</b> symtab.h:77</div></div>
+<div class="ttc" id="astruct_def_info_html_a3c5e0df01e0a84b10425840dddc2c236"><div class="ttname"><a href="struct_def_info.html#a3c5e0df01e0a84b10425840dddc2c236">DefInfo::tag</a></div><div class="ttdeci">enum DefInfo::@19 tag</div><div class="ttdoc">Tag zur Unterscheidung zwischen Funktions-, lokalen und globalen Variablendefinitionen.</div></div>
+<div class="ttc" id="astruct_def_info_html_af9bdc3014f3d54c426b6d2df10de4960a3af01bba066e89b6cb10f412a4cf0b20"><div class="ttname"><a href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a3af01bba066e89b6cb10f412a4cf0b20">DefInfo::SYM_DEF_GLOBAL_VAR</a></div><div class="ttdeci">@ SYM_DEF_GLOBAL_VAR</div><div class="ttdoc">Globale Variablendefinition.</div><div class="ttdef"><b>Definition</b> symtab.h:74</div></div>
+<div class="ttc" id="astruct_def_info_html_af9bdc3014f3d54c426b6d2df10de4960a6c94a33a591e010d6106b1a5498a8c0e"><div class="ttname"><a href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a6c94a33a591e010d6106b1a5498a8c0e">DefInfo::SYM_DEF_LOCAL_VAR</a></div><div class="ttdeci">@ SYM_DEF_LOCAL_VAR</div><div class="ttdoc">Lokale Variablendefinition.</div><div class="ttdef"><b>Definition</b> symtab.h:73</div></div>
+<div class="ttc" id="astruct_def_info_html_af9bdc3014f3d54c426b6d2df10de4960a7c8a45a023c7cc71b5ea42331882612e"><div class="ttname"><a href="struct_def_info.html#af9bdc3014f3d54c426b6d2df10de4960a7c8a45a023c7cc71b5ea42331882612e">DefInfo::SYM_DEF_FUNC</a></div><div class="ttdeci">@ SYM_DEF_FUNC</div><div class="ttdoc">Funktionsdefinition.</div><div class="ttdef"><b>Definition</b> symtab.h:72</div></div>
+<div class="ttc" id="asymtab_8h_html_a12c79de8470e2688d2192c1a6f519b80"><div class="ttname"><a href="symtab_8h.html#a12c79de8470e2688d2192c1a6f519b80">Symtab::global_count</a></div><div class="ttdeci">unsigned int global_count</div><div class="ttdoc">Anzahl der globalen Variablen.</div><div class="ttdef"><b>Definition</b> symtab.h:116</div></div>
+<div class="ttc" id="asymtab_8h_html_a145590983ae6257084a0e129025994e4"><div class="ttname"><a href="symtab_8h.html#a145590983ae6257084a0e129025994e4">symtabIndex</a></div><div class="ttdeci">DefInfo * symtabIndex(const Symtab *self, DefId def_id)</div><div class="ttdoc">Löst eine Definition anhand ihrer ID auf.</div><div class="ttdef"><b>Definition</b> symtab.c:350</div></div>
+<div class="ttc" id="asymtab_8h_html_a29b5297d3393519050e3126c4cb07c1c"><div class="ttname"><a href="symtab_8h.html#a29b5297d3393519050e3126c4cb07c1c">VarInfo::offset</a></div><div class="ttdeci">unsigned int offset</div><div class="ttdoc">Index der Variablen.</div><div class="ttdef"><b>Definition</b> symtab.h:60</div></div>
+<div class="ttc" id="asymtab_8h_html_a34fd52fb99604e059da37b31e11f3627"><div class="ttname"><a href="symtab_8h.html#a34fd52fb99604e059da37b31e11f3627">symtabNew</a></div><div class="ttdeci">Symtab symtabNew(void)</div><div class="ttdoc">Erzeugt eine neue Symboltabelle.</div><div class="ttdef"><b>Definition</b> symtab.c:231</div></div>
+<div class="ttc" id="asymtab_8h_html_a4272ddc3a25297064137a81f3734c243"><div class="ttname"><a href="symtab_8h.html#a4272ddc3a25297064137a81f3734c243">symtabResolve</a></div><div class="ttdeci">DefId symtabResolve(const Symtab *self, const char *ident)</div><div class="ttdoc">Sucht einen Bezeichner in der Symboltabelle.</div><div class="ttdef"><b>Definition</b> symtab.c:344</div></div>
+<div class="ttc" id="asymtab_8h_html_a48a021a511bffb3f90b99822787afa66"><div class="ttname"><a href="symtab_8h.html#a48a021a511bffb3f90b99822787afa66">FuncInfo::local_vars</a></div><div class="ttdeci">DefId * local_vars</div><div class="ttdoc">Lokale Variablen der Funktion.</div><div class="ttdef"><b>Definition</b> symtab.h:51</div></div>
+<div class="ttc" id="asymtab_8h_html_a5c79138ac32c95639b69008b04500879"><div class="ttname"><a href="symtab_8h.html#a5c79138ac32c95639b69008b04500879">symtabPrint</a></div><div class="ttdeci">void symtabPrint(const Symtab *self, unsigned int indent, FILE *out)</div><div class="ttdoc">Gibt den aktuellen Zustand der blockstrukturierten Symboltabelle in einen Ausgabestrom aus.</div><div class="ttdef"><b>Definition</b> symtab.c:361</div></div>
+<div class="ttc" id="asymtab_8h_html_a5d3c455397a9a2bd14f2f173151d0729"><div class="ttname"><a href="symtab_8h.html#a5d3c455397a9a2bd14f2f173151d0729">Symtab::vars_in_scope</a></div><div class="ttdeci">unsigned int * vars_in_scope</div><div class="ttdoc">Stack der Anzahl lokaler Symbole pro Sichtbarkeitsbereich.</div><div class="ttdef"><b>Definition</b> symtab.h:122</div></div>
+<div class="ttc" id="asymtab_8h_html_a60ddb333c70635f1b95deeef2c23db93"><div class="ttname"><a href="symtab_8h.html#a60ddb333c70635f1b95deeef2c23db93">symDefTableNew</a></div><div class="ttdeci">SymDefTable symDefTableNew(Symtab *tab, const Program *ast)</div><div class="ttdoc">Wandelt die Symboltabelle in eine Definitionstabelle um.</div><div class="ttdef"><b>Definition</b> symtab.c:390</div></div>
+<div class="ttc" id="asymtab_8h_html_a6118865e7371b107bd5fb4dd4a9e99a3"><div class="ttname"><a href="symtab_8h.html#a6118865e7371b107bd5fb4dd4a9e99a3">VarInfo::data_type</a></div><div class="ttdeci">DataType data_type</div><div class="ttdoc">Datentyp der Variablen.</div><div class="ttdef"><b>Definition</b> symtab.h:59</div></div>
+<div class="ttc" id="asymtab_8h_html_a7085eeafd0815666f9316a58c1f073be"><div class="ttname"><a href="symtab_8h.html#a7085eeafd0815666f9316a58c1f073be">symtabDefineParam</a></div><div class="ttdeci">bool symtabDefineParam(Symtab *self, const char *ident, DataType data_type)</div><div class="ttdoc">Definiert einen neuen Parameter einer Funktion in der Symboltabelle.</div><div class="ttdef"><b>Definition</b> symtab.c:275</div></div>
+<div class="ttc" id="asymtab_8h_html_a82a25632c0dff22970470be3e2cbc75b"><div class="ttname"><a href="symtab_8h.html#a82a25632c0dff22970470be3e2cbc75b">SymtabSymbol::def</a></div><div class="ttdeci">DefId def</div><div class="ttdoc">Index in die Definitionstabelle.</div><div class="ttdef"><b>Definition</b> symtab.h:105</div></div>
+<div class="ttc" id="asymtab_8h_html_a8dc4305833134dc6e86d98593429668a"><div class="ttname"><a href="symtab_8h.html#a8dc4305833134dc6e86d98593429668a">FuncInfo::param_count</a></div><div class="ttdeci">unsigned int param_count</div><div class="ttdoc">Parameteranzahl des Stack-Frames.</div><div class="ttdef"><b>Definition</b> symtab.h:52</div></div>
+<div class="ttc" id="asymtab_8h_html_a92121e9534b4cf5b67612710b1ac3a73"><div class="ttname"><a href="symtab_8h.html#a92121e9534b4cf5b67612710b1ac3a73">symtabScopeLeave</a></div><div class="ttdeci">void symtabScopeLeave(Symtab *self)</div><div class="ttdoc">Verlässt den aktuellen Sichtbarkeitsbereich.</div><div class="ttdef"><b>Definition</b> symtab.c:329</div></div>
+<div class="ttc" id="asymtab_8h_html_a94f1021357fa7b344f771b186b72e7e5"><div class="ttname"><a href="symtab_8h.html#a94f1021357fa7b344f771b186b72e7e5">Symtab::definitions</a></div><div class="ttdeci">DefInfo * definitions</div><div class="ttdoc">Vektor aller Symboldefinitionen, der durch DefId indiziert wird.</div><div class="ttdef"><b>Definition</b> symtab.h:128</div></div>
+<div class="ttc" id="asymtab_8h_html_a9637291deecc2e6c4901df4d3f98c238"><div class="ttname"><a href="symtab_8h.html#a9637291deecc2e6c4901df4d3f98c238">symtabScopeEnter</a></div><div class="ttdeci">void symtabScopeEnter(Symtab *self)</div><div class="ttdoc">Betritt einen neuen Sichtbarkeitsbereich.</div><div class="ttdef"><b>Definition</b> symtab.c:325</div></div>
+<div class="ttc" id="asymtab_8h_html_a9af4973e12a4b2f6a2e237c40c7e4374"><div class="ttname"><a href="symtab_8h.html#a9af4973e12a4b2f6a2e237c40c7e4374">FuncInfo::item_id</a></div><div class="ttdeci">ItemId item_id</div><div class="ttdoc">Index der Item-Liste in Program.</div><div class="ttdef"><b>Definition</b> symtab.h:49</div></div>
+<div class="ttc" id="asymtab_8h_html_a9cd7bd0e26fb2d9f5a5b6788ea4fb489"><div class="ttname"><a href="symtab_8h.html#a9cd7bd0e26fb2d9f5a5b6788ea4fb489">symtabDefineFunc</a></div><div class="ttdeci">bool symtabDefineFunc(Symtab *self, const char *ident, DataType return_type)</div><div class="ttdoc">Definiert eine neue Funktion in der Symboltabelle.</div><div class="ttdef"><b>Definition</b> symtab.c:253</div></div>
+<div class="ttc" id="asymtab_8h_html_aa2eea6dcd360773d0de55798b70eebb4"><div class="ttname"><a href="symtab_8h.html#aa2eea6dcd360773d0de55798b70eebb4">SymtabSymbol::ident</a></div><div class="ttdeci">const char * ident</div><div class="ttdoc">Bezeichner im Quellcode.</div><div class="ttdef"><b>Definition</b> symtab.h:103</div></div>
+<div class="ttc" id="asymtab_8h_html_aa3abeb832738b0fe8bb8f258c83691ac"><div class="ttname"><a href="symtab_8h.html#aa3abeb832738b0fe8bb8f258c83691ac">symtabDefineVar</a></div><div class="ttdeci">DefId symtabDefineVar(Symtab *self, const char *ident, DataType data_type)</div><div class="ttdoc">Definiert eine neue Variable in der Symboltabelle.</div><div class="ttdef"><b>Definition</b> symtab.c:284</div></div>
+<div class="ttc" id="asymtab_8h_html_aa970e31250ae49c819447b0f7b3cb396"><div class="ttname"><a href="symtab_8h.html#aa970e31250ae49c819447b0f7b3cb396">symtabCurrentFunc</a></div><div class="ttdeci">FuncInfo * symtabCurrentFunc(const Symtab *self)</div><div class="ttdoc">Gibt die aktuell definierte Funktion zurück.</div><div class="ttdef"><b>Definition</b> symtab.c:354</div></div>
+<div class="ttc" id="asymtab_8h_html_ab98f55f9403231991a153c925c017f26"><div class="ttname"><a href="symtab_8h.html#ab98f55f9403231991a153c925c017f26">symDefTableRelease</a></div><div class="ttdeci">void symDefTableRelease(SymDefTable *self)</div><div class="ttdoc">Gibt den Speicher der Definitionstabelle frei.</div><div class="ttdef"><b>Definition</b> symtab.c:422</div></div>
+<div class="ttc" id="asymtab_8h_html_abe415cb2666c110a88573a38cb336b04"><div class="ttname"><a href="symtab_8h.html#abe415cb2666c110a88573a38cb336b04">symtabRelease</a></div><div class="ttdeci">void symtabRelease(Symtab *self)</div><div class="ttdoc">Gibt den Speicher der Symboltabelle frei.</div><div class="ttdef"><b>Definition</b> symtab.c:246</div></div>
+<div class="ttc" id="asymtab_8h_html_acc5c7a75dc814c08adaec30a86113ebd"><div class="ttname"><a href="symtab_8h.html#acc5c7a75dc814c08adaec30a86113ebd">Symtab::current_func</a></div><div class="ttdeci">DefId current_func</div><div class="ttdoc">DefId der aktuell geparsten Funktion.</div><div class="ttdef"><b>Definition</b> symtab.h:125</div></div>
+<div class="ttc" id="asymtab_8h_html_ae3d5950612947f0fb79e66bf33eea62f"><div class="ttname"><a href="symtab_8h.html#ae3d5950612947f0fb79e66bf33eea62f">symDefTablePrint</a></div><div class="ttdeci">void symDefTablePrint(const SymDefTable *self, unsigned int indent, FILE *out)</div><div class="ttdoc">Gibt die Definitionstabelle in einen Ausgabestrom aus.</div><div class="ttdef"><b>Definition</b> symtab.c:431</div></div>
+<div class="ttc" id="asymtab_8h_html_ae3e758a227489e221ac8a1ca3096f479"><div class="ttname"><a href="symtab_8h.html#ae3e758a227489e221ac8a1ca3096f479">FuncInfo::return_type</a></div><div class="ttdeci">DataType return_type</div><div class="ttdoc">Rückgabetyp der Funktion.</div><div class="ttdef"><b>Definition</b> symtab.h:50</div></div>
+<div class="ttc" id="asymtab_8h_html_aed553272b5e1e37034828327bc53ef89"><div class="ttname"><a href="symtab_8h.html#aed553272b5e1e37034828327bc53ef89">Symtab::decl</a></div><div class="ttdeci">SymtabSymbol * decl</div><div class="ttdoc">Stack aller derzeit deklarierten Symbole.</div><div class="ttdef"><b>Definition</b> symtab.h:119</div></div>
+<div class="ttc" id="asymtab_8h_html_afd35cff0bb0b956cefc3af09a607a76f"><div class="ttname"><a href="symtab_8h.html#afd35cff0bb0b956cefc3af09a607a76f">SymtabSymbol::prev_record</a></div><div class="ttdeci">unsigned int prev_record</div><div class="ttdoc">Eintrag der Vorgängerdefinition.</div><div class="ttdef"><b>Definition</b> symtab.h:104</div></div>
+<div class="ttc" id="asymtab_8h_html_affe50fd7c38f5666885216973ddae9f5"><div class="ttname"><a href="symtab_8h.html#affe50fd7c38f5666885216973ddae9f5">Symtab::map</a></div><div class="ttdeci">Dict map</div><div class="ttdoc">Wörterbuch für Bezeichner auf Eintragsindex in den decl-Vektor.</div><div class="ttdef"><b>Definition</b> symtab.h:113</div></div>
+<div class="ttc" id="asymtab_8h_html_struct_func_info"><div class="ttname"><a href="symtab_8h.html#struct_func_info">FuncInfo</a></div><div class="ttdoc">Struktur für semantische Informationen über Funktionen.</div><div class="ttdef"><b>Definition</b> symtab.h:48</div></div>
+<div class="ttc" id="asymtab_8h_html_struct_sym_def_table"><div class="ttname"><a href="symtab_8h.html#struct_sym_def_table">SymDefTable</a></div><div class="ttdoc">Struktur mit semantischen Informationen, die in Kombination mit dem abstrakten Syntaxbaum für die Int...</div><div class="ttdef"><b>Definition</b> symtab.h:93</div></div>
+<div class="ttc" id="asymtab_8h_html_struct_symtab"><div class="ttname"><a href="symtab_8h.html#struct_symtab">Symtab</a></div><div class="ttdoc">Struktur der Symboltabelle.</div><div class="ttdef"><b>Definition</b> symtab.h:111</div></div>
+<div class="ttc" id="asymtab_8h_html_struct_symtab_symbol"><div class="ttname"><a href="symtab_8h.html#struct_symtab_symbol">SymtabSymbol</a></div><div class="ttdoc">Struktur eines Symbols in der Symboltabelle.</div><div class="ttdef"><b>Definition</b> symtab.h:102</div></div>
+<div class="ttc" id="asymtab_8h_html_struct_var_info"><div class="ttname"><a href="symtab_8h.html#struct_var_info">VarInfo</a></div><div class="ttdoc">Struktur für semantische Informationen über Variablen.</div><div class="ttdef"><b>Definition</b> symtab.h:58</div></div>
+<div class="ttc" id="avec_8h_html"><div class="ttname"><a href="vec_8h.html">vec.h</a></div><div class="ttdoc">Generischer Vektortyp.</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="symtab_8h.html">symtab.h</a></li>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

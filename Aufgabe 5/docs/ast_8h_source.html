@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: ast.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('ast_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">ast.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ast_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#ifndef AST_H_INCLUDED</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#define AST_H_INCLUDED</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">/* *** Includes ************************************************************* */</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">/* *** Strukturen *********************************************************** */</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="};">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">   83</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    TYPE_VOID,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    TYPE_BOOL,</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    TYPE_INT,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    TYPE_FLOAT</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>} <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a>;</div>
+</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="foldopen" id="foldopen00091" data-start="{" data-end="};">
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">   91</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    BIN_OP_ADD,</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    BIN_OP_SUB,</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    BIN_OP_MUL,</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    BIN_OP_DIV,</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    BIN_OP_LOG_OR,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    BIN_OP_LOG_AND,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    BIN_OP_EQ,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    BIN_OP_NEQ,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    BIN_OP_LT,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    BIN_OP_GT,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    BIN_OP_LEQ,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    BIN_OP_GEQ,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>} <a class="code hl_enumeration" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a>;</div>
+</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="foldopen" id="foldopen00116" data-start="{" data-end="};">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="ast_8h.html">  116</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>} <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a>;</div>
+</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="};">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="ast_8h.html">  126</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>} <a class="code hl_struct" href="ast_8h.html#struct_item_id">ItemId</a>;</div>
+</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="foldopen" id="foldopen00134" data-start="{" data-end="};">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="ast_8h.html">  134</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_res_ident">ResIdent</a> {</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="ast_8h.html#a25164f805d9af841d8063fe86f5e1da4">  136</a></span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="ast_8h.html#a25164f805d9af841d8063fe86f5e1da4">ident</a>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="ast_8h.html#a156b131cae3cd565636c6047d5d4fa06">  144</a></span>    <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> <a class="code hl_variable" href="ast_8h.html#a156b131cae3cd565636c6047d5d4fa06">res</a>;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>} <a class="code hl_struct" href="ast_8h.html#struct_res_ident">ResIdent</a>;</div>
+</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="foldopen" id="foldopen00148" data-start="{" data-end="};">
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="struct_literal.html">  148</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_literal.html">Literal</a> {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        LITERAL_INT,</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        LITERAL_FLOAT,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        LITERAL_BOOL</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    } tag;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordtype">int</span> iVal;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordtype">double</span> fVal;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordtype">int</span> bVal;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    };</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>} <a class="code hl_struct" href="struct_literal.html">Literal</a>;</div>
+</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="foldopen" id="foldopen00167" data-start="{" data-end="};">
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="ast_8h.html">  167</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a> {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <a class="code hl_enumeration" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a> op;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_expr.html">Expr</a> *lhs;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_expr.html">Expr</a> *rhs;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>} <a class="code hl_struct" href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a>;</div>
+</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="foldopen" id="foldopen00182" data-start="{" data-end="};">
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="ast_8h.html">  182</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> {</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="ast_8h.html#a5ce317384a491d52468f51da6c30cfb5">  184</a></span>    <a class="code hl_struct" href="ast_8h.html#struct_res_ident">ResIdent</a> <a class="code hl_variable" href="ast_8h.html#a5ce317384a491d52468f51da6c30cfb5">lhs</a>;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="ast_8h.html#af3fcc0223dfdbb4481e4e90cc3fa5b9c">  186</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_expr.html">Expr</a> *<a class="code hl_variable" href="ast_8h.html#af3fcc0223dfdbb4481e4e90cc3fa5b9c">rhs</a>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>} <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a>;</div>
+</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="};">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="ast_8h.html">  194</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <a class="code hl_struct" href="ast_8h.html#struct_res_ident">ResIdent</a> res_ident;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_expr.html">Expr</a> *args;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>} <a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a>;</div>
+</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="foldopen" id="foldopen00206" data-start="{" data-end="};">
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="struct_expr.html">  206</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_expr.html">Expr</a> {</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="struct_expr.html#abc6126af1d45847bc59afa0aa3216b04a2505b37730875f725fe0f46c992f9e5f">  215</a></span>        <a class="code hl_enumvalue" href="struct_expr.html#abc6126af1d45847bc59afa0aa3216b04a2505b37730875f725fe0f46c992f9e5f">EXPR_INVALID</a> = -1,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        EXPR_ASSIGN,</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        EXPR_BIN_OP,</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        EXPR_UNARY_MINUS,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        EXPR_CALL,</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        EXPR_LITERAL,</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        EXPR_VAR,</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    } tag;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="struct_expr.html#a6118865e7371b107bd5fb4dd4a9e99a3">  229</a></span>    <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> <a class="code hl_variable" href="struct_expr.html#a6118865e7371b107bd5fb4dd4a9e99a3">data_type</a>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> assign;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        <a class="code hl_struct" href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a> bin_op;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keyword">struct </span><a class="code hl_struct" href="struct_expr.html">Expr</a> *unary_minus;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> call;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <a class="code hl_struct" href="struct_literal.html">Literal</a> literal;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        <a class="code hl_struct" href="ast_8h.html#struct_res_ident">ResIdent</a> var;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    };</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>} <a class="code hl_struct" href="struct_expr.html">Expr</a>;</div>
+</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="foldopen" id="foldopen00262" data-start="{" data-end="};">
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="ast_8h.html">  262</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="ast_8h.html#af96014889d5eb669a7ba244b0155d6fd">  271</a></span>    <a class="code hl_struct" href="ast_8h.html#struct_res_ident">ResIdent</a> <a class="code hl_variable" href="ast_8h.html#af96014889d5eb669a7ba244b0155d6fd">res_ident</a>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    </div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="ast_8h.html#acb6d74b658b82ce095f155203f577658">  279</a></span>    <a class="code hl_struct" href="struct_expr.html">Expr</a> <a class="code hl_variable" href="ast_8h.html#acb6d74b658b82ce095f155203f577658">init</a>;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>} <a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a>;</div>
+</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="foldopen" id="foldopen00283" data-start="{" data-end="};">
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="ast_8h.html">  283</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_if_stmt">IfStmt</a> {</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    <a class="code hl_struct" href="struct_expr.html">Expr</a> cond;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_stmt.html">Stmt</a> *if_true;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_stmt.html">Stmt</a> *if_false;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>} <a class="code hl_struct" href="ast_8h.html#struct_if_stmt">IfStmt</a>;</div>
+</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="foldopen" id="foldopen00294" data-start="{" data-end="};">
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="struct_for_init.html">  294</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_for_init.html">ForInit</a> {</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        FOR_INIT_VAR_DEF,</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        FOR_INIT_ASSIGN</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    } tag;</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        <a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> var_def;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>        <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> assign;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    };</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>} <a class="code hl_struct" href="struct_for_init.html">ForInit</a>;</div>
+</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="foldopen" id="foldopen00307" data-start="{" data-end="};">
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="ast_8h.html">  307</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_for_stmt">ForStmt</a> {</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <a class="code hl_struct" href="struct_for_init.html">ForInit</a> init;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <a class="code hl_struct" href="struct_expr.html">Expr</a> cond;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> update;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_stmt.html">Stmt</a> *body;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>} <a class="code hl_struct" href="ast_8h.html#struct_for_stmt">ForStmt</a>;</div>
+</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="foldopen" id="foldopen00318" data-start="{" data-end="};">
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno"><a class="line" href="ast_8h.html">  318</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> {</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <a class="code hl_struct" href="struct_expr.html">Expr</a> cond;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_stmt.html">Stmt</a> *body;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>} <a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a>;</div>
+</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="foldopen" id="foldopen00327" data-start="{" data-end="};">
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="struct_print_stmt.html">  327</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a> {</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        PRINT_STRING,</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        PRINT_EXPR,</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    } tag;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>        <span class="keywordtype">char</span> *string;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        <a class="code hl_struct" href="struct_expr.html">Expr</a> expr;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    };</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>} <a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a>;</div>
+</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="foldopen" id="foldopen00351" data-start="{" data-end="};">
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno"><a class="line" href="ast_8h.html">  351</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_block">Block</a> {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_stmt.html">Stmt</a> *statements;</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>} <a class="code hl_struct" href="ast_8h.html#struct_block">Block</a>;</div>
+</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="foldopen" id="foldopen00362" data-start="{" data-end="};">
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno"><a class="line" href="struct_stmt.html">  362</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_stmt.html">Stmt</a> {</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno"><a class="line" href="struct_stmt.html#ac36f475ca5b446f4fde4c9b90bec77c8ab684c0e9a2b56ebeb0d34560b78b7afb">  365</a></span>        <a class="code hl_enumvalue" href="struct_stmt.html#ac36f475ca5b446f4fde4c9b90bec77c8ab684c0e9a2b56ebeb0d34560b78b7afb">STMT_EMPTY</a>,</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>        STMT_IF,</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        STMT_FOR,</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        STMT_WHILE,</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        STMT_DO_WHILE,</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        STMT_RETURN,</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        STMT_PRINT,</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>        STMT_VAR_DEF,</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        STMT_ASSIGN,</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        STMT_CALL,</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>        STMT_BLOCK</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>    } tag;</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        <a class="code hl_struct" href="ast_8h.html#struct_if_stmt">IfStmt</a> if_stmt;</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        <a class="code hl_struct" href="ast_8h.html#struct_for_stmt">ForStmt</a> for_stmt;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> while_stmt;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        <a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> do_while_stmt;</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        <a class="code hl_struct" href="struct_expr.html">Expr</a> return_stmt;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>        <a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a> print_stmt;</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        <a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> var_def;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>        <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> assign;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        <a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> call;</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        <a class="code hl_struct" href="ast_8h.html#struct_block">Block</a> block;</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>    };</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>} <a class="code hl_struct" href="struct_stmt.html">Stmt</a>;</div>
+</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="foldopen" id="foldopen00393" data-start="{" data-end="};">
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno"><a class="line" href="ast_8h.html">  393</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_func_param">FuncParam</a> {</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>    <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>    <span class="keywordtype">char</span> *ident;</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>} <a class="code hl_struct" href="ast_8h.html#struct_func_param">FuncParam</a>;</div>
+</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="foldopen" id="foldopen00410" data-start="{" data-end="};">
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno"><a class="line" href="ast_8h.html">  410</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_func_def">FuncDef</a> {</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>    <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> return_type;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>    <span class="keywordtype">char</span> *ident;</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>    <a class="code hl_struct" href="ast_8h.html#struct_func_param">FuncParam</a> *params;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>    <a class="code hl_struct" href="struct_stmt.html">Stmt</a> *statements;</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>} <a class="code hl_struct" href="ast_8h.html#struct_func_def">FuncDef</a>;</div>
+</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
+<div class="foldopen" id="foldopen00421" data-start="{" data-end="};">
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno"><a class="line" href="struct_item.html">  421</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_item.html">Item</a> {</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>        ITEM_GLOBAL_VAR,</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>        ITEM_FUNC</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>    } tag;</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>    </div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>        <a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> var_def;</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        <a class="code hl_struct" href="ast_8h.html#struct_func_def">FuncDef</a> func_def;</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    };</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>} <a class="code hl_struct" href="struct_item.html">Item</a>;</div>
+</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
+<div class="foldopen" id="foldopen00439" data-start="{" data-end="};">
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno"><a class="line" href="ast_8h.html">  439</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="ast_8h.html#struct_program">Program</a> {</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>    <a class="code hl_struct" href="struct_item.html">Item</a> *items;</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>} <a class="code hl_struct" href="ast_8h.html#struct_program">Program</a>;</div>
+</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="comment">/* *** Öffentliche Schnittstelle ******************************************** */</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span> </div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span><span class="comment">/* *** Konstruktorroutinen */</span></div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> </div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_program">Program</a> <a class="code hl_function" href="ast_8h.html#a60c06ace586e9530060f92f0c6dd3890">astProgramNew</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span> </div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_item.html">Item</a> <a class="code hl_function" href="ast_8h.html#ace193b3e87c11ecf251a92be23d2e91c">astItemFromVarDef</a>(<a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> var_def);</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span> </div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_item.html">Item</a> <a class="code hl_function" href="ast_8h.html#a0d824abe1f1dfc7d3ecf789846f314c7">astItemFromFuncDef</a>(<a class="code hl_struct" href="ast_8h.html#struct_func_def">FuncDef</a> func_def);</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_func_def">FuncDef</a> <a class="code hl_function" href="ast_8h.html#a8eaa5346c14833a4af70d98097cc36f1">astFuncDefNew</a>(<a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> return_type, <span class="keywordtype">char</span> *ident, <a class="code hl_struct" href="ast_8h.html#struct_func_param">FuncParam</a> *params, <a class="code hl_struct" href="struct_stmt.html">Stmt</a> *statements);</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span> </div>
+<div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> <a class="code hl_function" href="ast_8h.html#a37f0fe19b120110e407a9c57b1439f70">astFuncCallNew</a>(<span class="keywordtype">char</span> *ident, <a class="code hl_struct" href="struct_expr.html">Expr</a> *args);</div>
+<div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span> </div>
+<div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_func_param">FuncParam</a> <a class="code hl_function" href="ast_8h.html#a2b559777fcf051dfb98e42d06d702e41">astFuncParamNew</a>(<a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type, <span class="keywordtype">char</span> *ident);</div>
+<div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span> </div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_expr.html">Expr</a> <a class="code hl_function" href="ast_8h.html#acd2eb7935ed0d75a00010f654100bd88">astExprFromAssign</a>(<a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> assign);</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_expr.html">Expr</a> <a class="code hl_function" href="ast_8h.html#a6441101db66749e04c88697cd97b712d">astExprFromFuncCall</a>(<a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> func_call);</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span> </div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_expr.html">Expr</a> <a class="code hl_function" href="ast_8h.html#a5e545350218e08b8601fdac4df9c01d3">astExprFromIdent</a>(<span class="keywordtype">char</span> *ident);</div>
+<div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span> </div>
+<div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_expr.html">Expr</a> <a class="code hl_function" href="ast_8h.html#a8600dbc7f71e4c9ae4ecbc50d7b59e5c">astExprFromLiteral</a>(<a class="code hl_struct" href="struct_literal.html">Literal</a> literal);</div>
+<div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span> </div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_expr.html">Expr</a> <a class="code hl_function" href="ast_8h.html#a281ae4d64add41f1e536fc7cda36bdc5">astExprFromUnaryMinus</a>(<a class="code hl_struct" href="struct_expr.html">Expr</a> expr);</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
+<div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_expr.html">Expr</a> <a class="code hl_function" href="ast_8h.html#ad901807dc138d84d2ef62504855dc39d">astExprFromBinOpExpr</a>(<a class="code hl_struct" href="struct_expr.html">Expr</a> lval, <a class="code hl_struct" href="struct_expr.html">Expr</a> rval, <a class="code hl_enumeration" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a> op);</div>
+<div class="line"><a id="l00528" name="l00528"></a><span class="lineno">  528</span> </div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_literal.html">Literal</a> <a class="code hl_function" href="ast_8h.html#a0769b9b884f6203ebdd5971ce920d144">astLiteralFromInt</a>(<span class="keywordtype">int</span> value);</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span> </div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_literal.html">Literal</a> <a class="code hl_function" href="ast_8h.html#a11c91d66739fdda59088be9866781eea">astLiteralFromFloat</a>(<span class="keywordtype">double</span> value);</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span> </div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_literal.html">Literal</a> <a class="code hl_function" href="ast_8h.html#a8387198c1ed8bb3f0ae019ef52fa9646">astLiteralFromBool</a>(<span class="keywordtype">int</span> value);</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> <a class="code hl_function" href="ast_8h.html#a3bbc94854f30791bf2144c4cc00e9369">astAssignNew</a>(<span class="keywordtype">char</span> *lhs, <a class="code hl_struct" href="struct_expr.html">Expr</a> rhs);</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span> </div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#a9229f8ab94882fa7a2c7c203b59e63a0">astStmtNew</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> </div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#af2434b26882f58156486dead94cbd8f2">astStmtFromIfStmt</a>(<a class="code hl_struct" href="ast_8h.html#struct_if_stmt">IfStmt</a> if_stmt);</div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span> </div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#afce521abc59c820ff9beee47d26d4e8c">astStmtFromForStmt</a>(<a class="code hl_struct" href="ast_8h.html#struct_for_stmt">ForStmt</a> for_stmt);</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span> </div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#ae1506595b36196856ae5461be9b80d7a">astStmtFromWhileStmt</a>(<a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> while_stmt);</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span> </div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#ae325b3f8cab4d9b40e8f07b6010f3da2">astStmtFromDoWhileStmt</a>(<a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> do_while_stmt);</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span> </div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#a980a0e59cafbb8953a15ccb9ec0da0f2">astStmtFromReturn</a>(<a class="code hl_struct" href="struct_expr.html">Expr</a> *return_val);</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span> </div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#af7597e589ee4d2a792ef814878b70480">astStmtFromPrintStmt</a>(<a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a> print_stmt);</div>
+<div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#ac71457084c209d672c48f38052f932bd">astStmtFromVarDef</a>(<a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> var_def);</div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span> </div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#a876ae79a461a9af2c3dfcf6645b33a3e">astStmtFromAssign</a>(<a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> assign);</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
+<div class="line"><a id="l00601" name="l00601"></a><span class="lineno">  601</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#ac613267a4e8eb63dbe2f488c16e4f1e5">astStmtFromFuncCall</a>(<a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> call);</div>
+<div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> <a class="code hl_function" href="ast_8h.html#a8baa27aa019981c152433be5d9482e9a">astStmtFromBlock</a>(<a class="code hl_struct" href="ast_8h.html#struct_block">Block</a> block);</div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> </div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_if_stmt">IfStmt</a> <a class="code hl_function" href="ast_8h.html#ad61fe5b0c8f0c36244aec54fbc2c185c">astIfStmtNew</a>(<a class="code hl_struct" href="struct_expr.html">Expr</a> cond, <a class="code hl_struct" href="struct_stmt.html">Stmt</a> if_true, <a class="code hl_struct" href="struct_stmt.html">Stmt</a> if_false);</div>
+<div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span> </div>
+<div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> <a class="code hl_function" href="ast_8h.html#a2bbf545b61098a3d1b5eb4b17ee83d3a">astWhileStmtNew</a>(<a class="code hl_struct" href="struct_expr.html">Expr</a> cond, <a class="code hl_struct" href="struct_stmt.html">Stmt</a> body);</div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span> </div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_for_stmt">ForStmt</a> <a class="code hl_function" href="ast_8h.html#adf0f129ff6c60b69f2ceeeae1be33c40">astForStmtNew</a>(<a class="code hl_struct" href="struct_for_init.html">ForInit</a> init, <a class="code hl_struct" href="struct_expr.html">Expr</a> cond, <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> update, <a class="code hl_struct" href="struct_stmt.html">Stmt</a> body);</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span> </div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_for_init.html">ForInit</a> <a class="code hl_function" href="ast_8h.html#a0b58fcc7895bea3124d8b0f4beeba6e9">astForInitFromVarDef</a>(<a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> var_def);</div>
+<div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span> </div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_for_init.html">ForInit</a> <a class="code hl_function" href="ast_8h.html#ae92c59ed61d44eda7c430afdab3b8b4d">astForInitFromAssign</a>(<a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> assign);</div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a> <a class="code hl_function" href="ast_8h.html#a09a30c10cc746e2a975e0423c7aa3a94">astPrintStmtFromString</a>(<span class="keywordtype">char</span> *<span class="keywordtype">string</span>);</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span> </div>
+<div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a> <a class="code hl_function" href="ast_8h.html#ae656c37ae51fd80a5f0f42598b2523b3">astPrintStmtFromExpr</a>(<a class="code hl_struct" href="struct_expr.html">Expr</a> expr);</div>
+<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span> </div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> <a class="code hl_function" href="ast_8h.html#a26f30615400f43e261923cea28cb5f19">astVarDefNew</a>(<a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type, <span class="keywordtype">char</span> *ident, <a class="code hl_struct" href="struct_expr.html">Expr</a> *init);</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span> </div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span><span class="keyword">extern</span> <a class="code hl_struct" href="ast_8h.html#struct_block">Block</a> <a class="code hl_function" href="ast_8h.html#a6c878d80f2c06439e3409d4faaab9357">astBlockNew</a>(<a class="code hl_struct" href="struct_stmt.html">Stmt</a> *statements);</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span> </div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span><span class="comment">/* *** Destruktorroutinen */</span></div>
+<div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span> </div>
+<div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a8015275e3120c235a768cafd0325ba5b">astProgramRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_program">Program</a> *self);</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span> </div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a95f94de80e6712faf1ae783fd15e1940">astItemRelease</a>(<a class="code hl_struct" href="struct_item.html">Item</a> *self);</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span> </div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a77cb025343f31f84c2e0e6a80b8c50e3">astFuncDefRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_func_def">FuncDef</a> *self);</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
+<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#ae31353c906d7ff03c90d9e7b350f86db">astFuncCallRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> *self);</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> </div>
+<div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#aed57a0803facb581061cad5fae209b57">astFuncParamRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_func_param">FuncParam</a> *self);</div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span> </div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a49639708d3630bbd777dc4a6cbe64818">astExprRelease</a>(<a class="code hl_struct" href="struct_expr.html">Expr</a> *self);</div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span> </div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a4d0ca8e664a8534fe16cd1b724686f0b">astLiteralRelease</a>(<a class="code hl_struct" href="struct_literal.html">Literal</a> *self);</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span> </div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#aadd08400b5c4b90ad7d2e3111ba4c51d">astAssignRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> *self);</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span> </div>
+<div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#ab57337923d634fb83630eafef7214776">astStmtRelease</a>(<a class="code hl_struct" href="struct_stmt.html">Stmt</a> *self);</div>
+<div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span> </div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a781d62c2967d0f0519c307de3341a918">astIfStmtRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_if_stmt">IfStmt</a> *self);</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span> </div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#afbde32229085e34de7de094ddcf26958">astWhileStmtRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> *self);</div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span> </div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a8da91d3320420f906d43b0fcc0d5fb2d">astForStmtRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_for_stmt">ForStmt</a> *self);</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span> </div>
+<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a88332326d98a6c82d2417c677fcfc8fc">astForInitRelease</a>(<a class="code hl_struct" href="struct_for_init.html">ForInit</a> *self);</div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span> </div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a51392863a932e2da868b72531af57b6b">astPrintStmtRelease</a>(<a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a> *self);</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#acac9a6cb08a04786e18418c2e9ead5c0">astVarDefRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> *self);</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#ac6f2e981fc8f41eb6a076b87beb370e8">astBlockRelease</a>(<a class="code hl_struct" href="ast_8h.html#struct_block">Block</a> *self);</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span> </div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span><span class="comment">/* *** Debug-Ausgaberoutinen */</span></div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span> </div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#ab2ca4911f9355b03b5dfde11322e422a">astProgramPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_program">Program</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span> </div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#aa77786ef517a5aad66a5779e19f9a873">astItemPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_item.html">Item</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span> </div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#acc7cb4a766e3012062db53d5bf594dd9">astFuncDefPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_func_def">FuncDef</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span> </div>
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#acf1eb9cda29352e207575185b0cf012a">astFuncParamPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_func_param">FuncParam</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span> </div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#ae4f627b0e516a515f6dd87f41e90d553">astStmtPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_stmt.html">Stmt</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span> </div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a2b1594fe0493a7e2975740949d50290d">astBlockPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_block">Block</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span> </div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#aa8839eb8f8d01fadb03bd8c8d4d196ee">astPrintStmtPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_print_stmt.html">PrintStmt</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span> </div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a338c4ad103056ee5eb4fad6a602a9fa1">astWhileStmtPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_while_stmt">WhileStmt</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a33ef14dd225722f160c5c8431787c96b">astForStmtPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_for_stmt">ForStmt</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span> </div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#ae3b0bf43ce7c5beb31b5174a35fa07cf">astForInitPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_for_init.html">ForInit</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span> </div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a22de11d3e33e9993a6a14336816d11a3">astIfStmtPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_if_stmt">IfStmt</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span> </div>
+<div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a394f72910cc6c8b3a827f89439dda951">astVarDefPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_var_def">VarDef</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00869" name="l00869"></a><span class="lineno">  869</span> </div>
+<div class="line"><a id="l00877" name="l00877"></a><span class="lineno">  877</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a4aafe15bbbff702cf328d53e5f926ddf">astExprPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_expr.html">Expr</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00878" name="l00878"></a><span class="lineno">  878</span> </div>
+<div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#aeccb33073002854736fcc1bc38fe3f16">astFuncCallPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_func_call">FuncCall</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00887" name="l00887"></a><span class="lineno">  887</span> </div>
+<div class="line"><a id="l00895" name="l00895"></a><span class="lineno">  895</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a52382f33c9f7acb2b55c9f8c0f94d3c9">astAssignPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_assign">Assign</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00896" name="l00896"></a><span class="lineno">  896</span> </div>
+<div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a9ff9e3b2e0098cea13eeee6fdc6214b7">astBinOpExprPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span> </div>
+<div class="line"><a id="l00913" name="l00913"></a><span class="lineno">  913</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a1b13fb99df4b4c0501e765a070b33b3d">astBinOpPrint</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00914" name="l00914"></a><span class="lineno">  914</span> </div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a49ac5da40a28455303c6040dd35244d8">astLiteralPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_literal.html">Literal</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span> </div>
+<div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a077fe4ac67d4a3b2b5c41e5cea3789f6">astDataTypePrint</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span> </div>
+<div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="ast_8h.html#a859d2e5aea176966c6a015c35ab29c65">astResIdentPrint</a>(<span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_res_ident">ResIdent</a> *self, <span class="keywordtype">int</span> indent, FILE *out);</div>
+<div class="line"><a id="l00941" name="l00941"></a><span class="lineno">  941</span> </div>
+<div class="foldopen" id="foldopen00945" data-start="{" data-end="}">
+<div class="line"><a id="l00945" name="l00945"></a><span class="lineno"><a class="line" href="ast_8h.html#a9dfa24feb94d22dbe837d553ee94d1b5">  945</a></span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_function" href="ast_8h.html#a9dfa24feb94d22dbe837d553ee94d1b5">defIdIsInvalid</a>(<a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> self) {</div>
+<div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span>    <span class="keywordflow">return</span> self.index == -1u;</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span>}</div>
+</div>
+<div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span> </div>
+<div class="foldopen" id="foldopen00952" data-start="{" data-end="}">
+<div class="line"><a id="l00952" name="l00952"></a><span class="lineno"><a class="line" href="ast_8h.html#a0c5dcff1b9c50c88b01c672a7985428e">  952</a></span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_function" href="ast_8h.html#a0c5dcff1b9c50c88b01c672a7985428e">itemIdIsInvalid</a>(<a class="code hl_struct" href="ast_8h.html#struct_item_id">ItemId</a> self) {</div>
+<div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span>    <span class="keywordflow">return</span> self.index == -1u;</div>
+<div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>}</div>
+</div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span> </div>
+<div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="ast_8h.html#a528e8858f0d5fa20969085c65d3333bf">TYPE_NAMES</a>[4];</div>
+<div class="line"><a id="l00960" name="l00960"></a><span class="lineno">  960</span> </div>
+<div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_variable" href="ast_8h.html#ae690c971c6af54ae68a35140a2b81e74">BIN_OP_NAMES</a>[12];</div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span> </div>
+<div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_def_id">DefId</a> <a class="code hl_variable" href="ast_8h.html#aed2f69f1e524bbec88c0352d7064f36c">INVALID_DEF_ID</a>;</div>
+<div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span> </div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span><span class="keyword">extern</span> <span class="keyword">const</span> <a class="code hl_struct" href="ast_8h.html#struct_item_id">ItemId</a> <a class="code hl_variable" href="ast_8h.html#a1626aeaca8f621615705cf0081491020">INVALID_ITEM_ID</a>;</div>
+<div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span> </div>
+<div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aast_8h_html_a0769b9b884f6203ebdd5971ce920d144"><div class="ttname"><a href="ast_8h.html#a0769b9b884f6203ebdd5971ce920d144">astLiteralFromInt</a></div><div class="ttdeci">Literal astLiteralFromInt(int value)</div><div class="ttdoc">Erstellt ein Literal aus einem Integer-Wert.</div><div class="ttdef"><b>Definition</b> ast.c:238</div></div>
+<div class="ttc" id="aast_8h_html_a077fe4ac67d4a3b2b5c41e5cea3789f6"><div class="ttname"><a href="ast_8h.html#a077fe4ac67d4a3b2b5c41e5cea3789f6">astDataTypePrint</a></div><div class="ttdeci">void astDataTypePrint(const DataType *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines DataType-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:854</div></div>
+<div class="ttc" id="aast_8h_html_a09a30c10cc746e2a975e0423c7aa3a94"><div class="ttname"><a href="ast_8h.html#a09a30c10cc746e2a975e0423c7aa3a94">astPrintStmtFromString</a></div><div class="ttdeci">PrintStmt astPrintStmtFromString(char *string)</div><div class="ttdoc">Erstellt eine Print-Anweisung aus einem String.</div><div class="ttdef"><b>Definition</b> ast.c:380</div></div>
+<div class="ttc" id="aast_8h_html_a0b58fcc7895bea3124d8b0f4beeba6e9"><div class="ttname"><a href="ast_8h.html#a0b58fcc7895bea3124d8b0f4beeba6e9">astForInitFromVarDef</a></div><div class="ttdeci">ForInit astForInitFromVarDef(VarDef var_def)</div><div class="ttdoc">Erstellt eine For-Initialisierungsanweisung aus einer Variablendefinition.</div><div class="ttdef"><b>Definition</b> ast.c:366</div></div>
+<div class="ttc" id="aast_8h_html_a0c5dcff1b9c50c88b01c672a7985428e"><div class="ttname"><a href="ast_8h.html#a0c5dcff1b9c50c88b01c672a7985428e">itemIdIsInvalid</a></div><div class="ttdeci">static int itemIdIsInvalid(ItemId self)</div><div class="ttdoc">Gibt 1 zurück, falls die übergebene ItemId ungültig ist, ansonsten 0.</div><div class="ttdef"><b>Definition</b> ast.h:952</div></div>
+<div class="ttc" id="aast_8h_html_a0d824abe1f1dfc7d3ecf789846f314c7"><div class="ttname"><a href="ast_8h.html#a0d824abe1f1dfc7d3ecf789846f314c7">astItemFromFuncDef</a></div><div class="ttdeci">Item astItemFromFuncDef(FuncDef func_def)</div><div class="ttdoc">Erstellt ein Item aus einer Funktionsdefinition.</div><div class="ttdef"><b>Definition</b> ast.c:157</div></div>
+<div class="ttc" id="aast_8h_html_a11c91d66739fdda59088be9866781eea"><div class="ttname"><a href="ast_8h.html#a11c91d66739fdda59088be9866781eea">astLiteralFromFloat</a></div><div class="ttdeci">Literal astLiteralFromFloat(double value)</div><div class="ttdoc">Erstellt ein Literal aus einem Fließkomma-Wert.</div><div class="ttdef"><b>Definition</b> ast.c:245</div></div>
+<div class="ttc" id="aast_8h_html_a156b131cae3cd565636c6047d5d4fa06"><div class="ttname"><a href="ast_8h.html#a156b131cae3cd565636c6047d5d4fa06">ResIdent::res</a></div><div class="ttdeci">DefId res</div><div class="ttdoc">Die Definition, auf die dieser Bezeichner verweist.</div><div class="ttdef"><b>Definition</b> ast.h:144</div></div>
+<div class="ttc" id="aast_8h_html_a1626aeaca8f621615705cf0081491020"><div class="ttname"><a href="ast_8h.html#a1626aeaca8f621615705cf0081491020">INVALID_ITEM_ID</a></div><div class="ttdeci">const ItemId INVALID_ITEM_ID</div><div class="ttdoc">ItemId einer ungültigen Referenz.</div><div class="ttdef"><b>Definition</b> ast.c:138</div></div>
+<div class="ttc" id="aast_8h_html_a1b13fb99df4b4c0501e765a070b33b3d"><div class="ttname"><a href="ast_8h.html#a1b13fb99df4b4c0501e765a070b33b3d">astBinOpPrint</a></div><div class="ttdeci">void astBinOpPrint(const BinOp *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines BinOp-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:834</div></div>
+<div class="ttc" id="aast_8h_html_a22de11d3e33e9993a6a14336816d11a3"><div class="ttname"><a href="ast_8h.html#a22de11d3e33e9993a6a14336816d11a3">astIfStmtPrint</a></div><div class="ttdeci">void astIfStmtPrint(const IfStmt *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines IfStmt-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:712</div></div>
+<div class="ttc" id="aast_8h_html_a25164f805d9af841d8063fe86f5e1da4"><div class="ttname"><a href="ast_8h.html#a25164f805d9af841d8063fe86f5e1da4">ResIdent::ident</a></div><div class="ttdeci">char * ident</div><div class="ttdoc">Der Name, der aufgelöst werden soll.</div><div class="ttdef"><b>Definition</b> ast.h:136</div></div>
+<div class="ttc" id="aast_8h_html_a26f30615400f43e261923cea28cb5f19"><div class="ttname"><a href="ast_8h.html#a26f30615400f43e261923cea28cb5f19">astVarDefNew</a></div><div class="ttdeci">VarDef astVarDefNew(DataType data_type, char *ident, Expr *init)</div><div class="ttdoc">Erstellt eine neue Variablendefinition.</div><div class="ttdef"><b>Definition</b> ast.c:394</div></div>
+<div class="ttc" id="aast_8h_html_a281ae4d64add41f1e536fc7cda36bdc5"><div class="ttname"><a href="ast_8h.html#a281ae4d64add41f1e536fc7cda36bdc5">astExprFromUnaryMinus</a></div><div class="ttdeci">Expr astExprFromUnaryMinus(Expr expr)</div><div class="ttdoc">Erstellt einen Ausdruck aus einem unären Minus-Ausdruck.</div><div class="ttdef"><b>Definition</b> ast.c:220</div></div>
+<div class="ttc" id="aast_8h_html_a2b1594fe0493a7e2975740949d50290d"><div class="ttname"><a href="ast_8h.html#a2b1594fe0493a7e2975740949d50290d">astBlockPrint</a></div><div class="ttdeci">void astBlockPrint(const Block *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines Block-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:693</div></div>
+<div class="ttc" id="aast_8h_html_a2b559777fcf051dfb98e42d06d702e41"><div class="ttname"><a href="ast_8h.html#a2b559777fcf051dfb98e42d06d702e41">astFuncParamNew</a></div><div class="ttdeci">FuncParam astFuncParamNew(DataType data_type, char *ident)</div><div class="ttdoc">Erstellt einen neuen Funktionsparameter.</div><div class="ttdef"><b>Definition</b> ast.c:185</div></div>
+<div class="ttc" id="aast_8h_html_a2bbf545b61098a3d1b5eb4b17ee83d3a"><div class="ttname"><a href="ast_8h.html#a2bbf545b61098a3d1b5eb4b17ee83d3a">astWhileStmtNew</a></div><div class="ttdeci">WhileStmt astWhileStmtNew(Expr cond, Stmt body)</div><div class="ttdoc">Erstellt eine neue While-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:350</div></div>
+<div class="ttc" id="aast_8h_html_a338c4ad103056ee5eb4fad6a602a9fa1"><div class="ttname"><a href="ast_8h.html#a338c4ad103056ee5eb4fad6a602a9fa1">astWhileStmtPrint</a></div><div class="ttdeci">void astWhileStmtPrint(const WhileStmt *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines WhileStmt-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:720</div></div>
+<div class="ttc" id="aast_8h_html_a33ef14dd225722f160c5c8431787c96b"><div class="ttname"><a href="ast_8h.html#a33ef14dd225722f160c5c8431787c96b">astForStmtPrint</a></div><div class="ttdeci">void astForStmtPrint(const ForStmt *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines ForStmt-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:727</div></div>
+<div class="ttc" id="aast_8h_html_a37f0fe19b120110e407a9c57b1439f70"><div class="ttname"><a href="ast_8h.html#a37f0fe19b120110e407a9c57b1439f70">astFuncCallNew</a></div><div class="ttdeci">FuncCall astFuncCallNew(char *ident, Expr *args)</div><div class="ttdoc">Erstellt einen neuen Funktionsaufruf.</div><div class="ttdef"><b>Definition</b> ast.c:176</div></div>
+<div class="ttc" id="aast_8h_html_a394f72910cc6c8b3a827f89439dda951"><div class="ttname"><a href="ast_8h.html#a394f72910cc6c8b3a827f89439dda951">astVarDefPrint</a></div><div class="ttdeci">void astVarDefPrint(const VarDef *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines VarDef-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:748</div></div>
+<div class="ttc" id="aast_8h_html_a3bbc94854f30791bf2144c4cc00e9369"><div class="ttname"><a href="ast_8h.html#a3bbc94854f30791bf2144c4cc00e9369">astAssignNew</a></div><div class="ttdeci">Assign astAssignNew(char *lhs, Expr rhs)</div><div class="ttdoc">Erstellt eine neue Zuweisung.</div><div class="ttdef"><b>Definition</b> ast.c:259</div></div>
+<div class="ttc" id="aast_8h_html_a49639708d3630bbd777dc4a6cbe64818"><div class="ttname"><a href="ast_8h.html#a49639708d3630bbd777dc4a6cbe64818">astExprRelease</a></div><div class="ttdeci">void astExprRelease(Expr *self)</div><div class="ttdoc">Gibt den Speicher eines Expr-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:461</div></div>
+<div class="ttc" id="aast_8h_html_a49ac5da40a28455303c6040dd35244d8"><div class="ttname"><a href="ast_8h.html#a49ac5da40a28455303c6040dd35244d8">astLiteralPrint</a></div><div class="ttdeci">void astLiteralPrint(const Literal *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines Literal-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:838</div></div>
+<div class="ttc" id="aast_8h_html_a4aafe15bbbff702cf328d53e5f926ddf"><div class="ttname"><a href="ast_8h.html#a4aafe15bbbff702cf328d53e5f926ddf">astExprPrint</a></div><div class="ttdeci">void astExprPrint(const Expr *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines Expr-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:756</div></div>
+<div class="ttc" id="aast_8h_html_a4d0ca8e664a8534fe16cd1b724686f0b"><div class="ttname"><a href="ast_8h.html#a4d0ca8e664a8534fe16cd1b724686f0b">astLiteralRelease</a></div><div class="ttdeci">void astLiteralRelease(Literal *self)</div><div class="ttdoc">Gibt den Speicher eines Literal-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:493</div></div>
+<div class="ttc" id="aast_8h_html_a51392863a932e2da868b72531af57b6b"><div class="ttname"><a href="ast_8h.html#a51392863a932e2da868b72531af57b6b">astPrintStmtRelease</a></div><div class="ttdeci">void astPrintStmtRelease(PrintStmt *self)</div><div class="ttdoc">Gibt den Speicher eines PrintStmt-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:582</div></div>
+<div class="ttc" id="aast_8h_html_a52382f33c9f7acb2b55c9f8c0f94d3c9"><div class="ttname"><a href="ast_8h.html#a52382f33c9f7acb2b55c9f8c0f94d3c9">astAssignPrint</a></div><div class="ttdeci">void astAssignPrint(const Assign *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines Assign-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:819</div></div>
+<div class="ttc" id="aast_8h_html_a528e8858f0d5fa20969085c65d3333bf"><div class="ttname"><a href="ast_8h.html#a528e8858f0d5fa20969085c65d3333bf">TYPE_NAMES</a></div><div class="ttdeci">const char * TYPE_NAMES[4]</div><div class="ttdoc">Array aller Typnamen zur verbesserten Debug-Ausgabe.</div><div class="ttdef"><b>Definition</b> ast.c:83</div></div>
+<div class="ttc" id="aast_8h_html_a5ce317384a491d52468f51da6c30cfb5"><div class="ttname"><a href="ast_8h.html#a5ce317384a491d52468f51da6c30cfb5">Assign::lhs</a></div><div class="ttdeci">ResIdent lhs</div><div class="ttdoc">Linke Seite (die Variable).</div><div class="ttdef"><b>Definition</b> ast.h:184</div></div>
+<div class="ttc" id="aast_8h_html_a5e545350218e08b8601fdac4df9c01d3"><div class="ttname"><a href="ast_8h.html#a5e545350218e08b8601fdac4df9c01d3">astExprFromIdent</a></div><div class="ttdeci">Expr astExprFromIdent(char *ident)</div><div class="ttdoc">Erstellt einen Ausdruck aus einem Bezeichner.</div><div class="ttdef"><b>Definition</b> ast.c:206</div></div>
+<div class="ttc" id="aast_8h_html_a60c06ace586e9530060f92f0c6dd3890"><div class="ttname"><a href="ast_8h.html#a60c06ace586e9530060f92f0c6dd3890">astProgramNew</a></div><div class="ttdeci">Program astProgramNew(void)</div><div class="ttdoc">Erzeugt ein neues, leeres Program-Objekt.</div><div class="ttdef"><b>Definition</b> ast.c:144</div></div>
+<div class="ttc" id="aast_8h_html_a6441101db66749e04c88697cd97b712d"><div class="ttname"><a href="ast_8h.html#a6441101db66749e04c88697cd97b712d">astExprFromFuncCall</a></div><div class="ttdeci">Expr astExprFromFuncCall(FuncCall func_call)</div><div class="ttdoc">Erstellt einen Ausdruck aus einem Funktionsaufruf.</div><div class="ttdef"><b>Definition</b> ast.c:199</div></div>
+<div class="ttc" id="aast_8h_html_a6c878d80f2c06439e3409d4faaab9357"><div class="ttname"><a href="ast_8h.html#a6c878d80f2c06439e3409d4faaab9357">astBlockNew</a></div><div class="ttdeci">Block astBlockNew(Stmt *statements)</div><div class="ttdoc">Erstellt einen neuen Block von Anweisungen.</div><div class="ttdef"><b>Definition</b> ast.c:404</div></div>
+<div class="ttc" id="aast_8h_html_a77cb025343f31f84c2e0e6a80b8c50e3"><div class="ttname"><a href="ast_8h.html#a77cb025343f31f84c2e0e6a80b8c50e3">astFuncDefRelease</a></div><div class="ttdeci">void astFuncDefRelease(FuncDef *self)</div><div class="ttdoc">Gibt den Speicher eines FuncDef-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:434</div></div>
+<div class="ttc" id="aast_8h_html_a781d62c2967d0f0519c307de3341a918"><div class="ttname"><a href="ast_8h.html#a781d62c2967d0f0519c307de3341a918">astIfStmtRelease</a></div><div class="ttdeci">void astIfStmtRelease(IfStmt *self)</div><div class="ttdoc">Gibt den Speicher eines IfStmt-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:548</div></div>
+<div class="ttc" id="aast_8h_html_a8015275e3120c235a768cafd0325ba5b"><div class="ttname"><a href="ast_8h.html#a8015275e3120c235a768cafd0325ba5b">astProgramRelease</a></div><div class="ttdeci">void astProgramRelease(Program *self)</div><div class="ttdoc">Gibt den Speicher eines Program-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:414</div></div>
+<div class="ttc" id="aast_8h_html_a8387198c1ed8bb3f0ae019ef52fa9646"><div class="ttname"><a href="ast_8h.html#a8387198c1ed8bb3f0ae019ef52fa9646">astLiteralFromBool</a></div><div class="ttdeci">Literal astLiteralFromBool(int value)</div><div class="ttdoc">Erstellt ein Literal aus einem Booleschen Wert.</div><div class="ttdef"><b>Definition</b> ast.c:252</div></div>
+<div class="ttc" id="aast_8h_html_a859d2e5aea176966c6a015c35ab29c65"><div class="ttname"><a href="ast_8h.html#a859d2e5aea176966c6a015c35ab29c65">astResIdentPrint</a></div><div class="ttdeci">void astResIdentPrint(const ResIdent *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines ResIdent-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:858</div></div>
+<div class="ttc" id="aast_8h_html_a8600dbc7f71e4c9ae4ecbc50d7b59e5c"><div class="ttname"><a href="ast_8h.html#a8600dbc7f71e4c9ae4ecbc50d7b59e5c">astExprFromLiteral</a></div><div class="ttdeci">Expr astExprFromLiteral(Literal literal)</div><div class="ttdoc">Erstellt einen Ausdruck aus einem Literal.</div><div class="ttdef"><b>Definition</b> ast.c:213</div></div>
+<div class="ttc" id="aast_8h_html_a876ae79a461a9af2c3dfcf6645b33a3e"><div class="ttname"><a href="ast_8h.html#a876ae79a461a9af2c3dfcf6645b33a3e">astStmtFromAssign</a></div><div class="ttdeci">Stmt astStmtFromAssign(Assign assign)</div><div class="ttdoc">Erstellt eine Anweisung aus einer Zuweisung.</div><div class="ttdef"><b>Definition</b> ast.c:321</div></div>
+<div class="ttc" id="aast_8h_html_a88332326d98a6c82d2417c677fcfc8fc"><div class="ttname"><a href="ast_8h.html#a88332326d98a6c82d2417c677fcfc8fc">astForInitRelease</a></div><div class="ttdeci">void astForInitRelease(ForInit *self)</div><div class="ttdoc">Gibt den Speicher eines ForInit-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:570</div></div>
+<div class="ttc" id="aast_8h_html_a8baa27aa019981c152433be5d9482e9a"><div class="ttname"><a href="ast_8h.html#a8baa27aa019981c152433be5d9482e9a">astStmtFromBlock</a></div><div class="ttdeci">Stmt astStmtFromBlock(Block block)</div><div class="ttdoc">Erstellt eine Anweisung aus einem Block.</div><div class="ttdef"><b>Definition</b> ast.c:335</div></div>
+<div class="ttc" id="aast_8h_html_a8da91d3320420f906d43b0fcc0d5fb2d"><div class="ttname"><a href="ast_8h.html#a8da91d3320420f906d43b0fcc0d5fb2d">astForStmtRelease</a></div><div class="ttdeci">void astForStmtRelease(ForStmt *self)</div><div class="ttdoc">Gibt den Speicher eines ForStmt-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:562</div></div>
+<div class="ttc" id="aast_8h_html_a8eaa5346c14833a4af70d98097cc36f1"><div class="ttname"><a href="ast_8h.html#a8eaa5346c14833a4af70d98097cc36f1">astFuncDefNew</a></div><div class="ttdeci">FuncDef astFuncDefNew(DataType return_type, char *ident, FuncParam *params, Stmt *statements)</div><div class="ttdoc">Erstellt eine neue Funktionsdefinition.</div><div class="ttdef"><b>Definition</b> ast.c:164</div></div>
+<div class="ttc" id="aast_8h_html_a9229f8ab94882fa7a2c7c203b59e63a0"><div class="ttname"><a href="ast_8h.html#a9229f8ab94882fa7a2c7c203b59e63a0">astStmtNew</a></div><div class="ttdeci">Stmt astStmtNew(void)</div><div class="ttdoc">Erstellt eine neue (leere) Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:266</div></div>
+<div class="ttc" id="aast_8h_html_a95f94de80e6712faf1ae783fd15e1940"><div class="ttname"><a href="ast_8h.html#a95f94de80e6712faf1ae783fd15e1940">astItemRelease</a></div><div class="ttdeci">void astItemRelease(Item *self)</div><div class="ttdoc">Gibt den Speicher eines Item-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:422</div></div>
+<div class="ttc" id="aast_8h_html_a980a0e59cafbb8953a15ccb9ec0da0f2"><div class="ttname"><a href="ast_8h.html#a980a0e59cafbb8953a15ccb9ec0da0f2">astStmtFromReturn</a></div><div class="ttdeci">Stmt astStmtFromReturn(Expr *return_val)</div><div class="ttdoc">Erstellt eine Anweisung aus einer Return-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:298</div></div>
+<div class="ttc" id="aast_8h_html_a9dfa24feb94d22dbe837d553ee94d1b5"><div class="ttname"><a href="ast_8h.html#a9dfa24feb94d22dbe837d553ee94d1b5">defIdIsInvalid</a></div><div class="ttdeci">static int defIdIsInvalid(DefId self)</div><div class="ttdoc">Gibt 1 zurück, falls die übergebene DefId ungültig ist, ansonsten 0.</div><div class="ttdef"><b>Definition</b> ast.h:945</div></div>
+<div class="ttc" id="aast_8h_html_a9ff9e3b2e0098cea13eeee6fdc6214b7"><div class="ttname"><a href="ast_8h.html#a9ff9e3b2e0098cea13eeee6fdc6214b7">astBinOpExprPrint</a></div><div class="ttdeci">void astBinOpExprPrint(const BinOpExpr *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines BinOpExpr-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:826</div></div>
+<div class="ttc" id="aast_8h_html_aa77786ef517a5aad66a5779e19f9a873"><div class="ttname"><a href="ast_8h.html#aa77786ef517a5aad66a5779e19f9a873">astItemPrint</a></div><div class="ttdeci">void astItemPrint(const Item *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines Item-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:617</div></div>
+<div class="ttc" id="aast_8h_html_aa8839eb8f8d01fadb03bd8c8d4d196ee"><div class="ttname"><a href="ast_8h.html#aa8839eb8f8d01fadb03bd8c8d4d196ee">astPrintStmtPrint</a></div><div class="ttdeci">void astPrintStmtPrint(const PrintStmt *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines PrintStmt-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:700</div></div>
+<div class="ttc" id="aast_8h_html_aaa84d2f3d44529ebf8ccfe13e02bf730"><div class="ttname"><a href="ast_8h.html#aaa84d2f3d44529ebf8ccfe13e02bf730">BinOp</a></div><div class="ttdeci">BinOp</div><div class="ttdoc">Ein binärer Operator, z.B.</div><div class="ttdef"><b>Definition</b> ast.h:91</div></div>
+<div class="ttc" id="aast_8h_html_aadd08400b5c4b90ad7d2e3111ba4c51d"><div class="ttname"><a href="ast_8h.html#aadd08400b5c4b90ad7d2e3111ba4c51d">astAssignRelease</a></div><div class="ttdeci">void astAssignRelease(Assign *self)</div><div class="ttdoc">Gibt den Speicher eines Assign-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:495</div></div>
+<div class="ttc" id="aast_8h_html_ab2ca4911f9355b03b5dfde11322e422a"><div class="ttname"><a href="ast_8h.html#ab2ca4911f9355b03b5dfde11322e422a">astProgramPrint</a></div><div class="ttdeci">void astProgramPrint(const Program *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines Program-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:608</div></div>
+<div class="ttc" id="aast_8h_html_ab57337923d634fb83630eafef7214776"><div class="ttname"><a href="ast_8h.html#ab57337923d634fb83630eafef7214776">astStmtRelease</a></div><div class="ttdeci">void astStmtRelease(Stmt *self)</div><div class="ttdoc">Gibt den Speicher eines Stmt-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:501</div></div>
+<div class="ttc" id="aast_8h_html_ac613267a4e8eb63dbe2f488c16e4f1e5"><div class="ttname"><a href="ast_8h.html#ac613267a4e8eb63dbe2f488c16e4f1e5">astStmtFromFuncCall</a></div><div class="ttdeci">Stmt astStmtFromFuncCall(FuncCall call)</div><div class="ttdoc">Erstellt eine Anweisung aus einem Funktionsaufruf.</div><div class="ttdef"><b>Definition</b> ast.c:328</div></div>
+<div class="ttc" id="aast_8h_html_ac6f2e981fc8f41eb6a076b87beb370e8"><div class="ttname"><a href="ast_8h.html#ac6f2e981fc8f41eb6a076b87beb370e8">astBlockRelease</a></div><div class="ttdeci">void astBlockRelease(Block *self)</div><div class="ttdoc">Gibt den Speicher eines Block-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:599</div></div>
+<div class="ttc" id="aast_8h_html_ac71457084c209d672c48f38052f932bd"><div class="ttname"><a href="ast_8h.html#ac71457084c209d672c48f38052f932bd">astStmtFromVarDef</a></div><div class="ttdeci">Stmt astStmtFromVarDef(VarDef var_def)</div><div class="ttdoc">Erstellt eine Anweisung aus einer Variablendefinition.</div><div class="ttdef"><b>Definition</b> ast.c:314</div></div>
+<div class="ttc" id="aast_8h_html_acac9a6cb08a04786e18418c2e9ead5c0"><div class="ttname"><a href="ast_8h.html#acac9a6cb08a04786e18418c2e9ead5c0">astVarDefRelease</a></div><div class="ttdeci">void astVarDefRelease(VarDef *self)</div><div class="ttdoc">Gibt den Speicher eines VarDef-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:594</div></div>
+<div class="ttc" id="aast_8h_html_acb6d74b658b82ce095f155203f577658"><div class="ttname"><a href="ast_8h.html#acb6d74b658b82ce095f155203f577658">VarDef::init</a></div><div class="ttdeci">Expr init</div><div class="ttdoc">Der Ausdruck, mit dem diese Variable initialisiert wird.</div><div class="ttdef"><b>Definition</b> ast.h:279</div></div>
+<div class="ttc" id="aast_8h_html_acc7cb4a766e3012062db53d5bf594dd9"><div class="ttname"><a href="ast_8h.html#acc7cb4a766e3012062db53d5bf594dd9">astFuncDefPrint</a></div><div class="ttdeci">void astFuncDefPrint(const FuncDef *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines FuncDef-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:629</div></div>
+<div class="ttc" id="aast_8h_html_acd2eb7935ed0d75a00010f654100bd88"><div class="ttname"><a href="ast_8h.html#acd2eb7935ed0d75a00010f654100bd88">astExprFromAssign</a></div><div class="ttdeci">Expr astExprFromAssign(Assign assign)</div><div class="ttdoc">Erstellt einen Ausdruck aus einer Zuweisung.</div><div class="ttdef"><b>Definition</b> ast.c:192</div></div>
+<div class="ttc" id="aast_8h_html_ace193b3e87c11ecf251a92be23d2e91c"><div class="ttname"><a href="ast_8h.html#ace193b3e87c11ecf251a92be23d2e91c">astItemFromVarDef</a></div><div class="ttdeci">Item astItemFromVarDef(VarDef var_def)</div><div class="ttdoc">Erstellt ein Item aus einer Variablendefinition.</div><div class="ttdef"><b>Definition</b> ast.c:150</div></div>
+<div class="ttc" id="aast_8h_html_acf1eb9cda29352e207575185b0cf012a"><div class="ttname"><a href="ast_8h.html#acf1eb9cda29352e207575185b0cf012a">astFuncParamPrint</a></div><div class="ttdeci">void astFuncParamPrint(const FuncParam *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines FuncParam-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:638</div></div>
+<div class="ttc" id="aast_8h_html_ad61fe5b0c8f0c36244aec54fbc2c185c"><div class="ttname"><a href="ast_8h.html#ad61fe5b0c8f0c36244aec54fbc2c185c">astIfStmtNew</a></div><div class="ttdeci">IfStmt astIfStmtNew(Expr cond, Stmt if_true, Stmt if_false)</div><div class="ttdoc">Erstellt eine neue If-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:342</div></div>
+<div class="ttc" id="aast_8h_html_ad8ed01ff3ff33333d8e19db4d2818bb6"><div class="ttname"><a href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></div><div class="ttdeci">DataType</div><div class="ttdoc">Der Datentyp einer Variablen oder der Rückgabewert einer Funktion: Einer von void,...</div><div class="ttdef"><b>Definition</b> ast.h:83</div></div>
+<div class="ttc" id="aast_8h_html_ad901807dc138d84d2ef62504855dc39d"><div class="ttname"><a href="ast_8h.html#ad901807dc138d84d2ef62504855dc39d">astExprFromBinOpExpr</a></div><div class="ttdeci">Expr astExprFromBinOpExpr(Expr lval, Expr rval, BinOp op)</div><div class="ttdoc">Erstellt einen Ausdruck aus einem binären Operationausdruck.</div><div class="ttdef"><b>Definition</b> ast.c:227</div></div>
+<div class="ttc" id="aast_8h_html_adf0f129ff6c60b69f2ceeeae1be33c40"><div class="ttname"><a href="ast_8h.html#adf0f129ff6c60b69f2ceeeae1be33c40">astForStmtNew</a></div><div class="ttdeci">ForStmt astForStmtNew(ForInit init, Expr cond, Assign update, Stmt body)</div><div class="ttdoc">Erstellt eine neue For-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:357</div></div>
+<div class="ttc" id="aast_8h_html_ae1506595b36196856ae5461be9b80d7a"><div class="ttname"><a href="ast_8h.html#ae1506595b36196856ae5461be9b80d7a">astStmtFromWhileStmt</a></div><div class="ttdeci">Stmt astStmtFromWhileStmt(WhileStmt while_stmt)</div><div class="ttdoc">Erstellt eine Anweisung aus einer While-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:284</div></div>
+<div class="ttc" id="aast_8h_html_ae31353c906d7ff03c90d9e7b350f86db"><div class="ttname"><a href="ast_8h.html#ae31353c906d7ff03c90d9e7b350f86db">astFuncCallRelease</a></div><div class="ttdeci">void astFuncCallRelease(FuncCall *self)</div><div class="ttdoc">Gibt den Speicher eines FuncCall-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:448</div></div>
+<div class="ttc" id="aast_8h_html_ae325b3f8cab4d9b40e8f07b6010f3da2"><div class="ttname"><a href="ast_8h.html#ae325b3f8cab4d9b40e8f07b6010f3da2">astStmtFromDoWhileStmt</a></div><div class="ttdeci">Stmt astStmtFromDoWhileStmt(WhileStmt do_while_stmt)</div><div class="ttdoc">Erstellt eine Anweisung aus einer Do-While-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:291</div></div>
+<div class="ttc" id="aast_8h_html_ae3b0bf43ce7c5beb31b5174a35fa07cf"><div class="ttname"><a href="ast_8h.html#ae3b0bf43ce7c5beb31b5174a35fa07cf">astForInitPrint</a></div><div class="ttdeci">void astForInitPrint(const ForInit *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines ForInit-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:736</div></div>
+<div class="ttc" id="aast_8h_html_ae4f627b0e516a515f6dd87f41e90d553"><div class="ttname"><a href="ast_8h.html#ae4f627b0e516a515f6dd87f41e90d553">astStmtPrint</a></div><div class="ttdeci">void astStmtPrint(const Stmt *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines Stmt-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:645</div></div>
+<div class="ttc" id="aast_8h_html_ae656c37ae51fd80a5f0f42598b2523b3"><div class="ttname"><a href="ast_8h.html#ae656c37ae51fd80a5f0f42598b2523b3">astPrintStmtFromExpr</a></div><div class="ttdeci">PrintStmt astPrintStmtFromExpr(Expr expr)</div><div class="ttdoc">Erstellt eine Print-Anweisung aus einem Ausdruck.</div><div class="ttdef"><b>Definition</b> ast.c:387</div></div>
+<div class="ttc" id="aast_8h_html_ae690c971c6af54ae68a35140a2b81e74"><div class="ttname"><a href="ast_8h.html#ae690c971c6af54ae68a35140a2b81e74">BIN_OP_NAMES</a></div><div class="ttdeci">const char * BIN_OP_NAMES[12]</div><div class="ttdoc">Array aller binären Operatoren zur verbesserten Debug-Ausgabe.</div><div class="ttdef"><b>Definition</b> ast.c:90</div></div>
+<div class="ttc" id="aast_8h_html_ae92c59ed61d44eda7c430afdab3b8b4d"><div class="ttname"><a href="ast_8h.html#ae92c59ed61d44eda7c430afdab3b8b4d">astForInitFromAssign</a></div><div class="ttdeci">ForInit astForInitFromAssign(Assign assign)</div><div class="ttdoc">Erstellt eine For-Initialisierungsanweisung aus einer Zuweisung.</div><div class="ttdef"><b>Definition</b> ast.c:373</div></div>
+<div class="ttc" id="aast_8h_html_aeccb33073002854736fcc1bc38fe3f16"><div class="ttname"><a href="ast_8h.html#aeccb33073002854736fcc1bc38fe3f16">astFuncCallPrint</a></div><div class="ttdeci">void astFuncCallPrint(const FuncCall *self, int indent, FILE *out)</div><div class="ttdoc">Gibt eine textuelle Darstellung eines FuncCall-Objekts aus.</div><div class="ttdef"><b>Definition</b> ast.c:812</div></div>
+<div class="ttc" id="aast_8h_html_aed2f69f1e524bbec88c0352d7064f36c"><div class="ttname"><a href="ast_8h.html#aed2f69f1e524bbec88c0352d7064f36c">INVALID_DEF_ID</a></div><div class="ttdeci">const DefId INVALID_DEF_ID</div><div class="ttdoc">DefId einer ungültigen Referenz.</div><div class="ttdef"><b>Definition</b> ast.c:137</div></div>
+<div class="ttc" id="aast_8h_html_aed57a0803facb581061cad5fae209b57"><div class="ttname"><a href="ast_8h.html#aed57a0803facb581061cad5fae209b57">astFuncParamRelease</a></div><div class="ttdeci">void astFuncParamRelease(FuncParam *self)</div><div class="ttdoc">Gibt den Speicher eines FuncParam-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:457</div></div>
+<div class="ttc" id="aast_8h_html_af2434b26882f58156486dead94cbd8f2"><div class="ttname"><a href="ast_8h.html#af2434b26882f58156486dead94cbd8f2">astStmtFromIfStmt</a></div><div class="ttdeci">Stmt astStmtFromIfStmt(IfStmt if_stmt)</div><div class="ttdoc">Erstellt eine Anweisung aus einer If-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:270</div></div>
+<div class="ttc" id="aast_8h_html_af3fcc0223dfdbb4481e4e90cc3fa5b9c"><div class="ttname"><a href="ast_8h.html#af3fcc0223dfdbb4481e4e90cc3fa5b9c">Assign::rhs</a></div><div class="ttdeci">struct Expr * rhs</div><div class="ttdoc">Rechte Seite (der Wert).</div><div class="ttdef"><b>Definition</b> ast.h:186</div></div>
+<div class="ttc" id="aast_8h_html_af7597e589ee4d2a792ef814878b70480"><div class="ttname"><a href="ast_8h.html#af7597e589ee4d2a792ef814878b70480">astStmtFromPrintStmt</a></div><div class="ttdeci">Stmt astStmtFromPrintStmt(PrintStmt print_stmt)</div><div class="ttdoc">Erstellt eine Anweisung aus einer Print-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:307</div></div>
+<div class="ttc" id="aast_8h_html_af96014889d5eb669a7ba244b0155d6fd"><div class="ttname"><a href="ast_8h.html#af96014889d5eb669a7ba244b0155d6fd">VarDef::res_ident</a></div><div class="ttdeci">ResIdent res_ident</div><div class="ttdoc">Obwohl dies eine Definition ist, muss sie dennoch auf sich selbst aufgelöst werden.</div><div class="ttdef"><b>Definition</b> ast.h:271</div></div>
+<div class="ttc" id="aast_8h_html_afbde32229085e34de7de094ddcf26958"><div class="ttname"><a href="ast_8h.html#afbde32229085e34de7de094ddcf26958">astWhileStmtRelease</a></div><div class="ttdeci">void astWhileStmtRelease(WhileStmt *self)</div><div class="ttdoc">Gibt den Speicher eines WhileStmt-Objekts frei.</div><div class="ttdef"><b>Definition</b> ast.c:556</div></div>
+<div class="ttc" id="aast_8h_html_afce521abc59c820ff9beee47d26d4e8c"><div class="ttname"><a href="ast_8h.html#afce521abc59c820ff9beee47d26d4e8c">astStmtFromForStmt</a></div><div class="ttdeci">Stmt astStmtFromForStmt(ForStmt for_stmt)</div><div class="ttdoc">Erstellt eine Anweisung aus einer For-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.c:277</div></div>
+<div class="ttc" id="aast_8h_html_struct_assign"><div class="ttname"><a href="ast_8h.html#struct_assign">Assign</a></div><div class="ttdoc">Eine Zuweisung: lhs = rhs.</div><div class="ttdef"><b>Definition</b> ast.h:182</div></div>
+<div class="ttc" id="aast_8h_html_struct_bin_op_expr"><div class="ttname"><a href="ast_8h.html#struct_bin_op_expr">BinOpExpr</a></div><div class="ttdoc">Eine binäre Operation.</div><div class="ttdef"><b>Definition</b> ast.h:167</div></div>
+<div class="ttc" id="aast_8h_html_struct_block"><div class="ttname"><a href="ast_8h.html#struct_block">Block</a></div><div class="ttdoc">Ein Block von Anweisungen, der selbst eine Anweisung ist.</div><div class="ttdef"><b>Definition</b> ast.h:351</div></div>
+<div class="ttc" id="aast_8h_html_struct_def_id"><div class="ttname"><a href="ast_8h.html#struct_def_id">DefId</a></div><div class="ttdoc">Eine eindeutige Kennung für die (Funktions- oder Variablen-)Definition, auf die ein auflösbarer Bezei...</div><div class="ttdef"><b>Definition</b> ast.h:116</div></div>
+<div class="ttc" id="aast_8h_html_struct_for_stmt"><div class="ttname"><a href="ast_8h.html#struct_for_stmt">ForStmt</a></div><div class="ttdoc">Eine For-Anweisung: for (init; cond; update) body</div><div class="ttdef"><b>Definition</b> ast.h:307</div></div>
+<div class="ttc" id="aast_8h_html_struct_func_call"><div class="ttname"><a href="ast_8h.html#struct_func_call">FuncCall</a></div><div class="ttdoc">Ein Funktionsaufruf.</div><div class="ttdef"><b>Definition</b> ast.h:194</div></div>
+<div class="ttc" id="aast_8h_html_struct_func_def"><div class="ttname"><a href="ast_8h.html#struct_func_def">FuncDef</a></div><div class="ttdoc">Eine Funktionsdefinition.</div><div class="ttdef"><b>Definition</b> ast.h:410</div></div>
+<div class="ttc" id="aast_8h_html_struct_func_param"><div class="ttname"><a href="ast_8h.html#struct_func_param">FuncParam</a></div><div class="ttdoc">Ein Funktionsparameter mit einem Typ und einem (nicht auflösbaren) Namen.</div><div class="ttdef"><b>Definition</b> ast.h:393</div></div>
+<div class="ttc" id="aast_8h_html_struct_if_stmt"><div class="ttname"><a href="ast_8h.html#struct_if_stmt">IfStmt</a></div><div class="ttdoc">Eine If-Anweisung: if (cond) if_true else if_false</div><div class="ttdef"><b>Definition</b> ast.h:283</div></div>
+<div class="ttc" id="aast_8h_html_struct_item_id"><div class="ttname"><a href="ast_8h.html#struct_item_id">ItemId</a></div><div class="ttdoc">Eine eindeutige Kennung für die Top-Level Elemente (Item) des abstrakten Syntaxbaumes (Program).</div><div class="ttdef"><b>Definition</b> ast.h:126</div></div>
+<div class="ttc" id="aast_8h_html_struct_program"><div class="ttname"><a href="ast_8h.html#struct_program">Program</a></div><div class="ttdoc">Der oberste Knoten des abstrakten Syntaxbaums (AST) für ein Programm.</div><div class="ttdef"><b>Definition</b> ast.h:439</div></div>
+<div class="ttc" id="aast_8h_html_struct_res_ident"><div class="ttname"><a href="ast_8h.html#struct_res_ident">ResIdent</a></div><div class="ttdoc">Ein auflösbarer Bezeichner, der auf eine (Funktions- oder Variablen-) Definition verweist.</div><div class="ttdef"><b>Definition</b> ast.h:134</div></div>
+<div class="ttc" id="aast_8h_html_struct_var_def"><div class="ttname"><a href="ast_8h.html#struct_var_def">VarDef</a></div><div class="ttdoc">Eine Variablendefinition.</div><div class="ttdef"><b>Definition</b> ast.h:262</div></div>
+<div class="ttc" id="aast_8h_html_struct_while_stmt"><div class="ttname"><a href="ast_8h.html#struct_while_stmt">WhileStmt</a></div><div class="ttdoc">Eine While- oder Do-While-Anweisung: while (cond) body / do body while (cond)</div><div class="ttdef"><b>Definition</b> ast.h:318</div></div>
+<div class="ttc" id="astruct_expr_html"><div class="ttname"><a href="struct_expr.html">Expr</a></div><div class="ttdoc">Ein Ausdruck.</div><div class="ttdef"><b>Definition</b> ast.h:206</div></div>
+<div class="ttc" id="astruct_expr_html_a6118865e7371b107bd5fb4dd4a9e99a3"><div class="ttname"><a href="struct_expr.html#a6118865e7371b107bd5fb4dd4a9e99a3">Expr::data_type</a></div><div class="ttdeci">DataType data_type</div><div class="ttdoc">Berechneter Datentyp des Ausdrucks.</div><div class="ttdef"><b>Definition</b> ast.h:229</div></div>
+<div class="ttc" id="astruct_expr_html_abc6126af1d45847bc59afa0aa3216b04a2505b37730875f725fe0f46c992f9e5f"><div class="ttname"><a href="struct_expr.html#abc6126af1d45847bc59afa0aa3216b04a2505b37730875f725fe0f46c992f9e5f">Expr::EXPR_INVALID</a></div><div class="ttdeci">@ EXPR_INVALID</div><div class="ttdoc">Enumerationsvariante für einen fehlenden Ausdruck.</div><div class="ttdef"><b>Definition</b> ast.h:215</div></div>
+<div class="ttc" id="astruct_for_init_html"><div class="ttname"><a href="struct_for_init.html">ForInit</a></div><div class="ttdoc">Der Initialisierungsparameter einer For-Anweisung.</div><div class="ttdef"><b>Definition</b> ast.h:294</div></div>
+<div class="ttc" id="astruct_item_html"><div class="ttname"><a href="struct_item.html">Item</a></div><div class="ttdoc">Ein Top-Level-Programmelement: Die Definition einer globalen Variable oder Funktion.</div><div class="ttdef"><b>Definition</b> ast.h:421</div></div>
+<div class="ttc" id="astruct_literal_html"><div class="ttname"><a href="struct_literal.html">Literal</a></div><div class="ttdoc">Ein Literal-Ausdruck, z.B.</div><div class="ttdef"><b>Definition</b> ast.h:148</div></div>
+<div class="ttc" id="astruct_print_stmt_html"><div class="ttname"><a href="struct_print_stmt.html">PrintStmt</a></div><div class="ttdoc">Eine print-Anweisung, die zur Ausgabe von Strings oder Ausdrücken genutzt wird.</div><div class="ttdef"><b>Definition</b> ast.h:327</div></div>
+<div class="ttc" id="astruct_stmt_html"><div class="ttname"><a href="struct_stmt.html">Stmt</a></div><div class="ttdoc">Eine Anweisung.</div><div class="ttdef"><b>Definition</b> ast.h:362</div></div>
+<div class="ttc" id="astruct_stmt_html_ac36f475ca5b446f4fde4c9b90bec77c8ab684c0e9a2b56ebeb0d34560b78b7afb"><div class="ttname"><a href="struct_stmt.html#ac36f475ca5b446f4fde4c9b90bec77c8ab684c0e9a2b56ebeb0d34560b78b7afb">Stmt::STMT_EMPTY</a></div><div class="ttdeci">@ STMT_EMPTY</div><div class="ttdoc">Die leere Anweisung, z.B.</div><div class="ttdef"><b>Definition</b> ast.h:365</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="ast_8h.html">ast.h</a></li>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

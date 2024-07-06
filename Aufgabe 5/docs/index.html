@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: Minako-Interpreter: Syntax und Semantik</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Minako-Interpreter: Syntax und Semantik </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a> Der Minako-Interpreter soll die Syntax und Semantik der Sprache C1 implementieren. Dieses Dokument dokumentiert die syntaktischen und semantischen Regeln des Projektes.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Syntax</h1>
+<p>Hier ist die durch Minako implementierte C1-Grammatik in <a href="https://www.w3.org/TR/REC-xml/#sec-notation">W3C-EBNF</a>.</p>
+<div class="fragment"><div class="line">program            ::= item*;</div>
+<div class="line">item               ::= declassignment &quot;;&quot; | functiondefinition;</div>
+<div class="line"> </div>
+<div class="line">functiondefinition ::= type Ident &quot;(&quot; parameterlist? &quot;)&quot; &quot;{&quot; statementlist &quot;}&quot;;</div>
+<div class="line">parameterlist      ::= type Ident (&quot;,&quot; type Ident)*;</div>
+<div class="line">functioncall       ::= Ident &quot;(&quot; (assignment (&quot;,&quot; assignment)*)? &quot;)&quot;;</div>
+<div class="line"> </div>
+<div class="line">statementlist      ::= statement*;</div>
+<div class="line">block              ::= &quot;{&quot; statementlist &quot;}&quot;;</div>
+<div class="line"> </div>
+<div class="line">statement          ::= ifstatement</div>
+<div class="line">                     | forstatement</div>
+<div class="line">                     | dowhilestatement &quot;;&quot;</div>
+<div class="line">                     | whilestatement</div>
+<div class="line">                     | returnstatement &quot;;&quot;</div>
+<div class="line">                     | print &quot;;&quot;</div>
+<div class="line">                     | declassignment &quot;;&quot;</div>
+<div class="line">                     | statassignment &quot;;&quot;</div>
+<div class="line">                     | functioncall &quot;;&quot;</div>
+<div class="line">                     | block</div>
+<div class="line">                     | &quot;;&quot;</div>
+<div class="line">                     ;</div>
+<div class="line"> </div>
+<div class="line">ifstatement        ::= &quot;if&quot; &quot;(&quot; assignment &quot;)&quot; statement (&quot;else&quot; statement)?;</div>
+<div class="line">forstatement       ::= &quot;for&quot; &quot;(&quot; (statassignment | declassignment) &quot;;&quot; expr &quot;;&quot; statassignment &quot;)&quot; statement;</div>
+<div class="line">dowhilestatement   ::= &quot;do&quot; statement &quot;while&quot; &quot;(&quot; assignment &quot;)&quot;;</div>
+<div class="line">whilestatement     ::= &quot;while&quot; &quot;(&quot; assignment &quot;)&quot; statement;</div>
+<div class="line">returnstatement    ::= &quot;return&quot; assignment?;</div>
+<div class="line">print              ::= &quot;print&quot; &quot;(&quot; (assignment | StringLiteral) &quot;)&quot;;</div>
+<div class="line">declassignment     ::= type Ident (&quot;=&quot; assignment)?;</div>
+<div class="line"> </div>
+<div class="line">type               ::= &quot;bool&quot; | &quot;float&quot; | &quot;int&quot; | &quot;void&quot;;</div>
+<div class="line"> </div>
+<div class="line">statassignment     ::= Ident &quot;=&quot; assignment;</div>
+<div class="line">assignment         ::= Ident &quot;=&quot; assignment | expr;</div>
+<div class="line">expr               ::= simpexpr (&quot;==&quot; simpexpr | &quot;!=&quot; simpexpr | &quot;&lt;=&quot; simpexpr | &quot;&gt;=&quot; simpexpr | &quot;&lt;&quot; simpexpr | &quot;&gt;&quot; simpexpr)?;</div>
+<div class="line">simpexpr           ::= term (&quot;+&quot; term | &quot;-&quot; term | &quot;||&quot; term)*;</div>
+<div class="line">term               ::= factor (&quot;*&quot; factor | &quot;/&quot; factor | &quot;&amp;&amp;&quot; factor)*;</div>
+<div class="line">factor             ::= &quot;-&quot; factor</div>
+<div class="line">                     | IntLiteral</div>
+<div class="line">                     | FloatLiteral</div>
+<div class="line">                     | BoolLiteral</div>
+<div class="line">                     | Ident</div>
+<div class="line">                     | functioncall</div>
+<div class="line">                     | &quot;(&quot; assignment &quot;)&quot;</div>
+<div class="line">                     ;</div>
+<div class="line"> </div>
+<div class="line">Ident              ::= [a-zA-Z_][a-zA-Z0-9_]*;</div>
+<div class="line">StringLiteral      ::= &#39;&quot;&#39; [^&quot;\n]* &#39;&quot;&#39;;</div>
+<div class="line">IntLiteral         ::= [0-9]+;</div>
+<div class="line">BoolLiteral        ::= &quot;true&quot; | &quot;false&quot;;</div>
+<div class="line">FloatLiteral       ::= ([0-9]* &quot;.&quot; [0-9]+ ([eE] [-+]? [0-9]+)?)</div>
+<div class="line">                     | ([0-9]+ [eE] [-+]? [0-9]+);</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Statische Semantik</h1>
+<p>Alle C1-Programme erfüllen über die syntaktischen Anforderungen hinaus auch noch die folgenden Regeln der statischen, also zur Übersetzungszeit geprüften, Semantik.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+1. Sichtbarkeit</h2>
+<p>Ein <em>Sichtbarkeitsbereich</em> ist ein Abschnitt des Quellcodes, der zu folgenden Metasymbolen reduziert wird:</p>
+<ul>
+<li><code>block</code></li>
+<li><code>forstatement</code></li>
+<li><code>functiondefinition</code>, wobei der Funktionsname Teil des äußeren <em>Sichtbarkeitsbereiches</em> ist</li>
+</ul>
+<p>Die Grammatik erlaubt eine Schichtung von <em>Sichtbarkeitsbereichen</em>.</p>
+<p>Es gelten folgende Regeln:</p>
+<ol type="1">
+<li>Es gibt eine parameterlose <code>main()</code>-Funktion mit dem Rückgabetyp <code>void</code>.</li>
+<li>Bezeichner müssen vor ihrer Benutzung deklariert werden.</li>
+<li>In jedem <em>Sichtbarkeitsbereich</em> darf ein Bezeichner höchstens ein Mal deklariert werden.</li>
+<li>Bei der Namensauflösung von Bezeichnern werden die <em>Sichtbarkeitsbereiche</em> von innen nach außen durchsucht und der erste Treffer ausgewählt.</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md4"></a>
+2. Typenkompatibilität</h2>
+<p>C1 unterstützt die implizite Konvertierung von <code>int</code> nach <code>float</code>. Ein Typ wird als <em>kompatibel</em> zu einem zweiten Typ bezeichnet, wenn er identisch oder in den anderen konvertierbar ist.</p>
+<p>Es gelten folgende Regeln:</p>
+<ol type="1">
+<li>Die Bedingungen für <code>while</code>-, <code>do while</code>-, <code>for</code>- und <code>if</code>-Schleifen müssen boolesche Ausdrücke sein.</li>
+<li>Der Ausdruck in der <code>print</code>-Anweisung darf nicht vom Typ <code>void</code> sein.</li>
+<li>Es dürfen keine Variablen und Parameter vom Typ <code>void</code> deklariert werden.</li>
+<li>Funktionsaufrufe müssen parameterkonform sein, das bedeutet:<ul>
+<li>Parameter- und Argumentlisten müssen die gleiche Länge haben,</li>
+<li>Argumenttypen müssen paarweise <em>kompatibel</em> mit den Parametertypen sein.</li>
+</ul>
+</li>
+<li>Der Typ eines Rückgabewertes muss <em>kompatibel</em> zum Rückgabetyp der umgebenden Funktion sein.</li>
+<li>Funktionen mit dem Rückgabetyp <code>void</code> dürfen keine Ausdrücke zurückgeben, auch keine vom Typ <code>void</code>.</li>
+<li>Zuweisungen dürfen nur an Variablenbezeichner erfolgen.</li>
+<li>Der Typ der rechten Seite einer Zuweisung muss <em>kompatibel</em> zum Typ der linken Seite sein.</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md5"></a>
+3. Ausdrücke und Operatoren</h2>
+<ol type="1">
+<li>Der Funktionsaufrufoperator (<code>()</code>) darf nur auf Funktionsbezeichner angewandt werden.</li>
+<li>Funktionsbezeichner sind nur nach der Anwendung des Funktionsaufrufoperators gültige Ausdrücke.</li>
+<li>Die Operanden eines Vergleichsausdrucks müssen miteinander <em>kompatibel</em> und dürfen nicht vom Typ <code>void</code> sein.</li>
+<li>Die Operanden in logischen Operationen müssen vom Typ <code>bool</code> sein.</li>
+<li>Die Operanden in arithmetischen Operationen (Addition, Subtraktion, Multiplikation, Division und Negation) müssen vom Typ <code>int</code> oder <code>float</code> sein.</li>
+<li>Der Ergebnistyp einer Zuweisung ist der Typ der Variablen auf der linken Seite.</li>
+<li>Der Ergebnistyp einer Vergleichs- oder logischen Operation ist <code>bool</code>.</li>
+<li>Der Ergebnistyp einer arithmetischen Operation ist <code>float</code>, wenn einer der beteiligten Operanden vom Typ <code>float</code> ist, und ansonsten <code>int</code>.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Dynamische Semantik</h1>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Definiertes Verhalten</h2>
+<p>Die dynamische oder Laufzeitsemantik von C1-Programmen orientiert sich an der Laufzeitsemantik von C-Programmen:</p>
+<ol type="1">
+<li>Alle globalen Variablen mit Initialisierungsausdruck werden in der Reihenfolge ihrer Deklaration vor dem Start der Programmausführung initialisiert.</li>
+<li>Die Programmausführung startet am Anfang von <code>main()</code>.</li>
+<li>Die Kontrollstrukturen <code>if</code>, <code>while</code>, <code>do while</code> und <code>for</code> haben dieselbe Bedeutung wie in C.</li>
+<li>Die Liste von Anweisungen in Codeblöcken werden der Reihe nach ausgeführt.</li>
+<li>Die <code>print</code>-Anweisung endet stets mit einem Zeilenende und produziert folgende Ausgaben:<ul>
+<li>Zeichenkettenliterale werden unverändert ausgegeben.</li>
+<li>Für boolesche Ausdrücke mit dem Wert <code>1</code> ist die Ausgabe <code>"true"</code>, mit dem Wert <code>0</code> ist sie <code>"false"</code>.</li>
+<li>Für integrale Ausdrücke wird der Wert in Dezimaldarstellung ausgegeben.</li>
+<li>Für gewöhnliche Fließkommaausdrücke wird der Wert in Dezimal- oder wissenschaftlicher Notation ausgegeben, je nachdem welche Darstellung kürzer ist.</li>
+<li>Für ungewöhnliche Fließkommawerte (NaN und ± unendlich) wird <code>"nan"</code> ausgegeben, falls der Wert ungleich sich selbst ist, sowie <code>"inf"</code> für den größten und <code>"-inf"</code> für den kleinsten Wert.</li>
+</ul>
+</li>
+<li>Funktionsrufe, die als Anweisungen auftauchen, also deren Rückgabewert keiner Variablen zugewiesen wird, werden ausgeführt und deren Ergebnis anschließend verworfen.</li>
+<li>Arithmetische, logische und Vergleichsoperationen haben dieselbe Bedeutung wie in C, werden jedoch in Abweichung zu C stets von links nach rechts berechnet.</li>
+<li>Die Werte der Ausdrücke in Funktionsargumenten werden von links nach rechts berechnet.</li>
+<li>Variablenzuweisungen erlangen direkt im Anschluss der Berechnung des Ausdrucks auf der rechten Seite Gültigkeit.</li>
+<li>Beim Lesen von Variablen wird der zuletzt geschriebene Wert zurückgegeben.</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Undefiniertes Verhalten</h2>
+<p>Folgendes Programmverhalten ist undefiniert:</p>
+<ol type="1">
+<li>Der Überlauf von <code>int</code>-Werten durch Addition, Subtraktion, Multiplikation, Division oder Negation ist undefiniert.</li>
+<li>Das Ergebnis einer Integer-Division durch <code>0</code> ist undefiniert.</li>
+<li>Das Lesen aus uninitialisierten Variablen ist undefiniert.</li>
+<li>Die Rückkehr aus Funktionen mit Rückgabetyp nicht <code>void</code> ohne Nutzung der <code>return</code>-Anweisung ist undefiniert, auch wenn der Wert danach verworfen würde.</li>
+<li>Das Abarbeitungsergebnis rekursiver Funktionen, die während der Ausführung sämtlichen verfügbaren Arbeitsspeicher erschöpfen, ist undefiniert.</li>
+</ol>
+<p>Die fünfte Regel soll <em>nicht</em> dynamisch getestet werden. Stattdessen ist es zulässig, wenn dieser Fall bei der Ausführung zu undefiniertem Verhalten führt. </p>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"/>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

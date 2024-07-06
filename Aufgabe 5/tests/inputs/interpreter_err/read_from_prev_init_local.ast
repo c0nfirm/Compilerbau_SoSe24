@@ -1,0 +1,53 @@
+(Program) {
+    .items = [
+        [0] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "foo",
+            .params = [
+                [0] = (FuncParam) {
+                    .data_type = int,
+                    .ident = "i"
+                }
+            ],
+            .statements = []
+        }),
+        [1] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "bar",
+            .params = [],
+            .statements = [
+                [0] = VarDef((VarDef) {
+                    .data_type = int,
+                    .res_ident = (ResIdent) {
+                        .ident = "i"
+                    },
+                    .init = None()
+                }),
+                [1] = Print(Expr(Var((ResIdent) {
+                    .ident = "i"
+                })))
+            ]
+        }),
+        [2] = Func((FuncDef) {
+            .return_type = void,
+            .ident = "main",
+            .params = [],
+            .statements = [
+                [0] = Call((FuncCall) {
+                    .res_ident = (ResIdent) {
+                        .ident = "foo"
+                    },
+                    .args = [
+                        [0] = Literal(Int(1))
+                    ]
+                }),
+                [1] = Call((FuncCall) {
+                    .res_ident = (ResIdent) {
+                        .ident = "bar"
+                    },
+                    .args = []
+                })
+            ]
+        })
+    ]
+}

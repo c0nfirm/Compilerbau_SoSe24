@@ -1,0 +1,819 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: symtab.c-Dateireferenz</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('symtab_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Makrodefinitionen</a> &#124;
+<a href="#func-members">Funktionen</a>  </div>
+  <div class="headertitle"><div class="title">symtab.c-Dateireferenz</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Enthält die Umsetzung der Symboltabelle.  
+<a href="#details">Mehr ...</a></p>
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="symtab_8h_source.html">symtab.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Makrodefinitionen</h2></td></tr>
+<tr class="memitem:a484ea6658c5a481ce0eeaa8bce7f502c" id="r_a484ea6658c5a481ce0eeaa8bce7f502c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a484ea6658c5a481ce0eeaa8bce7f502c">STRUCT</a>(TYPE, ...)</td></tr>
+<tr class="memdesc:a484ea6658c5a481ce0eeaa8bce7f502c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur vereinfachten Implementation von Debug-Print Routinen für Struktur-Typen.  <br /></td></tr>
+<tr class="separator:a484ea6658c5a481ce0eeaa8bce7f502c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc6736579246e43d72b64d7227abd955" id="r_acc6736579246e43d72b64d7227abd955"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc6736579246e43d72b64d7227abd955">CHOICE</a>(NAME, ...)</td></tr>
+<tr class="memdesc:acc6736579246e43d72b64d7227abd955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Debug-Print Ausgabe von Varianten eines Variantentyps.  <br /></td></tr>
+<tr class="separator:acc6736579246e43d72b64d7227abd955"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef126bde1462eb2b5e3db454943fbd53" id="r_aef126bde1462eb2b5e3db454943fbd53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef126bde1462eb2b5e3db454943fbd53">FIELD</a>(NAME, ...)</td></tr>
+<tr class="memdesc:aef126bde1462eb2b5e3db454943fbd53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Strukturtyp.  <br /></td></tr>
+<tr class="separator:aef126bde1462eb2b5e3db454943fbd53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cac49872849599e2a2c1db8f048762b" id="r_a0cac49872849599e2a2c1db8f048762b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cac49872849599e2a2c1db8f048762b">VEC_FIELD</a>(NAME, ...)</td></tr>
+<tr class="memdesc:a0cac49872849599e2a2c1db8f048762b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Vektortyp.  <br /></td></tr>
+<tr class="separator:a0cac49872849599e2a2c1db8f048762b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8069274c4fd97c3fdd589ea1850a4988" id="r_a8069274c4fd97c3fdd589ea1850a4988"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8069274c4fd97c3fdd589ea1850a4988">STR_FIELD</a>(NAME)</td></tr>
+<tr class="memdesc:a8069274c4fd97c3fdd589ea1850a4988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Zeigertyp.  <br /></td></tr>
+<tr class="separator:a8069274c4fd97c3fdd589ea1850a4988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f7c3ae10161217e89044daf1ac15bba" id="r_a7f7c3ae10161217e89044daf1ac15bba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f7c3ae10161217e89044daf1ac15bba">INT_FIELD</a>(NAME)</td></tr>
+<tr class="memdesc:a7f7c3ae10161217e89044daf1ac15bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makro zur Ausgabe von Strukturfeldern mit Integertyp.  <br /></td></tr>
+<tr class="separator:a7f7c3ae10161217e89044daf1ac15bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funktionen</h2></td></tr>
+<tr class="memitem:a8cbed7773027061b4b4b02edb3d9d81f" id="r_a8cbed7773027061b4b4b02edb3d9d81f"><td class="memItemLeft" align="right" valign="top"><a id="a8cbed7773027061b4b4b02edb3d9d81f" name="a8cbed7773027061b4b4b02edb3d9d81f"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>defInfoPrint</b> (const <a class="el" href="struct_def_info.html">DefInfo</a> *, const <a class="el" href="struct_def_info.html">DefInfo</a> *, unsigned int, FILE *)</td></tr>
+<tr class="separator:a8cbed7773027061b4b4b02edb3d9d81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a302ced3f653d17d312020304d9956713" id="r_a302ced3f653d17d312020304d9956713"><td class="memItemLeft" align="right" valign="top"><a id="a302ced3f653d17d312020304d9956713" name="a302ced3f653d17d312020304d9956713"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>funcInfoPrint</b> (const <a class="el" href="symtab_8h.html#struct_func_info">FuncInfo</a> *, const <a class="el" href="struct_def_info.html">DefInfo</a> *, unsigned int, FILE *)</td></tr>
+<tr class="separator:a302ced3f653d17d312020304d9956713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c690e11878d2f3bd47d406df882fa6a" id="r_a4c690e11878d2f3bd47d406df882fa6a"><td class="memItemLeft" align="right" valign="top"><a id="a4c690e11878d2f3bd47d406df882fa6a" name="a4c690e11878d2f3bd47d406df882fa6a"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>symVarPrint</b> (const <a class="el" href="symtab_8h.html#struct_var_info">VarInfo</a> *, const <a class="el" href="struct_def_info.html">DefInfo</a> *, unsigned int, FILE *)</td></tr>
+<tr class="separator:a4c690e11878d2f3bd47d406df882fa6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad23008c2990925c37ca9f10d1a985161" id="r_ad23008c2990925c37ca9f10d1a985161"><td class="memItemLeft" align="right" valign="top"><a id="ad23008c2990925c37ca9f10d1a985161" name="ad23008c2990925c37ca9f10d1a985161"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>symbolPrint</b> (const <a class="el" href="symtab_8h.html#struct_symtab_symbol">SymtabSymbol</a> *, const <a class="el" href="struct_def_info.html">DefInfo</a> *, unsigned int, FILE *)</td></tr>
+<tr class="separator:ad23008c2990925c37ca9f10d1a985161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5686f24031faa0a9e22eda6e9a73abf0" id="r_a5686f24031faa0a9e22eda6e9a73abf0"><td class="memItemLeft" align="right" valign="top"><a id="a5686f24031faa0a9e22eda6e9a73abf0" name="a5686f24031faa0a9e22eda6e9a73abf0"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>symDefVecRelease</b> (<a class="el" href="struct_def_info.html">DefInfo</a> *self)</td></tr>
+<tr class="separator:a5686f24031faa0a9e22eda6e9a73abf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee207423f7fa642e2beb3b6f3c4359d2" id="r_aee207423f7fa642e2beb3b6f3c4359d2"><td class="memItemLeft" align="right" valign="top"><a id="aee207423f7fa642e2beb3b6f3c4359d2" name="aee207423f7fa642e2beb3b6f3c4359d2"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>isGlobalScope</b> (const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self)</td></tr>
+<tr class="separator:aee207423f7fa642e2beb3b6f3c4359d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a631005e35cb22cc634a94b6fe8bd714d" id="r_a631005e35cb22cc634a94b6fe8bd714d"><td class="memItemLeft" align="right" valign="top"><a id="a631005e35cb22cc634a94b6fe8bd714d" name="a631005e35cb22cc634a94b6fe8bd714d"></a>
+static <a class="el" href="ast_8h.html#struct_def_id">DefId</a>&#160;</td><td class="memItemRight" valign="bottom"><b>define</b> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <a class="el" href="struct_def_info.html">DefInfo</a> def)</td></tr>
+<tr class="separator:a631005e35cb22cc634a94b6fe8bd714d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed26cee5ac03a05dc6986b355a8d4423" id="r_aed26cee5ac03a05dc6986b355a8d4423"><td class="memItemLeft" align="right" valign="top"><a id="aed26cee5ac03a05dc6986b355a8d4423" name="aed26cee5ac03a05dc6986b355a8d4423"></a>
+static char *&#160;</td><td class="memItemRight" valign="bottom"><b>stringDup</b> (const char *str)</td></tr>
+<tr class="separator:aed26cee5ac03a05dc6986b355a8d4423"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34fd52fb99604e059da37b31e11f3627" id="r_a34fd52fb99604e059da37b31e11f3627"><td class="memItemLeft" align="right" valign="top"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34fd52fb99604e059da37b31e11f3627">symtabNew</a> (void)</td></tr>
+<tr class="memdesc:a34fd52fb99604e059da37b31e11f3627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erzeugt eine neue Symboltabelle.  <br /></td></tr>
+<tr class="separator:a34fd52fb99604e059da37b31e11f3627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe415cb2666c110a88573a38cb336b04" id="r_abe415cb2666c110a88573a38cb336b04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe415cb2666c110a88573a38cb336b04">symtabRelease</a> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self)</td></tr>
+<tr class="memdesc:abe415cb2666c110a88573a38cb336b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher der Symboltabelle frei.  <br /></td></tr>
+<tr class="separator:abe415cb2666c110a88573a38cb336b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cd7bd0e26fb2d9f5a5b6788ea4fb489" id="r_a9cd7bd0e26fb2d9f5a5b6788ea4fb489"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9cd7bd0e26fb2d9f5a5b6788ea4fb489">symtabDefineFunc</a> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self, const char *ident, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> return_type)</td></tr>
+<tr class="memdesc:a9cd7bd0e26fb2d9f5a5b6788ea4fb489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definiert eine neue Funktion in der Symboltabelle.  <br /></td></tr>
+<tr class="separator:a9cd7bd0e26fb2d9f5a5b6788ea4fb489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7085eeafd0815666f9316a58c1f073be" id="r_a7085eeafd0815666f9316a58c1f073be"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7085eeafd0815666f9316a58c1f073be">symtabDefineParam</a> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self, const char *ident, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type)</td></tr>
+<tr class="memdesc:a7085eeafd0815666f9316a58c1f073be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definiert einen neuen Parameter einer Funktion in der Symboltabelle.  <br /></td></tr>
+<tr class="separator:a7085eeafd0815666f9316a58c1f073be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3abeb832738b0fe8bb8f258c83691ac" id="r_aa3abeb832738b0fe8bb8f258c83691ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_def_id">DefId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3abeb832738b0fe8bb8f258c83691ac">symtabDefineVar</a> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self, const char *ident, <a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a> data_type)</td></tr>
+<tr class="memdesc:aa3abeb832738b0fe8bb8f258c83691ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definiert eine neue <a class="el" href="interpreter_8c.html#struct_variable" title="Mit dem Initialisierungsstatus markierter Variablenwert.">Variable</a> in der Symboltabelle.  <br /></td></tr>
+<tr class="separator:aa3abeb832738b0fe8bb8f258c83691ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9637291deecc2e6c4901df4d3f98c238" id="r_a9637291deecc2e6c4901df4d3f98c238"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9637291deecc2e6c4901df4d3f98c238">symtabScopeEnter</a> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self)</td></tr>
+<tr class="memdesc:a9637291deecc2e6c4901df4d3f98c238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Betritt einen neuen Sichtbarkeitsbereich.  <br /></td></tr>
+<tr class="separator:a9637291deecc2e6c4901df4d3f98c238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92121e9534b4cf5b67612710b1ac3a73" id="r_a92121e9534b4cf5b67612710b1ac3a73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92121e9534b4cf5b67612710b1ac3a73">symtabScopeLeave</a> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self)</td></tr>
+<tr class="memdesc:a92121e9534b4cf5b67612710b1ac3a73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verlässt den aktuellen Sichtbarkeitsbereich.  <br /></td></tr>
+<tr class="separator:a92121e9534b4cf5b67612710b1ac3a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4272ddc3a25297064137a81f3734c243" id="r_a4272ddc3a25297064137a81f3734c243"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ast_8h.html#struct_def_id">DefId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4272ddc3a25297064137a81f3734c243">symtabResolve</a> (const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self, const char *ident)</td></tr>
+<tr class="memdesc:a4272ddc3a25297064137a81f3734c243"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sucht einen Bezeichner in der Symboltabelle.  <br /></td></tr>
+<tr class="separator:a4272ddc3a25297064137a81f3734c243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145590983ae6257084a0e129025994e4" id="r_a145590983ae6257084a0e129025994e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_def_info.html">DefInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a145590983ae6257084a0e129025994e4">symtabIndex</a> (const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self, <a class="el" href="ast_8h.html#struct_def_id">DefId</a> def_id)</td></tr>
+<tr class="memdesc:a145590983ae6257084a0e129025994e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Löst eine Definition anhand ihrer ID auf.  <br /></td></tr>
+<tr class="separator:a145590983ae6257084a0e129025994e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa970e31250ae49c819447b0f7b3cb396" id="r_aa970e31250ae49c819447b0f7b3cb396"><td class="memItemLeft" align="right" valign="top"><a class="el" href="symtab_8h.html#struct_func_info">FuncInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa970e31250ae49c819447b0f7b3cb396">symtabCurrentFunc</a> (const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self)</td></tr>
+<tr class="memdesc:aa970e31250ae49c819447b0f7b3cb396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt die aktuell definierte Funktion zurück.  <br /></td></tr>
+<tr class="separator:aa970e31250ae49c819447b0f7b3cb396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c79138ac32c95639b69008b04500879" id="r_a5c79138ac32c95639b69008b04500879"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c79138ac32c95639b69008b04500879">symtabPrint</a> (const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *self, unsigned int indent, FILE *out)</td></tr>
+<tr class="memdesc:a5c79138ac32c95639b69008b04500879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den aktuellen Zustand der blockstrukturierten Symboltabelle in einen Ausgabestrom aus.  <br /></td></tr>
+<tr class="separator:a5c79138ac32c95639b69008b04500879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ddb333c70635f1b95deeef2c23db93" id="r_a60ddb333c70635f1b95deeef2c23db93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60ddb333c70635f1b95deeef2c23db93">symDefTableNew</a> (<a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *tab, const <a class="el" href="ast_8h.html#struct_program">Program</a> *ast)</td></tr>
+<tr class="memdesc:a60ddb333c70635f1b95deeef2c23db93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wandelt die Symboltabelle in eine Definitionstabelle um.  <br /></td></tr>
+<tr class="separator:a60ddb333c70635f1b95deeef2c23db93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab98f55f9403231991a153c925c017f26" id="r_ab98f55f9403231991a153c925c017f26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab98f55f9403231991a153c925c017f26">symDefTableRelease</a> (<a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *self)</td></tr>
+<tr class="memdesc:ab98f55f9403231991a153c925c017f26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt den Speicher der Definitionstabelle frei.  <br /></td></tr>
+<tr class="separator:ab98f55f9403231991a153c925c017f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa18e1579a9040ba7a24ed27c25538ef5" id="r_aa18e1579a9040ba7a24ed27c25538ef5"><td class="memItemLeft" align="right" valign="top"><a id="aa18e1579a9040ba7a24ed27c25538ef5" name="aa18e1579a9040ba7a24ed27c25538ef5"></a>
+const <a class="el" href="struct_def_info.html">DefInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>symDefTableResolve</b> (const <a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *self, <a class="el" href="ast_8h.html#struct_def_id">DefId</a> def_id)</td></tr>
+<tr class="separator:aa18e1579a9040ba7a24ed27c25538ef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3d5950612947f0fb79e66bf33eea62f" id="r_ae3d5950612947f0fb79e66bf33eea62f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3d5950612947f0fb79e66bf33eea62f">symDefTablePrint</a> (const <a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *self, unsigned int indent, FILE *out)</td></tr>
+<tr class="memdesc:ae3d5950612947f0fb79e66bf33eea62f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt die Definitionstabelle in einen Ausgabestrom aus.  <br /></td></tr>
+<tr class="separator:ae3d5950612947f0fb79e66bf33eea62f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Ausführliche Beschreibung</h2>
+<div class="textblock"><p>Enthält die Umsetzung der Symboltabelle. </p>
+<dl class="section author"><dt>Autor</dt><dd>Dorian Weber  </dd></dl>
+</div><h2 class="groupheader">Makro-Dokumentation</h2>
+<a id="acc6736579246e43d72b64d7227abd955" name="acc6736579246e43d72b64d7227abd955"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc6736579246e43d72b64d7227abd955">&#9670;&#160;</a></span>CHOICE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHOICE</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> { \</div>
+<div class="line">    fputs(#NAME <span class="stringliteral">&quot;(&quot;</span>, out);     \</div>
+<div class="line">    __VA_ARGS__;               \</div>
+<div class="line">    fputs(<span class="stringliteral">&quot;)&quot;</span>, out);           \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Debug-Print Ausgabe von Varianten eines Variantentyps. </p>
+
+</div>
+</div>
+<a id="aef126bde1462eb2b5e3db454943fbd53" name="aef126bde1462eb2b5e3db454943fbd53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef126bde1462eb2b5e3db454943fbd53">&#9670;&#160;</a></span>FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                                \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = &quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>); \</div>
+<div class="line">    __VA_ARGS__;                                             \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                               \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Strukturtyp. </p>
+
+</div>
+</div>
+<a id="a7f7c3ae10161217e89044daf1ac15bba" name="a7f7c3ae10161217e89044daf1ac15bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f7c3ae10161217e89044daf1ac15bba">&#9670;&#160;</a></span>INT_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define INT_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                                               \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = %i&quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>, self-&gt;NAME); \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                                             \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Integertyp. </p>
+
+</div>
+</div>
+<a id="a8069274c4fd97c3fdd589ea1850a4988" name="a8069274c4fd97c3fdd589ea1850a4988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8069274c4fd97c3fdd589ea1850a4988">&#9670;&#160;</a></span>STR_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STR_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                                                   \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = \&quot;%s\&quot;&quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>, self-&gt;NAME); \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                                                 \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Zeigertyp. </p>
+
+</div>
+</div>
+<a id="a484ea6658c5a481ce0eeaa8bce7f502c" name="a484ea6658c5a481ce0eeaa8bce7f502c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a484ea6658c5a481ce0eeaa8bce7f502c">&#9670;&#160;</a></span>STRUCT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STRUCT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">TYPE, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {            \</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">char</span> *sep = <span class="stringliteral">&quot;&quot;</span>;                 \</div>
+<div class="line">    fputs(<span class="stringliteral">&quot;(&quot;</span> #TYPE <span class="stringliteral">&quot;) {&quot;</span>, out);          \</div>
+<div class="line">    indent++;                             \</div>
+<div class="line">    __VA_ARGS__;                          \</div>
+<div class="line">    indent--;                             \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;\n%*s}&quot;</span>, indent*4, <span class="stringliteral">&quot;&quot;</span>); \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+<p>Makro zur vereinfachten Implementation von Debug-Print Routinen für Struktur-Typen. </p>
+
+</div>
+</div>
+<a id="a0cac49872849599e2a2c1db8f048762b" name="a0cac49872849599e2a2c1db8f048762b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cac49872849599e2a2c1db8f048762b">&#9670;&#160;</a></span>VEC_FIELD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VEC_FIELD</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname">NAME, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Wert:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> {                             \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;%s\n%*s.&quot;</span> #NAME <span class="stringliteral">&quot; = [&quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>); \</div>
+<div class="line">    if (<a class="code hl_function" href="vec_8c.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a>(self-&gt;NAME) == 0) {                            \</div>
+<div class="line">        fputs(<span class="stringliteral">&quot;]&quot;</span>, out); <span class="keywordflow">break</span>;                               \</div>
+<div class="line">    }                                                         \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;&quot;</span>;                                                 \</div>
+<div class="line">    indent++;                                                 \</div>
+<div class="line">    for (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_function" href="vec_8c.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a>(self-&gt;NAME); ++i) {   \</div>
+<div class="line">        fprintf(out, <span class="stringliteral">&quot;%s\n%*s[%u] = &quot;</span>, sep, indent*4, <span class="stringliteral">&quot;&quot;</span>, i); \</div>
+<div class="line">        sep = <span class="stringliteral">&quot;,&quot;</span>;                                            \</div>
+<div class="line">        __VA_ARGS__;                                          \</div>
+<div class="line">    }                                                         \</div>
+<div class="line">    indent--;                                                 \</div>
+<div class="line">    sep = <span class="stringliteral">&quot;,&quot;</span>;                                                \</div>
+<div class="line">    fprintf(out, <span class="stringliteral">&quot;\n%*s]&quot;</span>, indent*4, <span class="stringliteral">&quot;&quot;</span>);                     \</div>
+<div class="line">} <span class="keywordflow">while</span> (0)</div>
+<div class="ttc" id="avec_8c_html_aa47aca2627a33323437b5e8b92fefb56"><div class="ttname"><a href="vec_8c.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a></div><div class="ttdeci">unsigned int vecLen(const void *self)</div><div class="ttdoc">Gibt die Anzahl der im Vektor verwendeten Elemente zurück.</div><div class="ttdef"><b>Definition</b> vec.c:81</div></div>
+</div><!-- fragment -->
+<p>Makro zur Ausgabe von Strukturfeldern mit Vektortyp. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentation der Funktionen</h2>
+<a id="a60ddb333c70635f1b95deeef2c23db93" name="a60ddb333c70635f1b95deeef2c23db93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ddb333c70635f1b95deeef2c23db93">&#9670;&#160;</a></span>symDefTableNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> symDefTableNew </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>tab</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="ast_8h.html#struct_program">Program</a> *</td>          <td class="paramname"><span class="paramname"><em>ast</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wandelt die Symboltabelle in eine Definitionstabelle um. </p>
+<p>Die Ressourcen der Symboltabelle sind danach freigegeben. Nur die Definitionstabelle überlebt den Ruf.</p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tab</td><td>Die Symboltabelle. </td></tr>
+    <tr><td class="paramname">ast</td><td>Ein konstanter Zeiger auf die Wurzel des abstrakten Syntaxbaumes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Die Definitionstabelle. </dd></dl>
+
+</div>
+</div>
+<a id="ae3d5950612947f0fb79e66bf33eea62f" name="ae3d5950612947f0fb79e66bf33eea62f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3d5950612947f0fb79e66bf33eea62f">&#9670;&#160;</a></span>symDefTablePrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void symDefTablePrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt die Definitionstabelle in einen Ausgabestrom aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Definitionstabelle. </td></tr>
+    <tr><td class="paramname">indent</td><td>Die Einrückung nach der ersten Zeile. </td></tr>
+    <tr><td class="paramname">out</td><td>Der Ausgabestream. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab98f55f9403231991a153c925c017f26" name="ab98f55f9403231991a153c925c017f26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98f55f9403231991a153c925c017f26">&#9670;&#160;</a></span>symDefTableRelease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void symDefTableRelease </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_sym_def_table">SymDefTable</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt den Speicher der Definitionstabelle frei. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Definitionstabelle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa970e31250ae49c819447b0f7b3cb396" name="aa970e31250ae49c819447b0f7b3cb396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa970e31250ae49c819447b0f7b3cb396">&#9670;&#160;</a></span>symtabCurrentFunc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="symtab_8h.html#struct_func_info">FuncInfo</a> * symtabCurrentFunc </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt die aktuell definierte Funktion zurück. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein Zeiger auf die aktuelle Funktionsdefinition oder <code>NULL</code>, im globalen Sichtbarkeitsbereich. </dd></dl>
+
+</div>
+</div>
+<a id="a9cd7bd0e26fb2d9f5a5b6788ea4fb489" name="a9cd7bd0e26fb2d9f5a5b6788ea4fb489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cd7bd0e26fb2d9f5a5b6788ea4fb489">&#9670;&#160;</a></span>symtabDefineFunc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool symtabDefineFunc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ident</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>return_type</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert eine neue Funktion in der Symboltabelle. </p>
+<p>Die Funktionsdefinition scheitert, falls die Funktion bereits existiert.</p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+    <tr><td class="paramname">ident</td><td>Der Bezeichner der Funktion. </td></tr>
+    <tr><td class="paramname">return_type</td><td>Der Rückgabetyp der Funktion. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd><code>true</code>, wenn die Funktionsdefinition erfolgreich war, sonst <code>false</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a7085eeafd0815666f9316a58c1f073be" name="a7085eeafd0815666f9316a58c1f073be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7085eeafd0815666f9316a58c1f073be">&#9670;&#160;</a></span>symtabDefineParam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool symtabDefineParam </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ident</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>data_type</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert einen neuen Parameter einer Funktion in der Symboltabelle. </p>
+<p>Die Parameterdefinition scheitert, falls der Parameter bereits existiert.</p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+    <tr><td class="paramname">ident</td><td>Der Bezeichner des Parameters. </td></tr>
+    <tr><td class="paramname">data_type</td><td>Der Datentyp des Parameters. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd><code>true</code>, wenn die Parameterdefinition erfolgreich war, sonst <code>false</code>. </dd></dl>
+
+</div>
+</div>
+<a id="aa3abeb832738b0fe8bb8f258c83691ac" name="aa3abeb832738b0fe8bb8f258c83691ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3abeb832738b0fe8bb8f258c83691ac">&#9670;&#160;</a></span>symtabDefineVar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_def_id">DefId</a> symtabDefineVar </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ident</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#ad8ed01ff3ff33333d8e19db4d2818bb6">DataType</a></td>          <td class="paramname"><span class="paramname"><em>data_type</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert eine neue <a class="el" href="interpreter_8c.html#struct_variable" title="Mit dem Initialisierungsstatus markierter Variablenwert.">Variable</a> in der Symboltabelle. </p>
+<p>Die Variablendefinition scheitert, falls die <a class="el" href="interpreter_8c.html#struct_variable" title="Mit dem Initialisierungsstatus markierter Variablenwert.">Variable</a> bereits im aktuellen Sichtbarkeitsbereich existiert.</p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+    <tr><td class="paramname">ident</td><td>Der Bezeichner der Variablen. </td></tr>
+    <tr><td class="paramname">data_type</td><td>Der Datentyp der Variablen. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Die <code><a class="el" href="ast_8h.html#struct_def_id" title="Eine eindeutige Kennung für die (Funktions- oder Variablen-)Definition, auf die ein auflösbarer Bezei...">DefId</a></code> der Variablen, wenn die Definition erfolgreich war, sonst <code>INVALID_DEF_ID</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a145590983ae6257084a0e129025994e4" name="a145590983ae6257084a0e129025994e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a145590983ae6257084a0e129025994e4">&#9670;&#160;</a></span>symtabIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_def_info.html">DefInfo</a> * symtabIndex </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="ast_8h.html#struct_def_id">DefId</a></td>          <td class="paramname"><span class="paramname"><em>def_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Löst eine Definition anhand ihrer ID auf. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+    <tr><td class="paramname">def_id</td><td>Die ID der Definition. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Ein Zeiger auf die Definition oder <code>NULL</code> falls <code>INVALID_DEF_ID</code> übergeben wurde. </dd></dl>
+
+</div>
+</div>
+<a id="a34fd52fb99604e059da37b31e11f3627" name="a34fd52fb99604e059da37b31e11f3627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34fd52fb99604e059da37b31e11f3627">&#9670;&#160;</a></span>symtabNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> symtabNew </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Erzeugt eine neue Symboltabelle. </p>
+<dl class="section return"><dt>Rückgabe</dt><dd>Eine neue Symboltabelle. </dd></dl>
+
+</div>
+</div>
+<a id="a5c79138ac32c95639b69008b04500879" name="a5c79138ac32c95639b69008b04500879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c79138ac32c95639b69008b04500879">&#9670;&#160;</a></span>symtabPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void symtabPrint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>indent</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt den aktuellen Zustand der blockstrukturierten Symboltabelle in einen Ausgabestrom aus. </p>
+<p>Diese Funktion kann beim Debugging der semantischen Analyse helfen, da sie zeigt, welche Symbole für welchen Sichtbarkeitsbereich wie definiert sind.</p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+    <tr><td class="paramname">indent</td><td>Die Einrückung nach der ersten Zeile. </td></tr>
+    <tr><td class="paramname">out</td><td>Der Ausgabestrom. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abe415cb2666c110a88573a38cb336b04" name="abe415cb2666c110a88573a38cb336b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe415cb2666c110a88573a38cb336b04">&#9670;&#160;</a></span>symtabRelease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void symtabRelease </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt den Speicher der Symboltabelle frei. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4272ddc3a25297064137a81f3734c243" name="a4272ddc3a25297064137a81f3734c243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4272ddc3a25297064137a81f3734c243">&#9670;&#160;</a></span>symtabResolve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ast_8h.html#struct_def_id">DefId</a> symtabResolve </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ident</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sucht einen Bezeichner in der Symboltabelle. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+    <tr><td class="paramname">ident</td><td>Der Bezeichner, der gesucht wird. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Die Definition des Bezeichners oder <code>INVALID_DEF_ID</code>, wenn der Bezeichner nicht gefunden wurde. </dd></dl>
+
+</div>
+</div>
+<a id="a9637291deecc2e6c4901df4d3f98c238" name="a9637291deecc2e6c4901df4d3f98c238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9637291deecc2e6c4901df4d3f98c238">&#9670;&#160;</a></span>symtabScopeEnter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void symtabScopeEnter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Betritt einen neuen Sichtbarkeitsbereich. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a92121e9534b4cf5b67612710b1ac3a73" name="a92121e9534b4cf5b67612710b1ac3a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92121e9534b4cf5b67612710b1ac3a73">&#9670;&#160;</a></span>symtabScopeLeave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void symtabScopeLeave </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="symtab_8h.html#struct_symtab">Symtab</a> *</td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verlässt den aktuellen Sichtbarkeitsbereich. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>Die Symboltabelle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="symtab_8c.html">symtab.c</a></li>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

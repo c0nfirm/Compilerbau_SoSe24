@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Minako: vec.h Quellcode</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript" src="darkmode_toggle.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Minako
+   </div>
+   <div id="projectbrief">Ein studentischer Interpreter für die Sprache C1.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Suchen');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('vec_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Lade ...</div>
+<div class="SRStatus" id="Searching">Suche ...</div>
+<div class="SRStatus" id="NoMatches">Keine Treffer</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">vec.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="vec_8h.html">gehe zur Dokumentation dieser Datei</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#ifndef VEC_H_INCLUDED</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#define VEC_H_INCLUDED</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/* *** includes ************************************************************* */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/* *** structures *********************************************************** */</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="vec_8h.html">   51</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="vec_8h.html#a7360b55975153b822efc5217b7734e6a">   52</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="vec_8h.html#a7360b55975153b822efc5217b7734e6a">len</a>; </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="vec_8h.html#a856fa22aef923b4a345805d81580aebe">   53</a></span>    <span class="keywordtype">size_t</span> <a class="code hl_variable" href="vec_8h.html#a856fa22aef923b4a345805d81580aebe">cap</a>; </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <a class="code hl_struct" href="vec_8h.html#struct_vec_header">VecHeader</a>;</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">/* *** interface ************************************************************ */</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">extern</span> <span class="keywordtype">void</span>* <a class="code hl_define" href="vec_8h.html#af0ddba2619ba699efa636f06a2967f74">vecInit</a>(<span class="keywordtype">size_t</span> capacity, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="" data-end="">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="vec_8h.html#af0ddba2619ba699efa636f06a2967f74">   79</a></span><span class="preprocessor">#define vecInit(self) \</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="preprocessor">    (self = vecInit(8, sizeof(*(self))))</span></div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="vec_8h.html#aad958ebaef6b0751fd335cb9b36f87a5">vecRelease</a>(<span class="keywordtype">void</span> *self);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">extern</span> <span class="keywordtype">void</span>* <a class="code hl_define" href="vec_8h.html#a5a4f36e9a2f8eef31b3519dbe5fdb990">vecPush</a>(<span class="keywordtype">void</span> *self, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="foldopen" id="foldopen00107" data-start="" data-end="">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="vec_8h.html#a5a4f36e9a2f8eef31b3519dbe5fdb990">  107</a></span><span class="preprocessor">#define vecPush(self) \</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">    (self = vecPush(self, sizeof((self)[0])), (self)+vecLen(self)-1)[0]</span></div>
+</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_define" href="vec_8h.html#ae5098055674b1baf6e905817d1517974">vecPop</a>(<span class="keywordtype">void</span> *self);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="foldopen" id="foldopen00134" data-start="" data-end="">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="vec_8h.html#ae5098055674b1baf6e905817d1517974">  134</a></span><span class="preprocessor">#define vecPop(self) \</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">    (vecPop(self), (self)+vecLen(self))[0]</span></div>
+</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="foldopen" id="foldopen00142" data-start="" data-end="">
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="vec_8h.html#a2ced9b6207bdc00b0594a8aadc4aaec6">  142</a></span><span class="preprocessor">#define vecTop(self) \</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">    (self)[vecLen(self) - 1]</span></div>
+</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="foldopen" id="foldopen00162" data-start="" data-end="">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="vec_8h.html#aba7d11c3c2967a2edef589bbbb96b8ff">  162</a></span><span class="preprocessor">#define vecForEach(var, vec) \</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">    for (size_t _it = 0, _len = vecLen(vec), c = 0; (c ^= 1) &amp;&amp; _it &lt; _len; ++_it) \</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">        for (var = &amp;(vec)[_it]; c != 0; c = 0)</span></div>
+</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_function" href="vec_8h.html#a3ff18f550c6bc127dac2a29d8ef88434">vecIsEmpty</a>(<span class="keyword">const</span> <span class="keywordtype">void</span> *self);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">extern</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_function" href="vec_8h.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a>(<span class="keyword">const</span> <span class="keywordtype">void</span> *self);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#endif </span><span class="comment">/* VEC_H_INCLUDED */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="avec_8h_html_a3ff18f550c6bc127dac2a29d8ef88434"><div class="ttname"><a href="vec_8h.html#a3ff18f550c6bc127dac2a29d8ef88434">vecIsEmpty</a></div><div class="ttdeci">int vecIsEmpty(const void *self)</div><div class="ttdoc">Gibt zurück, ob der Vektor leer ist.</div><div class="ttdef"><b>Definition</b> vec.c:77</div></div>
+<div class="ttc" id="avec_8h_html_a5a4f36e9a2f8eef31b3519dbe5fdb990"><div class="ttname"><a href="vec_8h.html#a5a4f36e9a2f8eef31b3519dbe5fdb990">vecPush</a></div><div class="ttdeci">#define vecPush(self)</div><div class="ttdoc">Fügt ein Element zum Ende des Vektors hinzu und gibt eine lvalue-Referenz zurück.</div><div class="ttdef"><b>Definition</b> vec.h:107</div></div>
+<div class="ttc" id="avec_8h_html_a7360b55975153b822efc5217b7734e6a"><div class="ttname"><a href="vec_8h.html#a7360b55975153b822efc5217b7734e6a">VecHeader::len</a></div><div class="ttdeci">size_t len</div><div class="ttdoc">Anzahl der Elemente im Vektor.</div><div class="ttdef"><b>Definition</b> vec.h:52</div></div>
+<div class="ttc" id="avec_8h_html_a856fa22aef923b4a345805d81580aebe"><div class="ttname"><a href="vec_8h.html#a856fa22aef923b4a345805d81580aebe">VecHeader::cap</a></div><div class="ttdeci">size_t cap</div><div class="ttdoc">Kapazität des reservierten Speichers.</div><div class="ttdef"><b>Definition</b> vec.h:53</div></div>
+<div class="ttc" id="avec_8h_html_aa47aca2627a33323437b5e8b92fefb56"><div class="ttname"><a href="vec_8h.html#aa47aca2627a33323437b5e8b92fefb56">vecLen</a></div><div class="ttdeci">unsigned int vecLen(const void *self)</div><div class="ttdoc">Gibt die Anzahl der im Vektor verwendeten Elemente zurück.</div><div class="ttdef"><b>Definition</b> vec.c:81</div></div>
+<div class="ttc" id="avec_8h_html_aad958ebaef6b0751fd335cb9b36f87a5"><div class="ttname"><a href="vec_8h.html#aad958ebaef6b0751fd335cb9b36f87a5">vecRelease</a></div><div class="ttdeci">void vecRelease(void *self)</div><div class="ttdoc">Gibt den Speicher eines Vektors frei.</div><div class="ttdef"><b>Definition</b> vec.c:30</div></div>
+<div class="ttc" id="avec_8h_html_ae5098055674b1baf6e905817d1517974"><div class="ttname"><a href="vec_8h.html#ae5098055674b1baf6e905817d1517974">vecPop</a></div><div class="ttdeci">#define vecPop(self)</div><div class="ttdoc">Entfernt ein Element vom Ende des Vektors und gibt eine lvalue-Referenz zurück.</div><div class="ttdef"><b>Definition</b> vec.h:134</div></div>
+<div class="ttc" id="avec_8h_html_af0ddba2619ba699efa636f06a2967f74"><div class="ttname"><a href="vec_8h.html#af0ddba2619ba699efa636f06a2967f74">vecInit</a></div><div class="ttdeci">#define vecInit(self)</div><div class="ttdoc">Initialisiert ein neues Array.</div><div class="ttdef"><b>Definition</b> vec.h:79</div></div>
+<div class="ttc" id="avec_8h_html_struct_vec_header"><div class="ttname"><a href="vec_8h.html#struct_vec_header">VecHeader</a></div><div class="ttdoc">Struktur, die dem Array zur Buchhaltung vorangestellt ist.</div><div class="ttdef"><b>Definition</b> vec.h:51</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="vec_8h.html">vec.h</a></li>
+    <li class="footer">Erzeugt von <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
