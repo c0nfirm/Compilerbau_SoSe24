@@ -362,17 +362,37 @@ void visitStmt(Interpreter *self, const Stmt *stmt) {
 	}
 }
 
+										/*TODO PART*/
 void visitIfStmt(Interpreter *self, const IfStmt *if_stmt) {
-	TODO("Bedingungsanweisung auswerten");
+	printf("visitIfStmt ");
+	Value cond = visitExpr(self, &if_stmt->cond, TYPE_BOOL);
+	if (cond.boolean){
+		visitStmt(self, if_stmt->if_true);
+	}
+	else if (if_stmt->if_false != NULL){
+		visitStmt(self, if_stmt->if_false);
+	}
 }
 
 void visitForStmt(Interpreter *self, const ForStmt *for_stmt) {
-	TODO("Initialisierer auswerten, den Körper ausführen und aktualisieren, "
-	     "bis die Bedingung zu `false` ausgewertet wird oder die Funktion zurückkehrt");
+	/**TODO("Initialisierer auswerten, den Körper ausführen und aktualisieren, "
+	     "bis die Bedingung zu `false` ausgewertet wird oder die Funktion zurückkehrt");*/
+	visitForInit(self, &for_stmt->init);
+	visitBlock(self, &for_stmt->block)
+	printf("visitForStmt ");
 }
 
 void visitForInit(Interpreter *self, const ForInit *for_init) {
-	TODO("Initialisierungsanweisung auswerten");
+	/*TODO("Initialisierungsanweisung auswerten");*/
+	switch (for_init->tag){
+		case FOR_INIT_VAR_DEF:
+			visitVarDef(self, &for_init->var_def);
+			break;
+		case FOR_INIT_ASSIGN:
+			visitAssign(self, &for_init->assign, TYPE_BOOL);
+	default:
+		break;
+	}
 }
 
 void visitWhileStmt(Interpreter *self, const WhileStmt *while_stmt) {
@@ -402,10 +422,15 @@ void visitPrintStmt(Interpreter *self, const PrintStmt *print_stmt) {
 
 void visitVarDef(Interpreter *self, const VarDef *var_def) {
 	TODO("Die Variable gemäß ihrer Definition initialisieren, falls zutreffend");
+	
+
 }
 
 void visitBlock(Interpreter *self, const Block *block) {
-	TODO("Die enthaltenen Anweisungen besuchen oder frühzeitig zurückkehren, falls angefordert");
+	/*TODO("Die enthaltenen Anweisungen besuchen oder frühzeitig zurückkehren, falls angefordert");*/
+	vecForEach(self, block->statements) {
+		visitStmt(self, statements);
+	}
 }
 
 /* ****** Ausdrücke ********************************************************* */
